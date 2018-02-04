@@ -41,7 +41,8 @@ public class Main{
         System.out.println("Type: " + eth.getTypeString());
         System.out.println("IP version: " + ip.getVersionString());
         System.out.println("IP length: " + ip.getIHLString());
-
+        System.out.println("IP DSCP: " + ip.getDSCPString());
+        System.out.println("IP ECN: " + ip.getECNString());
     }
     
 }
