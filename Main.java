@@ -9,6 +9,7 @@ public class Main{
         String[] adapters = driver.getAdapterNames();
         Scanner sc = new Scanner(System.in);
         EthernetParser eth = new EthernetParser();
+        IPPacketParser ip = new IPPacketParser();
         
         System.out.println("Adapter found are:");
         for (int index = 0; index < adapters.length; index++)
@@ -32,13 +33,15 @@ public class Main{
         System.out.println("Packet: "+Packet+" with capacity: "+Packet.capacity());
         System.out.println(driver.byteArrayToString(packet));
         
-        eth.setDestination(packet);
-        eth.setSource(packet);
-        eth.setType(packet);    
-
+        eth.parsePacket(packet);
+        ip.parsePacket(packet);
+        
         System.out.println("Destination: " + eth.getDestinationString());
         System.out.println("Source: " + eth.getSourceString());
         System.out.println("Type: " + eth.getTypeString());
+        System.out.println("IP version: " + ip.getVersionString());
+        System.out.println("IP length: " + ip.getIHLString());
+
     }
     
 }

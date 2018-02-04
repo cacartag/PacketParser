@@ -1,5 +1,3 @@
-import java.nio.ByteBuffer;
-
 public class EthernetParser{
     private byte [] destBytes;
     private String destString;    
@@ -12,7 +10,14 @@ public class EthernetParser{
     
     public byte [] getDestinationBytes(){ return destBytes; }
     public String getDestinationString(){ return destString; };
-    public void setDestination(byte [] packet)
+
+    public byte [] getSourceBytes(){ return srcBytes; }
+    public String getSourceString(){ return srcString; }
+
+    public byte [] getTypeBytes(){ return typeBytes; }
+    public String getTypeString(){ return typeString; }
+
+    public void parsePacket(byte [] packet)
     {
         for(int index = 0; index < 6; index++)
         {
@@ -23,13 +28,7 @@ public class EthernetParser{
         {
             destString += String.format("%02X",current);
         }         
-    }
-    
-    
-    public byte [] getSourceBytes(){ return srcBytes; }
-    public String getSourceString(){ return srcString; };
-    public void setSource(byte [] packet)
-    {
+
         for(int index = 0; index < 6; index++)
         {
             srcBytes[index] = packet[index + 6]; 
@@ -39,12 +38,7 @@ public class EthernetParser{
         {
             srcString += String.format("%02X",current);
         }        
-    }
 
-    public byte [] getTypeBytes(){ return typeBytes; }
-    public String getTypeString(){ return typeString; }
-    public void setType(byte [] packet)
-    {
         for(int index = 0; index < 2; index++)
         {
             typeBytes[index] = packet[index + 12];
@@ -53,9 +47,8 @@ public class EthernetParser{
         for(byte current : typeBytes)
         {
             typeString += String.format("%02X",current);
-        }
+        }        
     }
-    
     
     EthernetParser()
     {
