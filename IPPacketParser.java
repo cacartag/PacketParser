@@ -8,28 +8,28 @@ public class IPPacketParser{
     private String ihlString;
     
 
-    public byte getVersionBytes() { return versionBytes; }
+    public byte [] getVersionBytes() { return versionBytes; }
     public String getVersionString() { return versionString; }
     
-    public byte getIHLBytes() { return ihlBytes; }
+    public byte [] getIHLBytes() { return ihlBytes; }
     public String getIHLString() { return ihlString; }
      
     public void parsePacket(byte [] packet)
     {
-        public byte versionIHLByte = new byte;
+        int versionIHLByte = 0;
         
-        versionIHLByte = packet[14];
+        versionIHLByte = (int)packet[14]; 
         
-        for(byte current : versionBytes)
-        {
-            versionString += String.format("%02X",current);
-        }       
+        versionString = Integer.toString((versionIHLByte >> 4) & 15);
         
-        for(byte current : ihlBytes)
-        {
-            ihlString += String.format("%02X",current);
-        }
+        ihlString = Integer.toString(versionIHLByte & 15);
         
+        //ihlBytes[0] = (versionIHLByte[0] << 4) & 240;
+        
+        
+        //versionString = String.format("%02X",versionBytes[0]);       
+        
+        //ihlString = String.format("%02X",ihlBytes[0]);   
     }
     
     IPPacketParser()
