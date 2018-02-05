@@ -43,6 +43,11 @@ public class Main{
         System.out.println("IP length: " + ip.getIHLString());
         System.out.println("IP DSCP: " + ip.getDSCPString());
         System.out.println("IP ECN: " + ip.getECNString());
+        System.out.println("IP packet length: "+ ip.getLengthString());
+        System.out.println("Identification: " + ip.getIdentification());
+        System.out.println("Flags: " + ip.getFlagString());
+        
+        
     }
     
 }
