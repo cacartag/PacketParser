@@ -46,7 +46,9 @@ public class Main{
         System.out.println("IP packet length: "+ ip.getLengthString());
         System.out.println("Identification: " + ip.getIdentification());
         System.out.println("Flags: " + ip.getFlagString());
-        
+        System.out.println("Fragment Offset: " + ip.getFragmentOffsetString());
+        System.out.println("TTL: " + ip.getTTLString());
+        System.out.println("Protocol: " + ip.getProtocolString());
         
     }
     

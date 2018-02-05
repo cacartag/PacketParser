@@ -17,6 +17,15 @@ public class IPPacketParser{
     private int flag;
     private String flagString;
     
+    private int fragmentOffset;
+    private String fragmentOffsetString;
+    
+    private int ttl;
+    private String ttlString;
+    
+    private int protocol;
+    private String protocolString;
+    
     public String getVersionString() { return versionString; }
     
     public String getIHLString() { return ihlString; }
@@ -30,6 +39,12 @@ public class IPPacketParser{
     public String getIdentification() { return idString; }
      
     public String getFlagString() { return flagString; }
+    
+    public String getFragmentOffsetString() { return fragmentOffsetString; }
+    
+    public String getTTLString() { return ttlString; }
+    
+    public String getProtocolString() { return protocolString; }
      
     public void parsePacket(byte [] packet)
     {
@@ -45,9 +60,17 @@ public class IPPacketParser{
 
         id = (int)(packet[18] & 0xFF);
         id = id * 256;
-        id = id + (int)(packet[19] & 0XFF);
+        id = id + (int)(packet[19] & 0xFF);
         
         flag = (int)(packet[20]);
+        
+        fragmentOffset = (int)(packet[20] & 0x1F);
+        fragmentOffset = fragmentOffset * 256;
+        fragmentOffset = fragmentOffset + (int)(packet[21] & 0xFF);
+        
+        ttl = (int)(packet[22] & 0xFF);
+        
+        protocol = (int)(packet[23] & 0xFF);
         
         versionString = Integer.toString((versionIHLByte >> 4) & 15);
         
@@ -63,6 +86,11 @@ public class IPPacketParser{
         
         flagString = Integer.toString((flag >> 5) & 7);
         
+        fragmentOffsetString = Integer.toString(fragmentOffset);
+        
+        ttlString = Integer.toString(ttl);
+        
+        protocolString = Integer.toString(protocol);
     }
     
     IPPacketParser()
@@ -77,5 +105,11 @@ public class IPPacketParser{
         idString = "";
         flag = 0;
         flagString = "";
+        fragmentOffset = 0;
+        fragmentOffsetString = "";
+        ttl = 0;
+        ttlString = "";
+        protocol = 0;
+        protocolString = "";
     }
 }
