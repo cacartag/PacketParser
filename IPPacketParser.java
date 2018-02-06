@@ -26,6 +26,15 @@ public class IPPacketParser{
     private int protocol;
     private String protocolString;
     
+    private int headerChecksum;
+    private String headerChecksumString;
+    
+    private int [] sourceAddress;
+    private String sourceAddressString;
+    
+    private int [] destinationAddress;
+    private String destinationAddressString;
+    
     public String getVersionString() { return versionString; }
     
     public String getIHLString() { return ihlString; }
@@ -45,6 +54,12 @@ public class IPPacketParser{
     public String getTTLString() { return ttlString; }
     
     public String getProtocolString() { return protocolString; }
+     
+    public String getHeaderChecksumString() { return headerChecksumString; }
+    
+    public String getSourceAddressString() { return sourceAddressString; }
+    
+    public String getDestinationAddressString() { return destinationAddressString; }
      
     public void parsePacket(byte [] packet)
     {
@@ -72,6 +87,20 @@ public class IPPacketParser{
         
         protocol = (int)(packet[23] & 0xFF);
         
+        headerChecksum = (int)(packet[24] & 0xFF);
+        headerChecksum = headerChecksum * 256;
+        headerChecksum = headerChecksum + (int)(packet[25] & 0xFF);
+        
+        sourceAddress[0] = (int)(packet[26] & 0xFF);
+        sourceAddress[1] = (int)(packet[27] & 0xFF);
+        sourceAddress[2] = (int)(packet[28] & 0xFF);
+        sourceAddress[3] = (int)(packet[29] & 0xFF);
+        
+        destinationAddress[0] = (int)(packet[30] & 0xFF);
+        destinationAddress[1] = (int)(packet[31] & 0xFF);
+        destinationAddress[2] = (int)(packet[32] & 0xFF);
+        destinationAddress[3] = (int)(packet[33] & 0xFF);
+        
         versionString = Integer.toString((versionIHLByte >> 4) & 15);
         
         ihlString = Integer.toString(versionIHLByte & 15);
@@ -91,6 +120,19 @@ public class IPPacketParser{
         ttlString = Integer.toString(ttl);
         
         protocolString = Integer.toString(protocol);
+        
+        headerChecksumString = Integer.toString(headerChecksum);
+        
+        for(int index: sourceAddress)
+        {
+            sourceAddressString += Integer.toString(index) + ".";
+        }
+        
+        for(int index: destinationAddress)
+        {
+            destinationAddressString += Integer.toString(index) + ".";
+        }
+    
     }
     
     IPPacketParser()
@@ -111,5 +153,11 @@ public class IPPacketParser{
         ttlString = "";
         protocol = 0;
         protocolString = "";
+        headerChecksum = 0;
+        headerChecksumString = "";
+        sourceAddress = new int[] {0,0,0,0};
+        sourceAddressString = "";
+        destinationAddress = new int[] {0,0,0,0};
+        destinationAddressString = "";
     }
 }

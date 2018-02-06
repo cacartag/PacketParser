@@ -49,6 +49,9 @@ public class Main{
         System.out.println("Fragment Offset: " + ip.getFragmentOffsetString());
         System.out.println("TTL: " + ip.getTTLString());
         System.out.println("Protocol: " + ip.getProtocolString());
+        System.out.println("Header Checksum: " + ip.getHeaderChecksumString());
+        System.out.println("Source IP Address: " + ip.getSourceAddressString());
+        System.out.println("Destination IP Address: " + ip.getDestinationAddressString());
         
     }
     
