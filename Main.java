@@ -10,6 +10,7 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         EthernetParser eth = new EthernetParser();
         IPPacketParser ip = new IPPacketParser();
+        TCPParser tcp = new TCPParser();
         
         System.out.println("Adapter found are:");
         for (int index = 0; index < adapters.length; index++)
@@ -35,10 +36,14 @@ public class Main{
         
         eth.parsePacket(packet);
         ip.parsePacket(packet);
+        tcp.parsePacket(packet);
         
+        System.out.println("Ethernet Header:");
         System.out.println("Destination: " + eth.getDestinationString());
         System.out.println("Source: " + eth.getSourceString());
         System.out.println("Type: " + eth.getTypeString());
+        
+        System.out.println("IP Header:");
         System.out.println("IP version: " + ip.getVersionString());
         System.out.println("IP length: " + ip.getIHLString());
         System.out.println("IP DSCP: " + ip.getDSCPString());
@@ -52,6 +57,10 @@ public class Main{
         System.out.println("Header Checksum: " + ip.getHeaderChecksumString());
         System.out.println("Source IP Address: " + ip.getSourceAddressString());
         System.out.println("Destination IP Address: " + ip.getDestinationAddressString());
+        
+        System.out.println("TCP Header:");
+        System.out.println("Port source: " + tcp.getSourcePortString());
+        System.out.println("Port destination: " + tcp.getDestinationPortString());
         
     }
     
