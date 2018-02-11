@@ -62,6 +62,18 @@ public class EthernetParser{
         typeString = "";
     }
     
+    public void clear()
+    {
+        destBytes = new byte[6];
+        destString = "";
+        
+        srcBytes = new byte[6];
+        srcString = "";
+        
+        typeBytes = new byte[2];
+        typeString = "";
+    }
+    
 }
 
 

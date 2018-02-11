@@ -27,17 +27,47 @@ public class Main{
             System.out.println("adapter "+ adapters[adapterIndex] + " open");
         }
         
-        byte [] packet = driver.readPacket();
+        System.out.println("What protocol to capture");
         
-        ByteBuffer Packet = ByteBuffer.wrap(packet);
+        int protocol = sc.nextInt();
         
-        System.out.println("Packet: "+Packet+" with capacity: "+Packet.capacity());
-        System.out.println(driver.byteArrayToString(packet));
+        int protocolCaptured = 0;        
         
-        eth.parsePacket(packet);
-        ip.parsePacket(packet);
-        tcp.parsePacket(packet);
+        while(protocolCaptured != protocol)
+        {
+
+            eth.clear();
+            ip.clear();
+            tcp.clear();
         
+            byte [] packet = driver.readPacket();
+        
+            ByteBuffer Packet = ByteBuffer.wrap(packet);            
+            
+            eth.parsePacket(packet);
+
+            if(eth.getTypeString().equals("0800"))
+            {
+                ip.parsePacket(packet);
+                
+                if(Integer.parseInt(ip.getProtocolString()) == 6)
+                    tcp.parsePacket(packet);
+                    protocolCaptured = Integer.parseInt(ip.getProtocolString());             
+            }
+
+
+            
+
+            
+            if(protocolCaptured == protocol)
+            {
+                System.out.println("Packet: "+Packet+" with capacity: "+Packet.capacity());
+                System.out.println(driver.byteArrayToString(packet));              
+            }
+        }
+  
+
+
         System.out.println("Ethernet Header:");
         System.out.println("Destination: " + eth.getDestinationString());
         System.out.println("Source: " + eth.getSourceString());
@@ -61,6 +91,10 @@ public class Main{
         System.out.println("TCP Header:");
         System.out.println("Port source: " + tcp.getSourcePortString());
         System.out.println("Port destination: " + tcp.getDestinationPortString());
+        System.out.println("Sequence Number: " + tcp.getSequenceNumberString());
+        System.out.println("Acknowledgement Number: " + tcp.getAcknowledgementNumberString());
+        System.out.println("Offset: " + tcp.getOffsetString());
+        System.out.println("Reserved: " + tcp.getReservedString());
         
     }
     

@@ -160,4 +160,30 @@ public class IPPacketParser{
         destinationAddress = new int[] {0,0,0,0};
         destinationAddressString = "";
     }
+    
+    public void clear()
+    {
+        versionString = "";        
+        ihlString = "";
+        dscpString = "";
+        ecnString = "";
+        totalLength = 0;
+        lengthString = "";
+        id = 0;
+        idString = "";
+        flag = 0;
+        flagString = "";
+        fragmentOffset = 0;
+        fragmentOffsetString = "";
+        ttl = 0;
+        ttlString = "";
+        protocol = 0;
+        protocolString = "";
+        headerChecksum = 0;
+        headerChecksumString = "";
+        sourceAddress = new int[] {0,0,0,0};
+        sourceAddressString = "";
+        destinationAddress = new int[] {0,0,0,0};
+        destinationAddressString = "";
+    }
 }
