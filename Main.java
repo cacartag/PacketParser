@@ -51,8 +51,10 @@ public class Main{
                 ip.parsePacket(packet);
                 
                 if(Integer.parseInt(ip.getProtocolString()) == 6)
+                {
                     tcp.parsePacket(packet);
-                    protocolCaptured = Integer.parseInt(ip.getProtocolString());             
+                    protocolCaptured = Integer.parseInt(ip.getProtocolString());   
+                }                    
             }
 
 
@@ -95,6 +97,10 @@ public class Main{
         System.out.println("Acknowledgement Number: " + tcp.getAcknowledgementNumberString());
         System.out.println("Offset: " + tcp.getOffsetString());
         System.out.println("Reserved: " + tcp.getReservedString());
+        System.out.println("TCP Flags: \n" + tcp.getTCPFlagsString());
+        System.out.println("Window: " + tcp.getWindowString());
+        System.out.println("Checksum: " + tcp.getCheckSumString());
+        System.out.println("Urgent Pointer: " + tcp.getUrgentPointerString());
         
     }
     

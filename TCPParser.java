@@ -18,6 +18,16 @@ public class TCPParser{
     private String reservedString;
     
     private int tcpFlags;
+    private String tcpFlagsString;
+    
+    private int window;
+    private String windowString;
+    
+    private int checkSum;
+    private String checkSumString;
+    
+    private int urgentPointer;
+    private String urgentPointerString;
     
     public String getSourcePortString() { return sourcePortString; }
     
@@ -30,6 +40,16 @@ public class TCPParser{
     public String getOffsetString() { return offsetString; }
     
     public String getReservedString() { return reservedString; }
+    
+    public int getTCPFlags() { return tcpFlags; }
+    
+    public String getTCPFlagsString() { return tcpFlagsString; }
+    
+    public String getWindowString() { return windowString; }
+    
+    public String getCheckSumString() { return checkSumString; }
+    
+    public String getUrgentPointerString() { return urgentPointerString; }
     
     public void parsePacket(byte [] packet)
     {
@@ -88,6 +108,67 @@ public class TCPParser{
         
         reservedString = Integer.toString(reserved);
         
+        tcpFlags = (int)(packet[47] & 0xFF);
+        
+        if((tcpFlags & 0x80) == 0x80)
+            tcpFlagsString += "C: 1 \n";
+        else
+            tcpFlagsString += "C: 0 \n";
+        
+        if((tcpFlags & 0x40) == 0x40)
+            tcpFlagsString += "E: 1 \n";
+        else
+            tcpFlagsString += "E: 0 \n";
+        
+        if((tcpFlags & 0x20) == 0x20)
+            tcpFlagsString += "U: 1 \n";
+        else 
+            tcpFlagsString += "U: 0 \n";
+        
+        if((tcpFlags & 0x10) == 0x10)
+            tcpFlagsString += "A: 1 \n";
+        else
+            tcpFlagsString += "A: 0 \n";
+        
+        if((tcpFlags & 0x08) == 0x08)
+            tcpFlagsString += "P: 1 \n";
+        else
+            tcpFlagsString += "P: 0 \n";
+        
+        if((tcpFlags & 0x04) == 0x04)
+            tcpFlagsString += "R: 1 \n";
+        else
+            tcpFlagsString += "R: 0 \n";
+        
+        if((tcpFlags & 0x02) == 0x02)
+            tcpFlagsString += "S: 1 \n";
+        else
+            tcpFlagsString += "S: 0 \n";
+        
+        
+        if((tcpFlags & 0x01) == 0x01)
+            tcpFlagsString += "F: 1 \n";
+        else
+            tcpFlagsString += "F: 0 \n";
+        
+        window = (int)(packet[48] & 0xFF);
+        window = window << 8;
+        window = window + (int)(packet[49] & 0xFF);
+        
+        windowString = Integer.toString(window);
+        
+        checkSum = (int)(packet[50] & 0xFF);
+        checkSum = checkSum << 8;
+        checkSum = checkSum + (int)(packet[51] & 0xFF);
+        
+        checkSumString = Integer.toString(checkSum);
+        
+        urgentPointer = (int)(packet[52] & 0xFF);
+        urgentPointer = urgentPointer << 8;
+        urgentPointer = urgentPointer + (int)(packet[53] & 0xFF);
+
+        urgentPointerString = Integer.toString(urgentPointer);
+        
     }
 
     TCPParser()
@@ -106,6 +187,18 @@ public class TCPParser{
         
         reserved = 0;
         reservedString = "";
+        
+        tcpFlags = 0;
+        tcpFlagsString = "";
+        
+        window = 0;
+        windowString = "";
+        
+        checkSum = 0;
+        checkSumString = "";
+        
+        urgentPointer = 0;
+        urgentPointerString = "";
     }
     
     public void clear()
@@ -127,5 +220,17 @@ public class TCPParser{
         
         reserved = 0;
         reservedString = "";
+        
+        tcpFlags = 0;
+        tcpFlagsString = "";
+        
+        window = 0;
+        windowString = "";
+        
+        checkSum = 0;
+        checkSumString = "";
+
+        urgentPointer = 0;
+        urgentPointerString = "";
     }
 }
