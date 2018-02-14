@@ -1,6 +1,7 @@
 import java.nio.ByteBuffer;
 import java.util.Scanner;
 import org.apache.commons.cli.*;
+import java.util.Collection;
 // javac -cp ".;commons-cli-1.4.jar" -d . Main.java
 // java -cp ".;commons-cli-1.4.jar" Main
 
@@ -95,38 +96,87 @@ public class Main
         EthernetParser eth = new EthernetParser();
         IPPacketParser ip = new IPPacketParser();
         TCPParser tcp = new TCPParser();
-        Options options = new Options();
+        Options optionsSingleNoArg = new Options();
+        Options optionsDoubleArg = new Options();
         
-        options.setArgs(2);
-        options.addOption("c",true, "Exit after receiving count packets");
+        //options.setArgs(2);
+        // options for single or no argument
+        optionsSingleNoArg.addOption("c",true,   "-c count                      Exit after receiving count packets");
+        optionsSingleNoArg.addOption("r",true,   "-r filename                   Read Packets from file");
+        optionsSingleNoArg.addOption("o",true,   "-o filename                   Save Output to filename ");
+        optionsSingleNoArg.addOption("t",true,   "-t type                       Print only packets of the specified type where type is one of: eth, arp, ip, icmp, tcp, or udp");
+        optionsSingleNoArg.addOption("h",true,   "-h                            Print header info only as specified by -t");
+        optionsSingleNoArg.addOption("src",true, "-src saddress                 Print only packets with source address equal to saddress");
+        optionsSingleNoArg.addOption("dst",true, "-dst daddress                 Print only packets with destination address equal to daddress");
 
+        // options for double arguments
+        
+        Option temp = new Option("sord", "-sord saddress daddress        Print only packets where the source address matches saddress or the destination address matches daddress");
+        temp.setArgs(2);
+        optionsDoubleArg.addOption(temp);
+        
+        temp = new Option("sandd", "-sandd saddress daddress       Print only packets where the source address matches saddress and the destination address matches daddress");
+        temp.setArgs(2);
+        optionsDoubleArg.addOption(temp);
+
+        temp = new Option("sport", "-sport                         Print only packets where the source port is in the range ");
+        temp.setArgs(2);
+        optionsDoubleArg.addOption(temp);
+        
+        temp = new Option("dport", "-dport                         Print only packets where the destination port is in the range port1-port2");
+        temp.setArgs(2);
+        optionsDoubleArg.addOption(temp);
+        
+        Option [] optionSingleNoArgLists = optionsSingleNoArg.getOptions().toArray(new Option[0]);
+        
+        for(int current = 0; current < optionSingleNoArgLists.length; current++)
+        {
+            System.out.println(optionSingleNoArgLists[current].getDescription());
+        }
+        
+        Option [] optionDoubleArgLists = optionsDoubleArg.getOptions().toArray(new Option[0]);
+        
+        for(int current = 0; current < optionDoubleArgLists.length; current++)
+        {
+            System.out.println(optionDoubleArgLists[current].getDescription());
+        }
+        
         CommandLineParser parser = new DefaultParser();
-        CommandLine cmd = parser.parse(options, args);
+        //CommandLine cmdSingleNoArg = parser.parse(optionsSingleNoArg, args);
+        CommandLine cmdDoubleArg = parser.parse(optionsDoubleArg, args);
         
-        System.out.println("Adapter found are:");
-        for (int index = 0; index < adapters.length; index++)
-        {
-            System.out.println("("+index+"): "+adapters[index]);
-        }
         
-        System.out.println("Which adapter do you choose?");
-        
-        int adapterIndex = sc.nextInt();
-        
-        if(driver.openAdapter(adapters[adapterIndex]))
-        {
-            System.out.println("adapter "+ adapters[adapterIndex] + " open");
-        }
+        // System.out.println("Adapter found are:");
+        // for (int index = 0; index < adapters.length; index++)
+        // {
+        //     System.out.println("("+index+"): "+adapters[index]);
+        // }
+        // 
+        // System.out.println("Which adapter do you choose?");
+        // 
+        // int adapterIndex = sc.nextInt();
+        // 
+        // if(driver.openAdapter(adapters[adapterIndex]))
+        // {
+        //     System.out.println("adapter "+ adapters[adapterIndex] + " open");
+        // }
 
-        if(cmd.hasOption("c"))
+        //if(cmdSingleNoArg.hasOption("c"))
+        //{
+        //    String clArg = cmdSingleNoArg.getOptionValue("c");
+        //    System.out.println("Received: " + clArg);
+        //} else {
+        //    System.out.println("No Single argument detected");
+        //}
+        
+        if(cmdDoubleArg.hasOption("sord"))
         {
-            System.out.println("Detected c argument");
+            String clArg = cmdDoubleArg.getOptionValue("sord");
+            System.out.println("Received: " + clArg);
         } else {
-            System.out.println("No argument detected");
+            System.out.println("No Double arguments detected");
         }
         
-        //System.out.println("Got: " + args[0]);
-
         
     }
     
