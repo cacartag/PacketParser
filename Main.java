@@ -1,33 +1,17 @@
 import java.nio.ByteBuffer;
 import java.util.Scanner;
+import org.apache.commons.cli.*;
+// javac -cp ".;commons-cli-1.4.jar" -d . Main.java
+// java -cp ".;commons-cli-1.4.jar" Main
 
-public class Main{
+public class Main
+{
     
-    public static void main(String [] args) throws Exception
+    public void captureIPTCP(EthernetParser eth, IPPacketParser ip, TCPParser tcp, SimplePacketDriver driver) throws Exception
     {
-        SimplePacketDriver driver = new SimplePacketDriver();
-        String[] adapters = driver.getAdapterNames();
         Scanner sc = new Scanner(System.in);
-        EthernetParser eth = new EthernetParser();
-        IPPacketParser ip = new IPPacketParser();
-        TCPParser tcp = new TCPParser();
         
-        System.out.println("Adapter found are:");
-        for (int index = 0; index < adapters.length; index++)
-        {
-            System.out.println("("+index+"): "+adapters[index]);
-        }
-        
-        System.out.println("Which adapter do you choose?");
-        
-        int adapterIndex = sc.nextInt();
-        
-        if(driver.openAdapter(adapters[adapterIndex]))
-        {
-            System.out.println("adapter "+ adapters[adapterIndex] + " open");
-        }
-        
-        System.out.println("What protocol to capture");
+        System.out.println("What IP protocol type to capture");
         
         int protocol = sc.nextInt();
         
@@ -101,6 +85,48 @@ public class Main{
         System.out.println("Window: " + tcp.getWindowString());
         System.out.println("Checksum: " + tcp.getCheckSumString());
         System.out.println("Urgent Pointer: " + tcp.getUrgentPointerString());
+    }
+    
+    public static void main(String [] args) throws Exception
+    {
+        SimplePacketDriver driver = new SimplePacketDriver();
+        String[] adapters = driver.getAdapterNames();
+        Scanner sc = new Scanner(System.in);
+        EthernetParser eth = new EthernetParser();
+        IPPacketParser ip = new IPPacketParser();
+        TCPParser tcp = new TCPParser();
+        Options options = new Options();
+        
+        options.setArgs(2);
+        options.addOption("c",true, "Exit after receiving count packets");
+
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmd = parser.parse(options, args);
+        
+        System.out.println("Adapter found are:");
+        for (int index = 0; index < adapters.length; index++)
+        {
+            System.out.println("("+index+"): "+adapters[index]);
+        }
+        
+        System.out.println("Which adapter do you choose?");
+        
+        int adapterIndex = sc.nextInt();
+        
+        if(driver.openAdapter(adapters[adapterIndex]))
+        {
+            System.out.println("adapter "+ adapters[adapterIndex] + " open");
+        }
+
+        if(cmd.hasOption("c"))
+        {
+            System.out.println("Detected c argument");
+        } else {
+            System.out.println("No argument detected");
+        }
+        
+        //System.out.println("Got: " + args[0]);
+
         
     }
     
