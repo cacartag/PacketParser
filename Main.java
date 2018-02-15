@@ -8,6 +8,11 @@ import java.util.Collection;
 public class Main
 {
     
+    Main()
+    {
+        
+    }
+    
     public void captureIPTCP(EthernetParser eth, IPPacketParser ip, TCPParser tcp, SimplePacketDriver driver) throws Exception
     {
         Scanner sc = new Scanner(System.in);
@@ -53,8 +58,6 @@ public class Main
             }
         }
   
-
-
         System.out.println("Ethernet Header:");
         System.out.println("Destination: " + eth.getDestinationString());
         System.out.println("Source: " + eth.getSourceString());
@@ -105,10 +108,11 @@ public class Main
         optionsSingleNoArg.addOption("r",true,   "-r filename                   Read Packets from file");
         optionsSingleNoArg.addOption("o",true,   "-o filename                   Save Output to filename ");
         optionsSingleNoArg.addOption("t",true,   "-t type                       Print only packets of the specified type where type is one of: eth, arp, ip, icmp, tcp, or udp");
-        optionsSingleNoArg.addOption("h",true,   "-h                            Print header info only as specified by -t");
+        optionsSingleNoArg.addOption("h",false,   "-h                            Print header info only as specified by -t");
         optionsSingleNoArg.addOption("src",true, "-src saddress                 Print only packets with source address equal to saddress");
         optionsSingleNoArg.addOption("dst",true, "-dst daddress                 Print only packets with destination address equal to daddress");
-
+        optionsSingleNoArg.addOption("help",false,"-help                         Get all options");
+        
         // options for double arguments
         
         Option temp = new Option("sord", "-sord saddress daddress        Print only packets where the source address matches saddress or the destination address matches daddress");
@@ -127,24 +131,22 @@ public class Main
         temp.setArgs(2);
         optionsDoubleArg.addOption(temp);
         
-        Option [] optionSingleNoArgLists = optionsSingleNoArg.getOptions().toArray(new Option[0]);
-        
-        for(int current = 0; current < optionSingleNoArgLists.length; current++)
-        {
-            System.out.println(optionSingleNoArgLists[current].getDescription());
-        }
-        
         Option [] optionDoubleArgLists = optionsDoubleArg.getOptions().toArray(new Option[0]);
+        //
+        //for(int current = 0; current < optionDoubleArgLists.length; current++)
+        //{
+        //    System.out.println(optionDoubleArgLists[current].getDescription());
+        //}
         
         for(int current = 0; current < optionDoubleArgLists.length; current++)
         {
-            System.out.println(optionDoubleArgLists[current].getDescription());
-        }
+            optionsSingleNoArg.addOption(optionDoubleArgLists[current]);
+        }        
         
         CommandLineParser parser = new DefaultParser();
-        //CommandLine cmdSingleNoArg = parser.parse(optionsSingleNoArg, args);
-        CommandLine cmdDoubleArg = parser.parse(optionsDoubleArg, args);
+        CommandLine cmd = parser.parse(optionsSingleNoArg, args);
         
+        // CommandLine cmdDoubleArg = parser.parse(optionsDoubleArg, args);    
         
         // System.out.println("Adapter found are:");
         // for (int index = 0; index < adapters.length; index++)
@@ -169,14 +171,119 @@ public class Main
         //    System.out.println("No Single argument detected");
         //}
         
-        if(cmdDoubleArg.hasOption("sord"))
+        //if(cmdSing)
+        
+        Main menu = new Main();
+    
+        // no argument option check
+        if(cmd.hasOption("h"))
         {
-            String clArg = cmdDoubleArg.getOptionValue("sord");
-            System.out.println("Received: " + clArg);
-        } else {
-            System.out.println("No Double arguments detected");
+
         }
         
+        if(cmd.hasOption("help"))
+        {
+            Option [] optionSingleNoArgLists = optionsSingleNoArg.getOptions().toArray(new Option[0]);
+            
+            for(int current = 0; current < optionSingleNoArgLists.length; current++)
+            {
+                System.out.println(optionSingleNoArgLists[current].getDescription());
+            }
+        }
+    
+        // single argument option checks
+        if(cmd.hasOption("c"))
+        {
+            String argument = menu.getArgument(cmd,"c",1)[0];
+        }
+        
+        if(cmd.hasOption("r"))
+        {
+            String argument = menu.getArgument(cmd,"r",1)[0];
+        }
+            
+        if(cmd.hasOption("o"))
+        {
+            String argument = menu.getArgument(cmd,"o",1)[0];
+        }
+        
+        if(cmd.hasOption("t"))
+        {
+            String argument = menu.getArgument(cmd,"t",1)[0];
+        }
+
+        // double argument option checks
+        if(cmd.hasOption("src"))
+        {
+            String [] arguments = menu.getArgument(cmd,"src",2);
+        }
+        
+        if(cmd.hasOption("dst"))
+        {
+            String [] arguments = menu.getArgument(cmd,"dst",2);
+        }
+        
+        if(cmd.hasOption("sord"))
+        {
+            String [] arguments = menu.getArgument(cmd,"sord",2);
+        }
+        
+        if(cmd.hasOption("sandd"))
+        {
+            String [] arguments = menu.getArgument(cmd,"sandd",2);
+        }
+        
+        if(cmd.hasOption("sport"))
+        {
+            String [] arguments = menu.getArgument(cmd,"sport",2);
+        }
+        
+        if(cmd.hasOption("dport"))
+        {
+            String [] arguments = menu.getArgument(cmd,"dport",2);
+        }
+        
+        
+        
+    }
+    
+    public String [] getArgument(CommandLine cmd, String option, int argumentNumber) throws Exception
+    {
+        
+        // checking for single argument retrieval
+        if(argumentNumber == 1)
+        {
+            try
+            {
+                String[] clArg = new String[]{ cmd.getOptionValue(option)};
+                System.out.println("received: " + clArg[0]);
+                return clArg;
+            } catch (Exception e){
+                System.out.println(option + " is missing an argument");
+                return null;
+            }
+        }
+        
+        if(argumentNumber == 2)
+        {
+            try
+            {
+                String [] clArg = cmd.getOptionValues(option);
+                System.out.println("received: ");
+                for(String l : clArg) { System.out.println(l + "\n"); }
+                return clArg;
+            } catch (Exception e){
+                System.out.println(option + " is missing an argument");
+                return null;
+            }            
+        }
+        
+        return null;
+        
+    }
+    
+    public 
+    {
         
     }
     
