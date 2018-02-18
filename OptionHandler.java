@@ -367,14 +367,15 @@ public class OptionHandler{
                 System.out.println("Error: Could not open output file, defaulting to console");
             }
         }
-        getPacket();
-        //for(int counter = 0; counter < 8; counter++)
-        //{
-        //    getPacket();
-        //}
 
         // this is where the actual parsing will happen
         // ip.printAll();  //new String[]{"eth","arp","ip","icmp","tcp","udp"};
+        // check size of packet when reading from file
+        byte [] packet = getPacket();
+        
+        System.out.println(driver.byteArrayToString(packet));
+        //System.out.write(packet);
+        //System.out.println("\nSize is: " + packet.length);
         /*switch (typeToParse) {
             case "eth":
                 System.out.println("parsing for eth");
@@ -405,16 +406,16 @@ public class OptionHandler{
         
         if(inputFile == null)
         {
-            packet = new byte[50];
             // read from NIC
+            packet = driver.readPacket();
+            
         } else {
             try{
                 // using Byte vector since we don't know the size of the packet
                 Vector<Byte> byteAccumulator = new Vector<Byte>();
                 String temp;
                 Byte [] finalPacket;
-                
-                //byteTemp = temp.getBytes();
+
                 do
                 {
                     // string needs to be converted into Byte class array
@@ -432,6 +433,7 @@ public class OptionHandler{
                     {
                         byteAccumulator.addAll(Arrays.asList(byteTemp));
                     }
+                    
                 } while (!temp.isEmpty());
                 
                 finalPacket = new Byte[byteAccumulator.size()];
