@@ -1,4 +1,14 @@
 public class IPPacketParser{
+    // passed in filter options
+    private int sord;
+    
+    private int sand;
+    
+    private String srcFilter;
+    
+    private String dstFilter;
+    
+    // variables used for ip header values
     
     private String versionString;
     
@@ -137,6 +147,11 @@ public class IPPacketParser{
     
     IPPacketParser()
     {
+        sord = -1;
+        sand = -1;
+        srcFilter = null;
+        dstFilter = null;
+        
         versionString = "";        
         ihlString = "";
         dscpString = "";
@@ -185,5 +200,24 @@ public class IPPacketParser{
         sourceAddressString = "";
         destinationAddress = new int[] {0,0,0,0};
         destinationAddressString = "";
+    }
+    
+    public void printAll()
+    {
+        System.out.println("IP Header:");
+        System.out.println("IP version: " + versionString);
+        System.out.println("IP length: " + ihlString);
+        System.out.println("IP DSCP: " + dscpString);
+        System.out.println("IP ECN: " + ecnString);
+        System.out.println("IP packet length: "+ lengthString);
+        System.out.println("Identification: " + idString);
+        System.out.println("Flags: " + flagString);
+        System.out.println("Fragment Offset: " + fragmentOffsetString);
+        System.out.println("TTL: " + ttlString);
+        System.out.println("Protocol: " + protocolString);
+        System.out.println("Header Checksum: " + headerChecksumString);
+        System.out.println("Source IP Address: " + sourceAddressString);
+        System.out.println("Destination IP Address: " + destinationAddressString);
+        //System.out.println("this is from inside IPPacketParser");
     }
 }

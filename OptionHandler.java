@@ -1,7 +1,10 @@
 import java.nio.ByteBuffer;
 import java.util.Scanner;
+import java.util.Arrays;
 import org.apache.commons.cli.*;
 import java.util.Collection;
+import java.lang.*;
+import java.io.*;
 // javac -cp ".;commons-cli-1.4.jar" -d . OptionHandler.java
 // java -cp ".;commons-cli-1.4.jar" OptionHandler
 
@@ -15,7 +18,7 @@ public class OptionHandler{
     private Options optionsSingleNoArg;
     private Options optionsDoubleArg;
     
-    // set after options
+    // possible options that can be set
     private int packetsToCapture;
     private String inputFile;
     private String outputFile;
@@ -27,6 +30,7 @@ public class OptionHandler{
     private int andset;
     private int [] sourcePortRange;
     private int [] destinationPortRange;
+    private String [] possibleTypes = new String[]{"eth","arp","ip","icmp","tcp","udp"};
 
     OptionHandler()
     {
@@ -46,6 +50,7 @@ public class OptionHandler{
         headerOnly = -1;
         sourceAddress = null;
         destinationAddress = null;
+        
         orset = -1;
         andset = -1;
         sourcePortRange = new int [] {-1,-1};
@@ -127,7 +132,7 @@ public class OptionHandler{
         System.out.println("Urgent Pointer: " + tcp.getUrgentPointerString());
     }
     
-    public void ParseOptions(String [] args) throws Exception
+    public int parseOptions(String [] args) throws Exception
     {   
         // options for single or no argument
         optionsSingleNoArg.addOption("c",true,   "-c count                      Exit after receiving count packets");
@@ -165,8 +170,16 @@ public class OptionHandler{
         }        
         
         CommandLineParser parser = new DefaultParser();
-        CommandLine cmd = parser.parse(optionsSingleNoArg, args);
-    
+        CommandLine cmd;
+        
+        try{
+            cmd = parser.parse(optionsSingleNoArg, args);
+        } catch (Exception e)
+        {
+            System.out.println("that option is not available");
+            return 0;
+        }
+        
         // no argument option check
         if(cmd.hasOption("h"))
         {
@@ -188,32 +201,43 @@ public class OptionHandler{
         if(cmd.hasOption("c"))
         {
             String argument = getArgument(cmd,"c",1)[0];
+            
+            try{
+                packetsToCapture = Integer.parseInt(argument);
+            } catch (Exception e){
+                System.out.println("Error: Could not parse number for count option");
+            }
         }
         
         if(cmd.hasOption("r"))
         {
-            String argument = getArgument(cmd,"r",1)[0];
+            inputFile = getArgument(cmd,"r",1)[0];
         }
             
         if(cmd.hasOption("o"))
         {
-            String argument = getArgument(cmd,"o",1)[0];
+            outputFile = getArgument(cmd,"o",1)[0];
         }
         
         if(cmd.hasOption("t"))
         {
-            String argument = getArgument(cmd,"t",1)[0];
+            typeToParse = getArgument(cmd,"t",1)[0];
+            if(!(Arrays.asList(possibleTypes).contains(typeToParse.toLowerCase())))
+            {
+                System.out.println("That type is not available, type -help to see all types, defaulting to tcp");
+                typeToParse = "tcp";
+            }
         }
 
         // double argument option checks
         if(cmd.hasOption("src"))
         {
-            String [] arguments = getArgument(cmd,"src",2);
+            destinationAddress = getArgument(cmd,"src",1)[0];
         }
         
         if(cmd.hasOption("dst"))
         {
-            String [] arguments = getArgument(cmd,"dst",2);
+            sourceAddress = getArgument(cmd,"dst",1)[0];
         }
         
         if(cmd.hasOption("sord"))
@@ -235,6 +259,8 @@ public class OptionHandler{
         {
             String [] arguments = getArgument(cmd,"dport",2);
         }
+        
+        return 1;
     }
     
     // extract passed values of options that are set
@@ -247,7 +273,7 @@ public class OptionHandler{
             try
             {
                 String[] clArg = new String[]{ cmd.getOptionValue(option)};
-                System.out.println("received: " + clArg[0]);
+                // System.out.println("received: " + clArg[0]);
                 return clArg;
             } catch (Exception e){
                 System.out.println(option + " is missing an argument");
@@ -260,7 +286,7 @@ public class OptionHandler{
             try
             {
                 String [] clArg = cmd.getOptionValues(option);
-                System.out.println("received: ");
+                // System.out.println("received: ");
                 for(String l : clArg) { System.out.println(l + "\n"); }
                 return clArg;
             } catch (Exception e){
@@ -274,7 +300,7 @@ public class OptionHandler{
     }
     
     // scans interfaces and prompts the user to choose one
-    public void ChooseInterface()
+    public void chooseInterface()
     {
         Scanner sc = new Scanner(System.in);
         
@@ -293,5 +319,50 @@ public class OptionHandler{
             System.out.println("adapter "+ adapters[adapterIndex] + " open");
         }
     }
+    
+    public void runOptions() throws Exception
+    {
+        // checking where to get input from
+        if(inputFile == null)
+        {
+            chooseInterface();
+        }
+        
+        // checking where to send output file to
+        if(!(outputFile == null))
+        {
+            try{
+                FileOutputStream f = new FileOutputStream(outputFile);
+                System.setOut(new PrintStream(f));
+                //System.out.println("testing");
+            } catch (Exception e){
+                System.out.println("Error: Could not open output file, defaulting to console");
+            }
+        }
+        
+        // this is where the actual parsing will happen
+        // ip.printAll();  new String[]{"eth","arp","ip","icmp","tcp","udp"};
+        switch (typeToParse) {
+            case "eth":
+                System.out.println("parsing for eth");
+            break;
+            case "arp":
+                System.out.println("parsing for arp");
+            break;
+            case "ip":
+                System.out.println("parsing for ip");
+            break;
+            case "icmp":
+                System.out.println("parsing for icmp");
+            break;
+            case "tcp":
+                System.out.println("parsing for tcp");
+            break;
+            case "udp":
+                System.out.println("parsing for udp");
+            break;
+        }
+    }
+    
     
 }
