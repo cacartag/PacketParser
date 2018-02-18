@@ -3,12 +3,19 @@ import java.util.Scanner;
 import java.util.Arrays;
 import org.apache.commons.cli.*;
 import java.util.Collection;
+import java.util.Vector;
 import java.lang.*;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.PrintStream;
+import java.io.InputStreamReader;
+
 // To compile in Windows: 	javac -cp ".;commons-cli-1.4.jar" -d . OptionHandler.java
 // To run in Windows: 		java -cp ".;commons-cli-1.4.jar" OptionHandler
 // To compile in Linux:		javac -cp ".:commons-cli-1.4.jar" -d . OptionHandler.java
 // note I had to move libsimplepacketdriver_x64.so to /usr/lib/x86_64-Linux-GNU
+
 public class OptionHandler{
 
     private SimplePacketDriver driver;
@@ -18,6 +25,7 @@ public class OptionHandler{
     private TCPParser tcp;
     private Options optionsSingleNoArg;
     private Options optionsDoubleArg;
+    private BufferedReader readStream;
     
     // possible options that can be set
     private int packetsToCapture;
@@ -35,13 +43,13 @@ public class OptionHandler{
 
     OptionHandler()
     {
-	try{
-		String absolutePath = System.getProperty("user.dir");
-		System.load(absolutePath+"/libsimplepacketdriver.so");
-	}catch (Exception e)
-	{
-		
-	}
+        //try{
+        //    String absolutePath = System.getProperty("user.dir");
+        //    System.load(absolutePath+"/libsimplepacketdriver.so");
+        //}catch (Exception e)
+        //{
+        //    
+        //}
 
         driver = new SimplePacketDriver();
         adapters = driver.getAdapterNames();
@@ -335,6 +343,17 @@ public class OptionHandler{
         if(inputFile == null)
         {
             chooseInterface();
+        } else {
+            try{
+                FileInputStream in = new FileInputStream(inputFile);        
+                readStream = new BufferedReader(new InputStreamReader(in,"UTF-8"));
+                
+            } catch (Exception e)
+            {
+                System.out.println("Error: Could not open input file" + inputFile + "\n Looking for adapter");
+                chooseInterface();
+            }
+
         }
         
         // checking where to send output file to
@@ -348,10 +367,15 @@ public class OptionHandler{
                 System.out.println("Error: Could not open output file, defaulting to console");
             }
         }
-        
+        getPacket();
+        //for(int counter = 0; counter < 8; counter++)
+        //{
+        //    getPacket();
+        //}
+
         // this is where the actual parsing will happen
-        ip.printAll();  //new String[]{"eth","arp","ip","icmp","tcp","udp"};
-        switch (typeToParse) {
+        // ip.printAll();  //new String[]{"eth","arp","ip","icmp","tcp","udp"};
+        /*switch (typeToParse) {
             case "eth":
                 System.out.println("parsing for eth");
             break;
@@ -370,7 +394,66 @@ public class OptionHandler{
             case "udp":
                 System.out.println("parsing for udp");
             break;
+        }*/
+        
+        
+    }
+    
+    public byte[] getPacket() throws Exception
+    {
+        byte [] packet; // temporary initialization
+        
+        if(inputFile == null)
+        {
+            packet = new byte[50];
+            // read from NIC
+        } else {
+            try{
+                // using Byte vector since we don't know the size of the packet
+                Vector<Byte> byteAccumulator = new Vector<Byte>();
+                String temp;
+                Byte [] finalPacket;
+                
+                //byteTemp = temp.getBytes();
+                do
+                {
+                    // string needs to be converted into Byte class array
+                    // needs to go through byte primitive step
+                    temp = readStream.readLine();
+                    byte [] middleConversion = temp.getBytes();
+                    Byte [] byteTemp = new Byte[middleConversion.length];
+                    
+                    for(int counter = 0; counter < middleConversion.length; counter++)
+                    {
+                        byteTemp[counter] = new Byte(middleConversion[counter]);
+                    }
+                    
+                    if(byteTemp.length > 0)
+                    {
+                        byteAccumulator.addAll(Arrays.asList(byteTemp));
+                    }
+                } while (!temp.isEmpty());
+                
+                finalPacket = new Byte[byteAccumulator.size()];
+                byteAccumulator.toArray(finalPacket);
+                packet = new byte[byteAccumulator.size()];
+                
+                for(int counter = 0; counter < finalPacket.length; counter++)
+                {
+                    packet[counter] = finalPacket[counter];
+                }
+                
+                System.out.write(packet);
+                System.out.println("\nSize of packet is: " + packet.length);
+                
+            } catch (Exception e){
+                packet = new byte[50];
+                System.out.println("Error: Could not read from input file");
+            }
+            
         }
+        
+        return packet;
     }
     
     
