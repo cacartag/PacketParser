@@ -5,9 +5,10 @@ import org.apache.commons.cli.*;
 import java.util.Collection;
 import java.lang.*;
 import java.io.*;
-// javac -cp ".;commons-cli-1.4.jar" -d . OptionHandler.java
-// java -cp ".;commons-cli-1.4.jar" OptionHandler
-
+// To compile in Windows: 	javac -cp ".;commons-cli-1.4.jar" -d . OptionHandler.java
+// To run in Windows: 		java -cp ".;commons-cli-1.4.jar" OptionHandler
+// To compile in Linux:		javac -cp ".:commons-cli-1.4.jar" -d . OptionHandler.java
+// note I had to move libsimplepacketdriver_x64.so to /usr/lib/x86_64-Linux-GNU
 public class OptionHandler{
 
     private SimplePacketDriver driver;
@@ -34,6 +35,14 @@ public class OptionHandler{
 
     OptionHandler()
     {
+	try{
+		String absolutePath = System.getProperty("user.dir");
+		System.load(absolutePath+"/libsimplepacketdriver.so");
+	}catch (Exception e)
+	{
+		
+	}
+
         driver = new SimplePacketDriver();
         adapters = driver.getAdapterNames();
         eth = new EthernetParser();
@@ -46,7 +55,7 @@ public class OptionHandler{
         packetsToCapture = -1;
         inputFile = null;
         outputFile = null;
-        typeToParse = null;
+        typeToParse = "tcp";
         headerOnly = -1;
         sourceAddress = null;
         destinationAddress = null;
@@ -341,7 +350,7 @@ public class OptionHandler{
         }
         
         // this is where the actual parsing will happen
-        // ip.printAll();  new String[]{"eth","arp","ip","icmp","tcp","udp"};
+        ip.printAll();  //new String[]{"eth","arp","ip","icmp","tcp","udp"};
         switch (typeToParse) {
             case "eth":
                 System.out.println("parsing for eth");
