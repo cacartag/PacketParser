@@ -204,7 +204,7 @@ public class IPPacketParser{
     
     public void printAll()
     {
-        /*System.out.println("IP Header:");
+        System.out.println("IP Header:");
         System.out.println("IP version: " + versionString);
         System.out.println("IP length: " + ihlString);
         System.out.println("IP DSCP: " + dscpString);
@@ -217,7 +217,6 @@ public class IPPacketParser{
         System.out.println("Protocol: " + protocolString);
         System.out.println("Header Checksum: " + headerChecksumString);
         System.out.println("Source IP Address: " + sourceAddressString);
-        System.out.println("Destination IP Address: " + destinationAddressString);*/
-        System.out.println("this is from inside IPPacketParser in linux");
+        System.out.println("Destination IP Address: " + destinationAddressString);
     }
 }

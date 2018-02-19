@@ -74,6 +74,14 @@ public class EthernetParser{
         typeString = "";
     }
     
+    public void printAll()
+    {
+        System.out.println("Ethernet Header:");
+        System.out.println("Destination: " + getDestinationString());
+        System.out.println("Source: " + getSourceString());
+        System.out.println("Type: " + getTypeString());
+    }
+    
 }
 
 

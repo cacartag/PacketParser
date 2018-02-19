@@ -221,9 +221,16 @@ public class OptionHandler{
             String argument = getArgument(cmd,"c",1)[0];
             
             try{
-                packetsToCapture = Integer.parseInt(argument);
+                int argumentPlaceholder = Integer.parseInt(argument);
+                if(argumentPlaceholder > 0)
+                {
+                    packetsToCapture = Integer.parseInt(argument);                    
+                }else{
+                    throw new IllegalArgumentException();
+                }
+                
             } catch (Exception e){
-                System.out.println("Error: Could not parse number for count option");
+                System.out.println("Error: Not a valid number for count option, defaulting to continuous");
             }
         }
         
@@ -372,20 +379,52 @@ public class OptionHandler{
         // this is where the actual parsing will happen
         // ip.printAll();  //new String[]{"eth","arp","ip","icmp","tcp","udp"};
         // check size of packet when reading from file
-        byte [] packet = getPacket();
+        // byte [] packet = getPacket();
         
-        System.out.println(driver.byteArrayToString(packet));
-        //System.out.write(packet);
-        //System.out.println("\nSize is: " + packet.length);
-        /*switch (typeToParse) {
+        // System.out.println(driver.byteArrayToString(packet));
+        // System.out.write(packet);
+        // System.out.println("\nSize is: " + packet.length);
+
+        switch (typeToParse) {
             case "eth":
-                System.out.println("parsing for eth");
+                boolean continueLoopEth = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
+                int counterEth = 1;
+                
+                while(continueLoopEth)
+                {
+                    byte [] packet = getPacket();
+                    eth = new EthernetParser();
+                    eth.parsePacket(packet);
+                    eth.printAll();
+                    
+                    if(counterEth == packetsToCapture)
+                    {
+                        continueLoopEth = false;
+                    }
+                    counterEth = counterEth + 1;
+                }
             break;
             case "arp":
                 System.out.println("parsing for arp");
             break;
             case "ip":
-                System.out.println("parsing for ip");
+                boolean continueLoopIp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
+                int counterIp = 1;
+                
+                while(continueLoopIp)
+                {
+                    byte []  packet = getPacket();
+                    ip = new IPPacketParser();
+                    ip.parsePacket(packet);
+                    ip.printAll();
+                    
+                    if(counterIp == packetsToCapture)
+                    {
+                        continueLoopIp = false;
+                    }
+                    counterIp = counterIp + 1;
+                }
+                // System.out.println("parsing for ip");
             break;
             case "icmp":
                 System.out.println("parsing for icmp");
@@ -396,9 +435,7 @@ public class OptionHandler{
             case "udp":
                 System.out.println("parsing for udp");
             break;
-        }*/
-        
-        
+        }        
     }
     
     public byte[] getPacket() throws Exception
@@ -423,12 +460,11 @@ public class OptionHandler{
                     // needs to go through byte primitive step
                     temp = readStream.readLine();
                     String [] byteString = temp.split(" ");
-                    System.out.println(Arrays.toString(byteString));
-                    
-                    //byte [] middleConversion = temp.getBytes();
+                    // System.out.println(Arrays.toString(byteString));
+
                     Byte [] byteTemp = new Byte[byteString.length];
                     
-                    if(!temp.isEmpty())//byteTemp.length > 0 && !byteString[0].isEmpty())
+                    if(!temp.isEmpty())
                     {
                         for(int counter = 0; counter < byteString.length; counter++)
                         {
@@ -444,28 +480,16 @@ public class OptionHandler{
                 packet = new byte[byteAccumulator.size()];
                 byteAccumulator.toArray(finalPacket);
                 
-                //finalPacket = DatatypeConverter.parseHexBinary(temp);
-                //Byte s = new Byte(DatatypeConverter.parseHexBinary(byteString[1]));
-                //packet = new byte[2];
-                //packet[0] = DatatypeConverter.parseHexBinary(byteString[3])[0];//[0] = //s;//DatatypeConverter.parseHexBinary(byteString[2]);//new byte[finalPacket.length];
-                //packet[1] = DatatypeConverter.parseHexBinary(byteString[2]);
                 for(int counter = 0; counter < finalPacket.length; counter++)
                 {
                     packet[counter] = finalPacket[counter];
                 }
-                //packet = new byte[50];
-                //System.out.write(packet);
-                //System.out.println("\nSize of packet is: " + packet.length);
                 
             } catch (Exception e){
                 packet = new byte[50];
                 System.out.println("Error: Could not read from input file");
-            }
-            
-        }
-        
+            }   
+        }   
         return packet;
     }
-    
-    
 }

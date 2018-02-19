@@ -233,4 +233,19 @@ public class TCPParser{
         urgentPointer = 0;
         urgentPointerString = "";
     }
+    
+    public void printAll()
+    {
+        System.out.println("TCP Header:");
+        System.out.println("Port source: " + getSourcePortString());
+        System.out.println("Port destination: " + getDestinationPortString());
+        System.out.println("Sequence Number: " + getSequenceNumberString());
+        System.out.println("Acknowledgement Number: " + getAcknowledgementNumberString());
+        System.out.println("Offset: " + getOffsetString());
+        System.out.println("Reserved: " + getReservedString());
+        System.out.println("TCP Flags: \n" + getTCPFlagsString());
+        System.out.println("Window: " + getWindowString());
+        System.out.println("Checksum: " + getCheckSumString());
+        System.out.println("Urgent Pointer: " + getUrgentPointerString());
+    }
 }
