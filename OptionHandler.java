@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.io.InputStreamReader;
+import javax.xml.bind.DatatypeConverter;
 
 // To compile in Windows: 	javac -cp ".;commons-cli-1.4.jar" -d . OptionHandler.java
 // To run in Windows: 		java -cp ".;commons-cli-1.4.jar" OptionHandler
@@ -415,38 +416,46 @@ public class OptionHandler{
                 Vector<Byte> byteAccumulator = new Vector<Byte>();
                 String temp;
                 Byte [] finalPacket;
-
+                
                 do
                 {
                     // string needs to be converted into Byte class array
                     // needs to go through byte primitive step
                     temp = readStream.readLine();
-                    byte [] middleConversion = temp.getBytes();
-                    Byte [] byteTemp = new Byte[middleConversion.length];
+                    String [] byteString = temp.split(" ");
+                    System.out.println(Arrays.toString(byteString));
                     
-                    for(int counter = 0; counter < middleConversion.length; counter++)
-                    {
-                        byteTemp[counter] = new Byte(middleConversion[counter]);
-                    }
+                    //byte [] middleConversion = temp.getBytes();
+                    Byte [] byteTemp = new Byte[byteString.length];
                     
-                    if(byteTemp.length > 0)
+                    if(!temp.isEmpty())//byteTemp.length > 0 && !byteString[0].isEmpty())
                     {
+                        for(int counter = 0; counter < byteString.length; counter++)
+                        {
+                            byteTemp[counter] = new Byte(DatatypeConverter.parseHexBinary(byteString[counter])[0]);
+                        }                        
+                        
                         byteAccumulator.addAll(Arrays.asList(byteTemp));
                     }
                     
                 } while (!temp.isEmpty());
                 
                 finalPacket = new Byte[byteAccumulator.size()];
-                byteAccumulator.toArray(finalPacket);
                 packet = new byte[byteAccumulator.size()];
+                byteAccumulator.toArray(finalPacket);
                 
+                //finalPacket = DatatypeConverter.parseHexBinary(temp);
+                //Byte s = new Byte(DatatypeConverter.parseHexBinary(byteString[1]));
+                //packet = new byte[2];
+                //packet[0] = DatatypeConverter.parseHexBinary(byteString[3])[0];//[0] = //s;//DatatypeConverter.parseHexBinary(byteString[2]);//new byte[finalPacket.length];
+                //packet[1] = DatatypeConverter.parseHexBinary(byteString[2]);
                 for(int counter = 0; counter < finalPacket.length; counter++)
                 {
                     packet[counter] = finalPacket[counter];
                 }
-                
-                System.out.write(packet);
-                System.out.println("\nSize of packet is: " + packet.length);
+                //packet = new byte[50];
+                //System.out.write(packet);
+                //System.out.println("\nSize of packet is: " + packet.length);
                 
             } catch (Exception e){
                 packet = new byte[50];
