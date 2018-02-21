@@ -9,6 +9,7 @@ public class PacketTester{
         EthernetParser eth = new EthernetParser();
         IPPacketParser ip = new IPPacketParser();
         UDPParser udp = new UDPParser();
+        ARPParser arp = new ARPParser();
         Scanner scan = new Scanner(System.in);
 
         //Get adapter names and print info
@@ -29,31 +30,48 @@ public class PacketTester{
         byte [] packet;
         
 //        while(true){        
-        
-        while(Integer.parseInt(ip.getProtocolString()) != 17)
+  
+        while(!eth.getTypeString().equals("0806") && !eth.getDestinationString().equals("FFFFFFFFFFFF"))
         {
-            System.out.println("next");
             eth = new EthernetParser();
-            ip = new IPPacketParser();
-            udp = new UDPParser();
+            arp = new ARPParser();
             
             packet = driver.readPacket();
+            
             eth.parsePacket(packet);
             eth.printAll();
             
-            if(eth.getTypeString().equals("0800"))
+            if(eth.getTypeString().equals("0806") || eth.getDestinationString().equals("FFFFFFFFFFFF"))
             {
-                ip.parsePacket(packet);
-                ip.printAll();
-                
-                if(Integer.parseInt(ip.getProtocolString()) == 17)
-                {
-                    udp.parsePacket(packet);
-                    udp.printAll();
-                }
+                arp.parsePacket(packet);
+                arp.printAll();
             }
-            
         }
+  
+//        while(Integer.parseInt(ip.getProtocolString()) != 17)
+//        {
+//            System.out.println("next");
+//            eth = new EthernetParser();
+//            ip = new IPPacketParser();
+//            udp = new UDPParser();
+//            
+//            packet = driver.readPacket();
+//            eth.parsePacket(packet);
+//            eth.printAll();
+//            
+//            if(eth.getTypeString().equals("0800"))
+//            {
+//                ip.parsePacket(packet);
+//                ip.printAll();
+//                
+//                if(Integer.parseInt(ip.getProtocolString()) == 17)
+//                {
+//                    udp.parsePacket(packet);
+//                    udp.printAll();
+//                }
+//            }
+//            
+//        }
         
         //while(
             // Wrap it into a ByteBuffer

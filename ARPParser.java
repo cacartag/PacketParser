@@ -138,4 +138,19 @@ public class ARPParser
         targetIPAddress = new byte[4];
         targetIPAddressString = "";
     }
+    
+    public void printAll()
+    {        
+        System.out.println("ARP Header ");
+        System.out.println("Hardware Type: " + hardwareTypeString);
+        System.out.println("Protocol Type: " + protocolTypeString);
+        System.out.println("Hardware Add Length: " + hardwareAddLengthString);
+        System.out.println("Protocol Add Length: " + protocolAddLengthString);
+        System.out.println("Operation: " + operationString);
+        System.out.println("Sender Hardware Address: " + senderHardwareAddressString);
+        System.out.println("Sender IP Address: " + senderIPAddressString);
+        System.out.println("Target Hardware Address: " + targetHardwareAddressString);
+        System.out.println("Target IP Address: " + targetIPAddressString);
+    }
+    
 }
