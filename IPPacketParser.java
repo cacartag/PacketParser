@@ -167,7 +167,7 @@ public class IPPacketParser{
         ttl = 0;
         ttlString = "";
         protocol = 0;
-        protocolString = "";
+        protocolString = "0";
         headerChecksum = 0;
         headerChecksumString = "";
         sourceAddress = new int[] {0,0,0,0};

@@ -50,6 +50,26 @@ public class UDPParser
     
     UDPParser()
     {
+        sourcePort = 0;
+        sourcePortString = "";
         
+        destinationPort = 0;
+        destinationPortString = "";
+        
+        length = 0;
+        lengthString = "";
+        
+        checkSum = 0;
+        checkSumString = "";
+        
+    }
+    
+    public void printAll()
+    {
+        System.out.println("UDP Header: ");
+        System.out.println("Source Port: " + sourcePortString);
+        System.out.println("Destination Port: " + destinationPortString);
+        System.out.println("Length: " + lengthString);
+        System.out.println("Check Sum: " + checkSumString);
     }
 }
