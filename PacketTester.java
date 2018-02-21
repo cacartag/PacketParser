@@ -5,7 +5,7 @@ public class PacketTester{
 
     public static void main(String [] args)
     {
-        SimplePacketDriver driver=new SimplePacketDriver();
+        SimplePacketDriver driver = new SimplePacketDriver();
         EthernetParser eth = new EthernetParser();
         IPPacketParser ip = new IPPacketParser();
         UDPParser udp = new UDPParser();
@@ -20,10 +20,11 @@ public class PacketTester{
         System.out.println("Choose an interface");
         int NIC = scan.nextInt();
         
+        
         //Open first found adapter (usually first Ethernet card found)
         if (driver.openAdapter(adapters[NIC])) 
             System.out.println("Adapter is open: "+adapters[NIC]);
-
+        
         //Read a packet (blocking operation)
         byte [] packet;
         
@@ -31,16 +32,19 @@ public class PacketTester{
         
         while(Integer.parseInt(ip.getProtocolString()) != 17)
         {
+            System.out.println("next");
             eth = new EthernetParser();
             ip = new IPPacketParser();
             udp = new UDPParser();
             
             packet = driver.readPacket();
             eth.parsePacket(packet);
+            eth.printAll();
             
-            if(eth.getTypeBytes().equals("0800"))
+            if(eth.getTypeString().equals("0800"))
             {
                 ip.parsePacket(packet);
+                ip.printAll();
                 
                 if(Integer.parseInt(ip.getProtocolString()) == 17)
                 {
