@@ -217,6 +217,8 @@ public class TCPParser{
         
         urgentPointer = 0;
         urgentPointerString = "";
+        
+        payload = new byte[10];
     }
     
     public void clear()

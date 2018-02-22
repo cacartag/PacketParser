@@ -418,10 +418,6 @@ public class OptionHandler{
                 
             break;
             case "arp":
-                // print payload
-                // if function for done reading
-                // if function to print payload or only header
-            
                 boolean continueLoopArp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterArp = 1;
                 
@@ -511,15 +507,11 @@ public class OptionHandler{
             case "icmp":
                 // need to create class to parse icmp
                 // print payload
-                // if function for done reding
+                // if function for done reading
                 // if function to print payload or only header
                 System.out.println("parsing for icmp");
             break;
             case "tcp":
-            
-                // print payload
-                // if function for done reading
-                // if function to print payload or only header
                 boolean continueLoopTcp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterTcp = 1;
 
@@ -542,7 +534,12 @@ public class OptionHandler{
                         if(Integer.parseInt(ip.getProtocolString()) == 6)
                         {
                             tcp.parsePacket(packet);
-                            tcp.printAll();
+                            if(headerOnly)
+                            {
+                                tcp.printHeaderOnly();
+                            } else {
+                                tcp.printAll();
+                            }
                             
                             if(counterTcp == packetsToCapture)
                             {
@@ -551,6 +548,11 @@ public class OptionHandler{
                             
                             counterTcp = counterTcp + 1;
                         }
+                    }
+                    
+                    if(doneReading)
+                    {
+                        continueLoopTcp = false;
                     }
 
                 }
