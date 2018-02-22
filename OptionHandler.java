@@ -24,6 +24,7 @@ public class OptionHandler{
     private EthernetParser eth;
     private IPPacketParser ip;
     private TCPParser tcp;
+    private ARPParser arp;
     private Options optionsSingleNoArg;
     private Options optionsDoubleArg;
     private BufferedReader readStream;
@@ -33,7 +34,7 @@ public class OptionHandler{
     private String inputFile;
     private String outputFile;
     private String typeToParse;
-    private int headerOnly;
+    private boolean headerOnly;
     private String sourceAddress;
     private String destinationAddress;
     private int orset;
@@ -57,6 +58,7 @@ public class OptionHandler{
         eth = new EthernetParser();
         ip = new IPPacketParser();
         tcp = new TCPParser();
+        arp = new ARPParser();
         optionsSingleNoArg = new Options();
         optionsDoubleArg = new Options();
         
@@ -201,7 +203,7 @@ public class OptionHandler{
         // no argument option check
         if(cmd.hasOption("h"))
         {
-
+            headerOnly = true;
         }
         
         // prints out options with their descriptions
@@ -370,20 +372,10 @@ public class OptionHandler{
             try{
                 FileOutputStream f = new FileOutputStream(outputFile);
                 System.setOut(new PrintStream(f));
-                //System.out.println("testing");
             } catch (Exception e){
                 System.out.println("Error: Could not open output file, defaulting to console");
             }
         }
-
-        // this is where the actual parsing will happen
-        // ip.printAll();  //new String[]{"eth","arp","ip","icmp","tcp","udp"};
-        // check size of packet when reading from file
-        // byte [] packet = getPacket();
-        
-        // System.out.println(driver.byteArrayToString(packet));
-        // System.out.write(packet);
-        // System.out.println("\nSize is: " + packet.length);
 
         switch (typeToParse) {
             case "eth":
@@ -403,9 +395,38 @@ public class OptionHandler{
                     }
                     counterEth = counterEth + 1;
                 }
+                
             break;
             case "arp":
-                System.out.println("parsing for arp");
+                boolean continueLoopArp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
+                int counterArp = 1;
+                
+               
+                
+                while (continueLoopArp)
+                {
+                    byte [] packet = getPacket();
+                    eth = new EthernetParser();
+                    arp = new ARPParser();
+                    
+                    eth.parsePacket(packet);
+                    
+                    if(eth.getTypeString().equals("0806"))
+                    {
+                        arp.parsePacket(packet);
+                        arp.printAll();
+                        
+                        if(counterArp == packetsToCapture)
+                        {
+                            continueLoopArp = false;
+                        }
+                        
+                        counterArp = counterArp + 1;
+                    }
+                }
+            
+            
+                // System.out.println("parsing for arp");
             break;
             case "ip":
                 boolean continueLoopIp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
@@ -430,7 +451,42 @@ public class OptionHandler{
                 System.out.println("parsing for icmp");
             break;
             case "tcp":
-                System.out.println("parsing for tcp");
+                boolean continueLoopTcp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
+                int counterTcp = 1;
+
+            
+                while(continueLoopTcp)
+                {
+                    eth = new EthernetParser();
+                    ip =  new IPPacketParser();
+                    tcp = new TCPParser();
+                
+                    byte [] packet = driver.readPacket();
+          
+                    eth.parsePacket(packet);
+        
+                    if(eth.getTypeString().equals("0800"))
+                    {
+                        ip.parsePacket(packet);
+                        
+                        ip.printAll();
+                        
+                        if(Integer.parseInt(ip.getProtocolString()) == 6)
+                        {
+                            tcp.parsePacket(packet);
+                            tcp.printAll();
+                            
+                            if(counterTcp == packetsToCapture)
+                            {
+                                continueLoopTcp = false;
+                            }
+                            
+                            counterTcp = counterTcp + 1;
+                        }                    
+                    }
+
+                }
+                // System.out.println("parsing for tcp");
             break;
             case "udp":
                 System.out.println("parsing for udp");

@@ -31,7 +31,7 @@ public class PacketTester{
         
 //        while(true){        
   
-        while(!eth.getTypeString().equals("0806") && !eth.getDestinationString().equals("FFFFFFFFFFFF"))
+        while(!eth.getTypeString().equals("0806") && !eth.getDestinationString().equals("FFFFFFFFFFFF") || 1 == 1)
         {
             eth = new EthernetParser();
             arp = new ARPParser();
@@ -39,12 +39,14 @@ public class PacketTester{
             packet = driver.readPacket();
             
             eth.parsePacket(packet);
-            eth.printAll();
+            //eth.printAll();
             
-            if(eth.getTypeString().equals("0806") || eth.getDestinationString().equals("FFFFFFFFFFFF"))
+            if(eth.getTypeString().equals("0806"))
             {
                 arp.parsePacket(packet);
                 arp.printAll();
+                
+                System.out.println(driver.byteArrayToString(packet));
             }
         }
   

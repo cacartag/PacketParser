@@ -150,7 +150,7 @@ public class ARPParser
         System.out.println("Sender Hardware Address: " + senderHardwareAddressString);
         System.out.println("Sender IP Address: " + senderIPAddressString);
         System.out.println("Target Hardware Address: " + targetHardwareAddressString);
-        System.out.println("Target IP Address: " + targetIPAddressString);
+        System.out.println("Target IP Address: " + targetIPAddressString + "\n\n\n");
     }
     
 }

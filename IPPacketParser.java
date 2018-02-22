@@ -1,3 +1,6 @@
+// references: https://github.com/floodlight/floodlight/blob/master/src/main/java/net/floodlightcontroller/packet/TCP.java
+import java.lang.*;
+
 public class IPPacketParser{
     // passed in filter options
     private int sord;
@@ -45,6 +48,8 @@ public class IPPacketParser{
     private int [] destinationAddress;
     private String destinationAddressString;
     
+    private byte [] payload;
+    
     public String getVersionString() { return versionString; }
     
     public String getIHLString() { return ihlString; }
@@ -70,6 +75,17 @@ public class IPPacketParser{
     public String getSourceAddressString() { return sourceAddressString; }
     
     public String getDestinationAddressString() { return destinationAddressString; }
+    
+    public String getStringPayload() throws Exception
+    { 
+        try
+        {               
+            return new String(payload, "UTF-8"); 
+        } catch (Exception e)
+        {
+            return "Could not convert payload to string";
+        }
+    }
      
     public void parsePacket(byte [] packet)
     {
@@ -152,29 +168,92 @@ public class IPPacketParser{
         srcFilter = null;
         dstFilter = null;
         
-        versionString = "";        
+        versionString = "";      
+        
         ihlString = "";
+        
         dscpString = "";
+        
         ecnString = "";
+        
         totalLength = 0;
         lengthString = "";
+        
         id = 0;
         idString = "";
+        
         flag = 0;
         flagString = "";
+        
         fragmentOffset = 0;
         fragmentOffsetString = "";
+        
         ttl = 0;
         ttlString = "";
+        
         protocol = 0;
         protocolString = "0";
+        
         headerChecksum = 0;
         headerChecksumString = "";
+        
         sourceAddress = new int[] {0,0,0,0};
         sourceAddressString = "";
+        
         destinationAddress = new int[] {0,0,0,0};
         destinationAddressString = "";
+        
+        payload = new byte[10];
     }
+    
+	/**
+	 Standard internet checksum algorithm shared by IP, ICMP, UDP and TCP.
+	*/
+
+	public short checksum( byte[] message , int length , int offset ) {
+     
+	  // Sum consecutive 16-bit words.
+
+	  int sum = 0 ;
+
+	  while( offset < length - 1 ){
+
+		sum += (int) integralFromBytes( message , offset , 2 );
+
+		offset += 2 ;
+	  } 
+    
+	  if( offset == length - 1 ){
+
+		sum += ( message[offset] >= 0 ? message[offset] : message[offset] ^ 0xffffff00 ) << 8 ;
+	  }
+
+	  // Add upper 16 bits to lower 16 bits.
+
+	  sum = ( sum >>> 16 ) + ( sum & 0xffff );
+
+	  // Add carry
+
+	  sum += sum >>> 16 ;
+
+	  // Ones complement and truncate.
+
+	  return (short) ~sum ;
+	} 
+
+    private long integralFromBytes(byte[] buffer, int offset, int length) {
+
+		long answer = 0;
+
+		while (--length >= 0) {
+			answer = answer << 8;
+			answer |= buffer[offset] >= 0 ? buffer[offset]
+					: 0xffffff00 ^ buffer[offset];
+			++offset;
+		}
+
+		return answer;
+	}
     
     public void clear()
     {
@@ -218,5 +297,16 @@ public class IPPacketParser{
         System.out.println("Header Checksum: " + headerChecksumString);
         System.out.println("Source IP Address: " + sourceAddressString);
         System.out.println("Destination IP Address: " + destinationAddressString);
+        
+        try
+        {
+            String payloadString = new String(payload, "UTF-8");           
+            System.out.println(payloadString);
+        } catch(Exception e)
+        {
+            System.out.println("Could not convert payload to string");
+        }
+
+        System.out.println("\n\n\n");
     }
 }
