@@ -10,6 +10,7 @@ public class PacketTester{
         IPPacketParser ip = new IPPacketParser();
         UDPParser udp = new UDPParser();
         ARPParser arp = new ARPParser();
+        ICMPParser icmp = new ICMPParser();
         Scanner scan = new Scanner(System.in);
 
         //Get adapter names and print info
@@ -30,23 +31,29 @@ public class PacketTester{
         byte [] packet;
         
 //        while(true){        
+        eth.parsePacket(driver.readPacket());
   
-        while(!eth.getTypeString().equals("0806") && !eth.getDestinationString().equals("FFFFFFFFFFFF") || 1 == 1)
+        while(true)
         {
             eth = new EthernetParser();
-            arp = new ARPParser();
+            ip = new IPPacketParser();
             
             packet = driver.readPacket();
             
             eth.parsePacket(packet);
             //eth.printAll();
             
-            if(eth.getTypeString().equals("0806"))
+            if(eth.getTypeString().equals("0800"))
             {
-                arp.parsePacket(packet);
-                arp.printAll();
+                ip.parsePacket(packet);
+                //ip.printHeaderOnly();
                 
-                System.out.println(driver.byteArrayToString(packet));
+                if(Integer.parseInt(ip.getProtocolString()) == 1)
+                {
+                    icmp.parsePacket(packet);
+                    icmp.printAll();
+                    //protocolCaptured = Integer.parseInt(ip.getProtocolString());   
+                }                    
             }
         }
   
