@@ -77,7 +77,7 @@ public class IPPacketParser{
     
     public String getDestinationAddressString() { return destinationAddressString; }
     
-    public String getStringPayload() throws Exception
+    public String getPayloadString() throws Exception
     { 
         try
         {               

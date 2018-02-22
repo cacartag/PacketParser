@@ -22,7 +22,7 @@ public class EthernetParser{
     public byte [] getTypeBytes(){ return typeBytes; }
     public String getTypeString(){ return typeString; }
 
-    public String getStringPayload() throws Exception
+    public String getPayloadString() throws Exception
     { 
         try
         {               

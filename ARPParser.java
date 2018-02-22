@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.lang.*;
+
 public class ARPParser
 {
     private int hardwareType;
@@ -27,6 +30,8 @@ public class ARPParser
     private byte[] targetIPAddress;
     private String targetIPAddressString;
     
+    private byte[] payload;
+    
     public String getHardwareType() { return hardwareTypeString; }
     
     public String getProtocolType() { return protocolTypeString; }
@@ -44,6 +49,17 @@ public class ARPParser
     public String getTargetHardwareAddress() { return targetHardwareAddressString; }
     
     public String getTargetIPAddress() { return targetIPAddressString; }
+    
+    public String getPayloadString() throws Exception
+    { 
+        try
+        {               
+            return new String(payload, "UTF-8"); 
+        } catch (Exception e)
+        {
+            return "Could not convert payload to string";
+        }
+    }
     
     public void parsePacket(byte [] packet)
     {
@@ -107,6 +123,9 @@ public class ARPParser
             targetIPAddressString += Integer.toString((int)(targetIPAddress[count] & 0xFF)) + ".";
         }
         
+        // get arp payload
+        payload = Arrays.copyOfRange(packet, 42, packet.length - 1);
+        
     }
     
     ARPParser()
@@ -150,7 +169,35 @@ public class ARPParser
         System.out.println("Sender Hardware Address: " + senderHardwareAddressString);
         System.out.println("Sender IP Address: " + senderIPAddressString);
         System.out.println("Target Hardware Address: " + targetHardwareAddressString);
-        System.out.println("Target IP Address: " + targetIPAddressString + "\n\n\n");
+        System.out.println("Target IP Address: " + targetIPAddressString);
+        
+        
+        try
+        {
+            String payloadString = new String(payload, "UTF-8");           
+            System.out.println(payloadString);
+        } catch(Exception e)
+        {
+            System.out.println("Could not convert payload to string");
+        }
+
+        System.out.println("\n\n\n");
+    }
+    
+    public void printHeaderOnly()
+    {
+        System.out.println("ARP Header:");
+        System.out.println("Hardware Type: " + hardwareTypeString);
+        System.out.println("Protocol Type: " + protocolTypeString);
+        System.out.println("Hardware Add Length: " + hardwareAddLengthString);
+        System.out.println("Protocol Add Length: " + protocolAddLengthString);
+        System.out.println("Operation: " + operationString);
+        System.out.println("Sender Hardware Address: " + senderHardwareAddressString);
+        System.out.println("Sender IP Address: " + senderIPAddressString);
+        System.out.println("Target Hardware Address: " + targetHardwareAddressString);
+        System.out.println("Target IP Address: " + targetIPAddressString);
+        
+        System.out.println("\n\n\n");
     }
     
 }

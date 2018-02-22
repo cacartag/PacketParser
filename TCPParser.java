@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.lang.*;
+
 public class TCPParser{
     private int sourcePort;
     private String sourcePortString;
@@ -29,6 +32,8 @@ public class TCPParser{
     private int urgentPointer;
     private String urgentPointerString;
     
+    private byte[] payload;
+    
     public String getSourcePortString() { return sourcePortString; }
     
     public String getDestinationPortString() { return destinationPortString; }
@@ -50,6 +55,17 @@ public class TCPParser{
     public String getCheckSumString() { return checkSumString; }
     
     public String getUrgentPointerString() { return urgentPointerString; }
+    
+    public String getPayloadString() throws Exception
+    { 
+        try
+        {               
+            return new String(payload, "UTF-8"); 
+        } catch (Exception e)
+        {
+            return "Could not convert payload to string";
+        }
+    }
     
     public void parsePacket(byte [] packet)
     {
@@ -169,6 +185,8 @@ public class TCPParser{
 
         urgentPointerString = Integer.toString(urgentPointer);
         
+        payload = Arrays.copyOfRange(packet, 54, packet.length - 1);
+        
     }
 
     TCPParser()
@@ -247,6 +265,35 @@ public class TCPParser{
         System.out.println("Window: " + getWindowString());
         System.out.println("Checksum: " + getCheckSumString());
         System.out.println("Urgent Pointer: " + getUrgentPointerString());
+        
+        try
+        {
+            String payloadString = new String(payload, "UTF-8");           
+            System.out.println(payloadString);
+        } catch(Exception e)
+        {
+            System.out.println("Could not convert payload to string");
+        }
+        
         System.out.println("\n\n\n");
     }
+    
+    public void printHeaderOnly()
+    {
+        System.out.println("TCP Header:");
+        System.out.println("Port source: " + getSourcePortString());
+        System.out.println("Port destination: " + getDestinationPortString());
+        System.out.println("Sequence Number: " + getSequenceNumberString());
+        System.out.println("Acknowledgement Number: " + getAcknowledgementNumberString());
+        System.out.println("Offset: " + getOffsetString());
+        System.out.println("Reserved: " + getReservedString());
+        System.out.println("TCP Flags: \n" + getTCPFlagsString());
+        System.out.println("Window: " + getWindowString());
+        System.out.println("Checksum: " + getCheckSumString());
+        System.out.println("Urgent Pointer: " + getUrgentPointerString());
+        
+        System.out.println("\n\n\n");
+        
+    }
+    
 }

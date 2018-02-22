@@ -381,9 +381,6 @@ public class OptionHandler{
 
         switch (typeToParse) {
             case "eth":
-                // print payload
-                // if function for done reading
-                // if function to print payload or only header
             
                 boolean continueLoopEth = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterEth = 1;
@@ -409,7 +406,7 @@ public class OptionHandler{
                             continueLoopEth = false;
                         }
                         
-                        counterEth = counterEth + 1;
+                        counterEth  = counterEth + 1;
                     }
                     
                     if(doneReading)
@@ -422,13 +419,13 @@ public class OptionHandler{
             break;
             case "arp":
                 // print payload
-                // if function for done reding
+                // if function for done reading
                 // if function to print payload or only header
             
                 boolean continueLoopArp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterArp = 1;
                 
-               
+                
                 
                 while (continueLoopArp)
                 {
@@ -436,12 +433,19 @@ public class OptionHandler{
                     eth = new EthernetParser();
                     arp = new ARPParser();
                     
-                    eth.parsePacket(packet);
+                    if(packet.length > 14)
+                        eth.parsePacket(packet);
                     
                     if(eth.getTypeString().equals("0806"))
                     {
                         arp.parsePacket(packet);
-                        arp.printAll();
+                        
+                        if(headerOnly)
+                        {
+                            arp.printHeaderOnly();
+                        } else {
+                            arp.printAll();
+                        }
                         
                         if(counterArp == packetsToCapture)
                         {
@@ -449,6 +453,11 @@ public class OptionHandler{
                         }
                         
                         counterArp = counterArp + 1;
+                    }
+                    
+                    if(doneReading)
+                    {
+                        continueLoopArp = false;
                     }
                 }
             
@@ -509,7 +518,7 @@ public class OptionHandler{
             case "tcp":
             
                 // print payload
-                // if function for done reding
+                // if function for done reading
                 // if function to print payload or only header
                 boolean continueLoopTcp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterTcp = 1;
@@ -523,13 +532,12 @@ public class OptionHandler{
                 
                     byte [] packet = getPacket();
           
-                    eth.parsePacket(packet);
+                    if(packet.length > 14)
+                        eth.parsePacket(packet);
         
                     if(eth.getTypeString().equals("0800"))
                     {
                         ip.parsePacket(packet);
-                        
-                        //ip.printAll();
                         
                         if(Integer.parseInt(ip.getProtocolString()) == 6)
                         {
@@ -542,7 +550,7 @@ public class OptionHandler{
                             }
                             
                             counterTcp = counterTcp + 1;
-                        }                    
+                        }
                     }
 
                 }
@@ -552,6 +560,8 @@ public class OptionHandler{
                 // print payload
                 // if function for done reding
                 // if function to print payload or only header
+                
+                
                 
                 System.out.println("parsing for udp");
             break;
