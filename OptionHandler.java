@@ -25,6 +25,7 @@ public class OptionHandler{
     private IPPacketParser ip;
     private TCPParser tcp;
     private ARPParser arp;
+    private UDPParser udp;
     private Options optionsSingleNoArg;
     private Options optionsDoubleArg;
     private BufferedReader readStream;
@@ -60,6 +61,7 @@ public class OptionHandler{
         ip = new IPPacketParser();
         tcp = new TCPParser();
         arp = new ARPParser();
+        udp = new UDPParser();
         optionsSingleNoArg = new Options();
         optionsDoubleArg = new Options();
         
@@ -456,9 +458,6 @@ public class OptionHandler{
                         continueLoopArp = false;
                     }
                 }
-            
-            
-                // System.out.println("parsing for arp");
             break;
             case "ip":
                 boolean continueLoopIp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
@@ -501,8 +500,6 @@ public class OptionHandler{
                     }
 
                 }
-                
-                // System.out.println("parsing for ip");
             break;
             case "icmp":
                 // need to create class to parse icmp
@@ -556,14 +553,51 @@ public class OptionHandler{
                     }
 
                 }
-                // System.out.println("parsing for tcp");
             break;
             case "udp":
-                // print payload
-                // if function for done reding
-                // if function to print payload or only header
+                boolean continueLoopUdp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
+                int counterUdp = 1;
                 
+                while(continueLoopUdp)
+                {
+
+                    eth = new EthernetParser();
+                    ip =  new IPPacketParser();
+                    udp = new UDPParser();
                 
+                    byte [] packet = getPacket();
+          
+                    if(packet.length > 14)
+                        eth.parsePacket(packet);
+        
+                    if(eth.getTypeString().equals("0800"))
+                    {
+                        ip.parsePacket(packet);
+                        
+                        if(Integer.parseInt(ip.getProtocolString()) == 17)
+                        {
+                            udp.parsePacket(packet);
+                            if(headerOnly)
+                            {
+                                udp.printHeaderOnly();
+                            } else {
+                                udp.printAll();
+                            }
+                            
+                            if(counterUdp == packetsToCapture)
+                            {
+                                continueLoopUdp = false;
+                            }
+                            
+                            counterUdp = counterUdp + 1;
+                        }
+                    }
+            
+                    if(doneReading)
+                    {
+                        continueLoopUdp = false;
+                    }
+                }
                 
                 System.out.println("parsing for udp");
             break;

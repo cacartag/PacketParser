@@ -93,8 +93,8 @@ public class IPPacketParser{
         int versionIHLByte = 0;
         int dscpECNByte = 0;
         
-        versionIHLByte = (int)packet[14]; 
-        dscpECNByte = (int)packet[15];
+        versionIHLByte = (int)(packet[14] & 0xFF); 
+        dscpECNByte = (int)(packet[15] & 0xFF);
         
         totalLength = (int)(packet[16] & 0xFF);
         totalLength = totalLength * 256;

@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.lang.*;
+
 public class UDPParser 
 {
     private int sourcePort;
@@ -12,6 +15,8 @@ public class UDPParser
     private int checkSum;
     private String checkSumString;
     
+    private byte[] payload;
+    
     public String getSourcePortString(){ return sourcePortString; }
     
     public String getDestinationPortString() { return destinationPortString; }
@@ -19,6 +24,17 @@ public class UDPParser
     public String getLengthString() { return lengthString; }
     
     public String getCheckSumString() { return checkSumString; }
+    
+    public String getPayloadString() throws Exception
+    { 
+        try
+        {               
+            return new String(payload, "UTF-8"); 
+        } catch (Exception e)
+        {
+            return "Could not convert payload to string";
+        }
+    }
     
     public void parsePacket(byte [] packet)
     {
@@ -46,6 +62,8 @@ public class UDPParser
         
         checkSumString = Integer.toString(checkSum);
         
+        payload = Arrays.copyOfRange(packet, 42, packet.length - 1);
+        
     }
     
     UDPParser()
@@ -71,5 +89,27 @@ public class UDPParser
         System.out.println("Destination Port: " + destinationPortString);
         System.out.println("Length: " + lengthString);
         System.out.println("Check Sum: " + checkSumString);
+        
+        try
+        {
+            String payloadString = new String(payload, "UTF-8");           
+            System.out.println(payloadString);
+        } catch(Exception e)
+        {
+            System.out.println("Could not convert payload to string");
+        }
+        
+        System.out.println("\n\n\n");
+    }
+    
+    public void printHeaderOnly()
+    {
+        System.out.println("UDP Header: ");
+        System.out.println("Source Port: " + sourcePortString);
+        System.out.println("Destination Port: " + destinationPortString);
+        System.out.println("Length: " + lengthString);
+        System.out.println("Check Sum: " + checkSumString);
+        
+        System.out.println("\n\n\n");
     }
 }
