@@ -582,6 +582,14 @@ public class OptionHandler{
                         
                         if(Integer.parseInt(ip.getProtocolString()) == 17)
                         {
+                            char[] hexArray = "0123456789ABCDEF".toCharArray();
+                            char[] hexChars = new char[packet.length * 2];
+                            for ( int j = 0; j < packet.length; j++ ) {
+                                int v = packet[j] & 0xFF;
+                                hexChars[j * 2] = hexArray[v >>> 4];
+                                hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+                            }
+                            
                             udp.parsePacket(packet);
                             if(headerOnly)
                             {
@@ -589,6 +597,8 @@ public class OptionHandler{
                             } else {
                                 udp.printAll();
                             }
+                            
+                            System.out.println(new String(hexChars));
                             
                             if(counterUdp == packetsToCapture)
                             {
