@@ -502,11 +502,13 @@ public class OptionHandler{
                 }
             break;
             case "icmp":
-                // need to create class to parse icmp
                 // print payload
                 // if function for done reading
                 // if function to print payload or only header
-                System.out.println("parsing for icmp");
+                boolean continueLoopIcmp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
+                int counterIcmp = 1;
+                
+                // System.out.println("parsing for icmp");
             break;
             case "tcp":
                 boolean continueLoopTcp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
@@ -526,7 +528,9 @@ public class OptionHandler{
         
                     if(eth.getTypeString().equals("0800"))
                     {
+                        eth.printHeaderOnly();
                         ip.parsePacket(packet);
+                        ip.printHeaderOnly();
                         
                         if(Integer.parseInt(ip.getProtocolString()) == 6)
                         {
@@ -572,7 +576,9 @@ public class OptionHandler{
         
                     if(eth.getTypeString().equals("0800"))
                     {
+                        eth.printHeaderOnly();
                         ip.parsePacket(packet);
+                        ip.printHeaderOnly();
                         
                         if(Integer.parseInt(ip.getProtocolString()) == 17)
                         {
@@ -598,8 +604,6 @@ public class OptionHandler{
                         continueLoopUdp = false;
                     }
                 }
-                
-                System.out.println("parsing for udp");
             break;
         }        
     }
