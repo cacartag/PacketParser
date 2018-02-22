@@ -382,7 +382,7 @@ public class OptionHandler{
         switch (typeToParse) {
             case "eth":
                 // print payload
-                // if function for done reding
+                // if function for done reading
                 // if function to print payload or only header
             
                 boolean continueLoopEth = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
@@ -392,14 +392,31 @@ public class OptionHandler{
                 {
                     byte [] packet = getPacket();
                     eth = new EthernetParser();
-                    eth.parsePacket(packet);
-                    eth.printAll();
+
+                    if(packet.length > 14)
+                    {
+                        eth.parsePacket(packet);
                     
-                    if(counterEth == packetsToCapture)
+                        if(headerOnly)
+                        {
+                            eth.printHeaderOnly();
+                        } else {
+                            eth.printAll();
+                        }
+                        
+                        if(counterEth == packetsToCapture)
+                        {
+                            continueLoopEth = false;
+                        }
+                        
+                        counterEth = counterEth + 1;
+                    }
+                    
+                    if(doneReading)
                     {
                         continueLoopEth = false;
-                    }
-                    counterEth = counterEth + 1;
+                    }                    
+                    
                 }
                 
             break;

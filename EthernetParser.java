@@ -64,6 +64,8 @@ public class EthernetParser{
         {
             typeString += String.format("%02X",current);
         }        
+        
+        payload = Arrays.copyOfRange(packet, 14, packet.length - 1);
     }
     
     EthernetParser()
