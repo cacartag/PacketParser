@@ -247,5 +247,6 @@ public class TCPParser{
         System.out.println("Window: " + getWindowString());
         System.out.println("Checksum: " + getCheckSumString());
         System.out.println("Urgent Pointer: " + getUrgentPointerString());
+        System.out.println("\n\n\n");
     }
 }

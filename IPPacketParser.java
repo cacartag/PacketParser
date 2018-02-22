@@ -1,5 +1,6 @@
 // references: https://github.com/floodlight/floodlight/blob/master/src/main/java/net/floodlightcontroller/packet/TCP.java
 import java.lang.*;
+import java.util.Arrays;
 
 public class IPPacketParser{
     // passed in filter options
@@ -126,6 +127,8 @@ public class IPPacketParser{
         destinationAddress[1] = (int)(packet[31] & 0xFF);
         destinationAddress[2] = (int)(packet[32] & 0xFF);
         destinationAddress[3] = (int)(packet[33] & 0xFF);
+        
+        payload = Arrays.copyOfRange(packet, 34, packet.length - 1);
         
         versionString = Integer.toString((versionIHLByte >> 4) & 15);
         
@@ -307,6 +310,25 @@ public class IPPacketParser{
             System.out.println("Could not convert payload to string");
         }
 
+        System.out.println("\n\n\n");
+    }
+    
+    public void printHeaderOnly()
+    {
+        System.out.println("IP Header:");
+        System.out.println("IP version: " + versionString);
+        System.out.println("IP length: " + ihlString);
+        System.out.println("IP DSCP: " + dscpString);
+        System.out.println("IP ECN: " + ecnString);
+        System.out.println("IP packet length: "+ lengthString);
+        System.out.println("Identification: " + idString);
+        System.out.println("Flags: " + flagString);
+        System.out.println("Fragment Offset: " + fragmentOffsetString);
+        System.out.println("TTL: " + ttlString);
+        System.out.println("Protocol: " + protocolString);
+        System.out.println("Header Checksum: " + headerChecksumString);
+        System.out.println("Source IP Address: " + sourceAddressString);
+        System.out.println("Destination IP Address: " + destinationAddressString);
         System.out.println("\n\n\n");
     }
 }

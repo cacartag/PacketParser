@@ -30,6 +30,7 @@ public class OptionHandler{
     private BufferedReader readStream;
     
     // possible options that can be set
+    private boolean doneReading;
     private int packetsToCapture;
     private String inputFile;
     private String outputFile;
@@ -63,11 +64,12 @@ public class OptionHandler{
         optionsDoubleArg = new Options();
         
         // initiating options to default, these will be checked when parsing
+        doneReading = false;
         packetsToCapture = -1;
         inputFile = null;
         outputFile = null;
         typeToParse = "tcp";
-        headerOnly = -1;
+        headerOnly = false;
         sourceAddress = null;
         destinationAddress = null;
         
@@ -379,6 +381,10 @@ public class OptionHandler{
 
         switch (typeToParse) {
             case "eth":
+                // print payload
+                // if function for done reding
+                // if function to print payload or only header
+            
                 boolean continueLoopEth = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterEth = 1;
                 
@@ -398,6 +404,10 @@ public class OptionHandler{
                 
             break;
             case "arp":
+                // print payload
+                // if function for done reding
+                // if function to print payload or only header
+            
                 boolean continueLoopArp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterArp = 1;
                 
@@ -434,23 +444,56 @@ public class OptionHandler{
                 
                 while(continueLoopIp)
                 {
-                    byte []  packet = getPacket();
+            
+                    eth = new EthernetParser();
                     ip = new IPPacketParser();
-                    ip.parsePacket(packet);
-                    ip.printAll();
                     
-                    if(counterIp == packetsToCapture)
+                    byte []  packet = getPacket();
+                    //ip.parsePacket(packet);
+                    //ip.printAll();
+                    if(packet.length > 14)
+                        eth.parsePacket(packet);
+                    
+                    if(eth.getTypeString().equals("0800"))
+                    {
+                        ip.parsePacket(packet);
+                        
+                        if(headerOnly)
+                        {
+                            ip.printHeaderOnly();
+                        } else {
+                            ip.printAll();
+                        }
+                        
+                        if(counterIp == packetsToCapture)
+                        {
+                            continueLoopIp = false;
+                        }
+                        
+                        counterIp = counterIp + 1;                        
+                    }
+                    
+                    if(doneReading)
                     {
                         continueLoopIp = false;
                     }
-                    counterIp = counterIp + 1;
+
                 }
+                
                 // System.out.println("parsing for ip");
             break;
             case "icmp":
+                // need to create class to parse icmp
+                // print payload
+                // if function for done reding
+                // if function to print payload or only header
                 System.out.println("parsing for icmp");
             break;
             case "tcp":
+            
+                // print payload
+                // if function for done reding
+                // if function to print payload or only header
                 boolean continueLoopTcp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterTcp = 1;
 
@@ -461,7 +504,7 @@ public class OptionHandler{
                     ip =  new IPPacketParser();
                     tcp = new TCPParser();
                 
-                    byte [] packet = driver.readPacket();
+                    byte [] packet = getPacket();
           
                     eth.parsePacket(packet);
         
@@ -469,7 +512,7 @@ public class OptionHandler{
                     {
                         ip.parsePacket(packet);
                         
-                        ip.printAll();
+                        //ip.printAll();
                         
                         if(Integer.parseInt(ip.getProtocolString()) == 6)
                         {
@@ -489,6 +532,10 @@ public class OptionHandler{
                 // System.out.println("parsing for tcp");
             break;
             case "udp":
+                // print payload
+                // if function for done reding
+                // if function to print payload or only header
+                
                 System.out.println("parsing for udp");
             break;
         }        
@@ -497,6 +544,7 @@ public class OptionHandler{
     public byte[] getPacket() throws Exception
     {
         byte [] packet; // temporary initialization
+        boolean endOfFile = false;
         
         if(inputFile == null)
         {
@@ -514,8 +562,16 @@ public class OptionHandler{
                 {
                     // string needs to be converted into Byte class array
                     // needs to go through byte primitive step
-                    temp = readStream.readLine();
-                    String [] byteString = temp.split(" ");
+                    String [] byteString;
+                    
+                    if((temp = readStream.readLine()) != null)
+                    {
+                        byteString = temp.split(" ");
+                    }
+                    else{
+                        endOfFile = true;
+                        break;
+                    }
                     // System.out.println(Arrays.toString(byteString));
 
                     Byte [] byteTemp = new Byte[byteString.length];
@@ -530,20 +586,29 @@ public class OptionHandler{
                         byteAccumulator.addAll(Arrays.asList(byteTemp));
                     }
                     
+                    
                 } while (!temp.isEmpty());
                 
-                finalPacket = new Byte[byteAccumulator.size()];
-                packet = new byte[byteAccumulator.size()];
-                byteAccumulator.toArray(finalPacket);
-                
-                for(int counter = 0; counter < finalPacket.length; counter++)
+                // check that end of file hasn't been reached yet
+                if(!endOfFile)
                 {
-                    packet[counter] = finalPacket[counter];
+                    finalPacket = new Byte[byteAccumulator.size()];
+                    packet = new byte[byteAccumulator.size()];
+                    byteAccumulator.toArray(finalPacket);
+                    
+                    for(int counter = 0; counter < finalPacket.length; counter++)
+                    {
+                        packet[counter] = finalPacket[counter];
+                    }
+                } else {
+                    packet = new byte[50];
+                    doneReading = true;
                 }
                 
             } catch (Exception e){
                 packet = new byte[50];
                 System.out.println("Error: Could not read from input file");
+                doneReading = true;
             }   
         }   
         return packet;

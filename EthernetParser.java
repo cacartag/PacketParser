@@ -1,3 +1,6 @@
+import java.lang.*;
+import java.util.Arrays;
+
 public class EthernetParser{
     private byte [] destBytes;
     private String destString;    
@@ -8,6 +11,8 @@ public class EthernetParser{
     private byte [] typeBytes;
     private String typeString;
     
+    private byte [] payload;
+    
     public byte [] getDestinationBytes(){ return destBytes; }
     public String getDestinationString(){ return destString; };
 
@@ -17,6 +22,17 @@ public class EthernetParser{
     public byte [] getTypeBytes(){ return typeBytes; }
     public String getTypeString(){ return typeString; }
 
+    public String getStringPayload() throws Exception
+    { 
+        try
+        {               
+            return new String(payload, "UTF-8"); 
+        } catch (Exception e)
+        {
+            return "Could not convert payload to string";
+        }
+    }
+    
     public void parsePacket(byte [] packet)
     {
         for(int index = 0; index < 6; index++)
@@ -60,6 +76,8 @@ public class EthernetParser{
         
         typeBytes = new byte[2];
         typeString = "";
+        
+        payload = new byte[10];
     }
     
     public void clear()
@@ -72,6 +90,8 @@ public class EthernetParser{
         
         typeBytes = new byte[2];
         typeString = "";
+        
+        payload = new byte[10];
     }
     
     public void printAll()
@@ -80,8 +100,28 @@ public class EthernetParser{
         System.out.println("Destination: " + getDestinationString());
         System.out.println("Source: " + getSourceString());
         System.out.println("Type: " + getTypeString());
+        
+        try
+        {
+            String payloadString = new String(payload, "UTF-8");           
+            System.out.println(payloadString);
+        } catch(Exception e)
+        {
+            System.out.println("Could not convert payload to string");
+        }
+
+        System.out.println("\n\n\n");
     }
     
+    public void printHeaderOnly()
+    {
+        System.out.println("Ethernet Header:");
+        System.out.println("Destination: " + getDestinationString());
+        System.out.println("Source: " + getSourceString());
+        System.out.println("Type: " + getTypeString());
+    
+        System.out.println("\n\n\n");
+    }
 }
 
 
