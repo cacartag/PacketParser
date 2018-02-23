@@ -431,11 +431,13 @@ public class OptionHandler{
                     eth = new EthernetParser();
                     arp = new ARPParser();
                     
+                    
                     if(packet.length > 14)
                         eth.parsePacket(packet);
                     
                     if(eth.getTypeString().equals("0806"))
                     {
+                        eth.printHeaderOnly();
                         arp.parsePacket(packet);
                         
                         if(headerOnly)

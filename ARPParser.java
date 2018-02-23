@@ -124,7 +124,7 @@ public class ARPParser
         }
         
         // get arp payload
-        payload = Arrays.copyOfRange(packet, 42, packet.length - 1);
+        // payload = Arrays.copyOfRange(packet, 42, packet.length - 1);
         
     }
     
@@ -172,16 +172,16 @@ public class ARPParser
         System.out.println("Target IP Address: " + targetIPAddressString);
         
         
-        try
-        {
-            String payloadString = new String(payload, "UTF-8");           
-            System.out.println(payloadString);
-        } catch(Exception e)
-        {
-            System.out.println("Could not convert payload to string");
-        }
-
-        System.out.println("\n\n\n");
+        // try
+        // {
+        //     String payloadString = new String(payload, "UTF-8");           
+        //     System.out.println(payloadString);
+        // } catch(Exception e)
+        // {
+        //     System.out.println("Could not convert payload to string");
+        // }
+        // 
+        // System.out.println("\n\n\n");
     }
     
     public void printHeaderOnly()
