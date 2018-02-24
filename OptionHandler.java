@@ -43,6 +43,8 @@ public class OptionHandler{
     private boolean andset;
     private int [] sourcePortRange;
     private int [] destinationPortRange;
+    private boolean sourcePortSet;
+    private boolean destinationPortSet;
     private String [] possibleTypes = new String[]{"eth","arp","ip","icmp","tcp","udp"};
 
     OptionHandler()
@@ -79,81 +81,8 @@ public class OptionHandler{
         andset = false;
         sourcePortRange = new int [] {-1,-1};
         destinationPortRange = new int [] {-1,-1};
-    }
-
-    // parse tcp ip packets
-    public void captureIPTCP(EthernetParser eth, IPPacketParser ip, TCPParser tcp, SimplePacketDriver driver) throws Exception
-    {
-        Scanner sc = new Scanner(System.in);
-        
-        System.out.println("What IP protocol type to capture");
-        
-        int protocol = sc.nextInt();
-        
-        int protocolCaptured = 0;        
-        
-        while(protocolCaptured != protocol)
-        {
-
-            eth.clear();
-            ip.clear();
-            tcp.clear();
-        
-            byte [] packet = driver.readPacket();
-        
-            ByteBuffer Packet = ByteBuffer.wrap(packet);            
-            
-            eth.parsePacket(packet);
-
-            if(eth.getTypeString().equals("0800"))
-            {
-                ip.parsePacket(packet);
-                
-                if(Integer.parseInt(ip.getProtocolString()) == 6)
-                {
-                    tcp.parsePacket(packet);
-                    protocolCaptured = Integer.parseInt(ip.getProtocolString());   
-                }                    
-            }
-
-            if(protocolCaptured == protocol)
-            {
-                System.out.println("Packet: "+Packet+" with capacity: "+Packet.capacity());
-                System.out.println(driver.byteArrayToString(packet));              
-            }
-        }
-  
-        System.out.println("Ethernet Header:");
-        System.out.println("Destination: " + eth.getDestinationString());
-        System.out.println("Source: " + eth.getSourceString());
-        System.out.println("Type: " + eth.getTypeString());
-        
-        System.out.println("IP Header:");
-        System.out.println("IP version: " + ip.getVersionString());
-        System.out.println("IP length: " + ip.getIHLString());
-        System.out.println("IP DSCP: " + ip.getDSCPString());
-        System.out.println("IP ECN: " + ip.getECNString());
-        System.out.println("IP packet length: "+ ip.getLengthString());
-        System.out.println("Identification: " + ip.getIdentification());
-        System.out.println("Flags: " + ip.getFlagString());
-        System.out.println("Fragment Offset: " + ip.getFragmentOffsetString());
-        System.out.println("TTL: " + ip.getTTLString());
-        System.out.println("Protocol: " + ip.getProtocolString());
-        System.out.println("Header Checksum: " + ip.getHeaderChecksumString());
-        System.out.println("Source IP Address: " + ip.getSourceAddressString());
-        System.out.println("Destination IP Address: " + ip.getDestinationAddressString());
-        
-        System.out.println("TCP Header:");
-        System.out.println("Port source: " + tcp.getSourcePortString());
-        System.out.println("Port destination: " + tcp.getDestinationPortString());
-        System.out.println("Sequence Number: " + tcp.getSequenceNumberString());
-        System.out.println("Acknowledgement Number: " + tcp.getAcknowledgementNumberString());
-        System.out.println("Offset: " + tcp.getOffsetString());
-        System.out.println("Reserved: " + tcp.getReservedString());
-        System.out.println("TCP Flags: \n" + tcp.getTCPFlagsString());
-        System.out.println("Window: " + tcp.getWindowString());
-        System.out.println("Checksum: " + tcp.getCheckSumString());
-        System.out.println("Urgent Pointer: " + tcp.getUrgentPointerString());
+        sourcePortSet = false;
+        destinationPortSet = false;
     }
     
     public int parseOptions(String [] args) throws Exception
@@ -294,11 +223,47 @@ public class OptionHandler{
         if(cmd.hasOption("sport"))
         {
             String [] arguments = getArgument(cmd,"sport",2);
+            
+            try{
+                int startRange = Integer.parseInt(arguments[0]);
+                int endRange = Integer.parseInt(arguments[1]);
+                
+                if((startRange < endRange) && (startRange > 0) && (endRange > 0))
+                {
+                    sourcePortSet = true;
+                    sourcePortRange[0] = startRange;
+                    sourcePortRange[1] = endRange;
+                } else {
+                    System.out.println("not a valid range, defaulting to all ports");
+                }
+                
+            } catch (Exception e)
+            {
+                System.out.println("could not parse port arguments");
+            }
         }
         
         if(cmd.hasOption("dport"))
         {
             String [] arguments = getArgument(cmd,"dport",2);
+            
+            try{
+                int startRange = Integer.parseInt(arguments[0]);
+                int endRange = Integer.parseInt(arguments[1]);
+                
+                if((startRange < endRange) && (startRange > 0) && (endRange > 0))
+                {
+                    destinationPortSet = true;
+                    destinationPortRange[0] = startRange;
+                    destinationPortRange[1] = endRange;
+                } else {
+                    System.out.println("not a valid range, defaulting to all ports");
+                }
+                
+            } catch (Exception e)
+            {
+                System.out.println("could not parse port arguments");
+            }
         }
         
         return 1;
@@ -489,6 +454,7 @@ public class OptionHandler{
                     {
                         ip.parsePacket(packet);
                         
+                        // check that the address passes the ip address filter
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
                             if(headerOnly)
@@ -545,25 +511,29 @@ public class OptionHandler{
                     {
                         //eth.printHeaderOnly();
                         ip.parsePacket(packet);
-                        //ip.printHeaderOnly();
                         
-                        // check that the protocol is TCP
-                        if(Integer.parseInt(ip.getProtocolString()) == 6)
+                        // check that the address passes the ip address filter
+                        if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
-                            tcp.parsePacket(packet);
-                            //if(headerOnly)
-                            //{
-                            //    tcp.printHeaderOnly();
-                            //} else {
-                            //    tcp.printAll();
-                            //}
-                            //
-                            //if(counterTcp == packetsToCapture)
-                            //{
-                            //    continueLoopTcp = false;
-                            //}
-                            
-                            counterTcp = counterTcp + 1;
+                            ip.printHeaderOnly();
+                            // check that the protocol is TCP
+                            if(Integer.parseInt(ip.getProtocolString()) == 6)
+                            {
+                                tcp.parsePacket(packet);
+                                if(headerOnly)
+                                {
+                                    tcp.printHeaderOnly();
+                                } else {
+                                    tcp.printAll();
+                                }
+                                
+                                if(counterTcp == packetsToCapture)
+                                {
+                                    continueLoopTcp = false;
+                                }
+                                
+                                counterTcp = counterTcp + 1;
+                            }
                         }
                     }
                     
@@ -592,36 +562,44 @@ public class OptionHandler{
         
                     if(eth.getTypeString().equals("0800"))
                     {
-                        eth.printHeaderOnly();
+                        //eth.printHeaderOnly();
                         ip.parsePacket(packet);
-                        ip.printHeaderOnly();
+
                         
-                        if(Integer.parseInt(ip.getProtocolString()) == 17)
+                        // check that the address passes the ip address filter
+                        if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
-                            char[] hexArray = "0123456789ABCDEF".toCharArray();
-                            char[] hexChars = new char[packet.length * 2];
-                            for ( int j = 0; j < packet.length; j++ ) {
-                                int v = packet[j] & 0xFF;
-                                hexChars[j * 2] = hexArray[v >>> 4];
-                                hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-                            }
-                            
-                            udp.parsePacket(packet);
-                            if(headerOnly)
+                            ip.printHeaderOnly();
+                            if(Integer.parseInt(ip.getProtocolString()) == 17)
                             {
-                                udp.printHeaderOnly();
-                            } else {
-                                udp.printAll();
+                                // printed byte representation of udp packet, for dns parsing later
+                                // char[] hexArray = "0123456789ABCDEF".toCharArray();
+                                // char[] hexChars = new char[packet.length * 2];
+                                // for ( int j = 0; j < packet.length; j++ ) {
+                                //     int v = packet[j] & 0xFF;
+                                //     hexChars[j * 2] = hexArray[v >>> 4];
+                                //     hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+                                // }
+                                
+                                // System.out.println(new String(hexChars));                                
+                                
+                                udp.parsePacket(packet);
+                                if(headerOnly)
+                                {
+                                    udp.printHeaderOnly();
+                                } else {
+                                    udp.printAll();
+                                }
+                                
+
+                                
+                                if(counterUdp == packetsToCapture)
+                                {
+                                    continueLoopUdp = false;
+                                }
+                                
+                                counterUdp = counterUdp + 1;
                             }
-                            
-                            System.out.println(new String(hexChars));
-                            
-                            if(counterUdp == packetsToCapture)
-                            {
-                                continueLoopUdp = false;
-                            }
-                            
-                            counterUdp = counterUdp + 1;
                         }
                     }
             
@@ -724,12 +702,27 @@ public class OptionHandler{
                 if(!currentDst.equals(destinationAddress))
                     passFilter = false;
             }
+        } else if (orset)
+        {
+            if(!(currentSrc.equals(sourceAddress) || currentDst.equals(destinationAddress)))
+            {
+                passFilter = false;
+            }
+        } else if (andset)
+        {
+            if(!(currentSrc.equals(sourceAddress) && currentDst.equals(destinationAddress)))
+            {
+                passFilter = false;
+            }
         }
         
         return passFilter;
     }    
     
+    public boolean checkPortRange()
+    {
+        boolean passFilter = true;
+        
+        return passFilter;
+    }
 }
-
-
-
