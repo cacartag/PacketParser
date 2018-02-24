@@ -185,7 +185,8 @@ public class TCPParser{
 
         urgentPointerString = Integer.toString(urgentPointer);
         
-        payload = Arrays.copyOfRange(packet, 54, packet.length - 1);
+        if(packet.length > 54)
+            payload = Arrays.copyOfRange(packet, 54, packet.length - 1);
         
     }
 
@@ -274,7 +275,7 @@ public class TCPParser{
             System.out.println(payloadString);
         } catch(Exception e)
         {
-            System.out.println("Could not convert payload to string");
+            System.out.println("Could not convert payload to string, or no payload");
         }
         
         System.out.println("\n\n\n");

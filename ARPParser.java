@@ -106,7 +106,11 @@ public class ARPParser
         for (int count = 0; count < 4; count++)
         {
             senderIPAddress[count] = packet[28 + count];
-            senderIPAddressString += Integer.toString((int)(senderIPAddress[count] & 0xFF)) + ".";
+            senderIPAddressString += Integer.toString((int)(senderIPAddress[count] & 0xFF));
+            
+            if(count != 3)
+                senderIPAddressString += ".";
+            
         }
 
         // target hardware address extraction
@@ -120,7 +124,10 @@ public class ARPParser
         for (int count = 0; count < 4; count++)
         {
             targetIPAddress[count] = packet[38 + count];
-            targetIPAddressString += Integer.toString((int)(targetIPAddress[count] & 0xFF)) + ".";
+            targetIPAddressString += Integer.toString((int)(targetIPAddress[count] & 0xFF));
+            
+            if(count != 3)
+                targetIPAddressString += ".";
         }
         
         // get arp payload

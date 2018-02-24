@@ -3,15 +3,6 @@ import java.lang.*;
 import java.util.Arrays;
 
 public class IPPacketParser{
-    // passed in filter options
-    private int sord;
-    
-    private int sand;
-    
-    private String srcFilter;
-    
-    private String dstFilter;
-    
     // variables used for ip header values
     
     private String versionString;
@@ -152,25 +143,25 @@ public class IPPacketParser{
         
         headerChecksumString = Integer.toString(headerChecksum);
         
-        for(int index: sourceAddress)
+        for(int index = 0; index < sourceAddress.length; index++)
         {
-            sourceAddressString += Integer.toString(index) + ".";
+            sourceAddressString += Integer.toString(sourceAddress[index]);
+                if(index != 3)
+                    sourceAddressString += ".";
         }
         
-        for(int index: destinationAddress)
+        for(int index = 0; index < destinationAddress.length; index++)
         {
-            destinationAddressString += Integer.toString(index) + ".";
+            destinationAddressString += Integer.toString(destinationAddress[index]);
+            if (index != 3)
+                destinationAddressString += ".";
+                
         }
     
     }
     
     IPPacketParser()
-    {
-        sord = -1;
-        sand = -1;
-        srcFilter = null;
-        dstFilter = null;
-        
+    {   
         versionString = "";      
         
         ihlString = "";

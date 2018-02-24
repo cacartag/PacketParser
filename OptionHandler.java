@@ -39,8 +39,8 @@ public class OptionHandler{
     private boolean headerOnly;
     private String sourceAddress;
     private String destinationAddress;
-    private int orset;
-    private int andset;
+    private boolean orset;
+    private boolean andset;
     private int [] sourcePortRange;
     private int [] destinationPortRange;
     private String [] possibleTypes = new String[]{"eth","arp","ip","icmp","tcp","udp"};
@@ -75,8 +75,8 @@ public class OptionHandler{
         sourceAddress = null;
         destinationAddress = null;
         
-        orset = -1;
-        andset = -1;
+        orset = false;
+        andset = false;
         sourcePortRange = new int [] {-1,-1};
         destinationPortRange = new int [] {-1,-1};
     }
@@ -263,22 +263,32 @@ public class OptionHandler{
         // double argument option checks
         if(cmd.hasOption("src"))
         {
-            destinationAddress = getArgument(cmd,"src",1)[0];
+            sourceAddress = getArgument(cmd,"src",1)[0];
         }
         
         if(cmd.hasOption("dst"))
         {
-            sourceAddress = getArgument(cmd,"dst",1)[0];
+            destinationAddress = getArgument(cmd,"dst",1)[0];
         }
         
         if(cmd.hasOption("sord"))
         {
+            orset = true;
             String [] arguments = getArgument(cmd,"sord",2);
+            sourceAddress = arguments[0];
+            destinationAddress = arguments[1];
+            
+            //System.out.println("sord has been chosen source: " + sourceAddress + "\ndestination: " + destinationAddress);
         }
         
         if(cmd.hasOption("sandd"))
         {
+            andset = true;
             String [] arguments = getArgument(cmd,"sandd",2);
+            sourceAddress = arguments[0];
+            destinationAddress = arguments[1];
+            
+            //System.out.println("sand has been chose source: " + sourceAddress + " \ndestination: " + destinationAddress);
         }
         
         if(cmd.hasOption("sport"))
@@ -318,7 +328,7 @@ public class OptionHandler{
             {
                 String [] clArg = cmd.getOptionValues(option);
                 // System.out.println("received: ");
-                for(String l : clArg) { System.out.println(l + "\n"); }
+                // for(String l : clArg) { System.out.println(l + "\n"); }
                 return clArg;
             } catch (Exception e){
                 System.out.println(option + " is missing an argument");
@@ -423,8 +433,6 @@ public class OptionHandler{
                 boolean continueLoopArp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterArp = 1;
                 
-                
-                
                 while (continueLoopArp)
                 {
                     byte [] packet = getPacket();
@@ -481,19 +489,22 @@ public class OptionHandler{
                     {
                         ip.parsePacket(packet);
                         
-                        if(headerOnly)
+                        if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
-                            ip.printHeaderOnly();
-                        } else {
-                            ip.printAll();
+                            if(headerOnly)
+                            {
+                                ip.printHeaderOnly();
+                            } else {
+                                ip.printAll();
+                            }
+                            
+                            if(counterIp == packetsToCapture)
+                            {
+                                continueLoopIp = false;
+                            }
+                            
+                            counterIp = counterIp + 1;                        
                         }
-                        
-                        if(counterIp == packetsToCapture)
-                        {
-                            continueLoopIp = false;
-                        }
-                        
-                        counterIp = counterIp + 1;                        
                     }
                     
                     if(doneReading)
@@ -525,29 +536,32 @@ public class OptionHandler{
                 
                     byte [] packet = getPacket();
           
+                    // check that that the packet received has more than ethernet
                     if(packet.length > 14)
                         eth.parsePacket(packet);
         
+                    // check that the packet is an IPv4 valued packet
                     if(eth.getTypeString().equals("0800"))
                     {
-                        eth.printHeaderOnly();
+                        //eth.printHeaderOnly();
                         ip.parsePacket(packet);
-                        ip.printHeaderOnly();
+                        //ip.printHeaderOnly();
                         
+                        // check that the protocol is TCP
                         if(Integer.parseInt(ip.getProtocolString()) == 6)
                         {
                             tcp.parsePacket(packet);
-                            if(headerOnly)
-                            {
-                                tcp.printHeaderOnly();
-                            } else {
-                                tcp.printAll();
-                            }
-                            
-                            if(counterTcp == packetsToCapture)
-                            {
-                                continueLoopTcp = false;
-                            }
+                            //if(headerOnly)
+                            //{
+                            //    tcp.printHeaderOnly();
+                            //} else {
+                            //    tcp.printAll();
+                            //}
+                            //
+                            //if(counterTcp == packetsToCapture)
+                            //{
+                            //    continueLoopTcp = false;
+                            //}
                             
                             counterTcp = counterTcp + 1;
                         }
@@ -692,4 +706,30 @@ public class OptionHandler{
         }   
         return packet;
     }
+    
+    public boolean checkIPAddressFilter(String currentSrc, String currentDst)
+    {
+        boolean passFilter = true;
+        
+        // check which options were set by the user
+        if(!(andset || orset))
+        {
+            if(sourceAddress != null)
+            {
+                if(!currentSrc.equals(sourceAddress))
+                    passFilter = false;
+            }
+            else if(destinationAddress != null)
+            {
+                if(!currentDst.equals(destinationAddress))
+                    passFilter = false;
+            }
+        }
+        
+        return passFilter;
+    }    
+    
 }
+
+
+
