@@ -26,6 +26,7 @@ public class OptionHandler{
     private TCPParser tcp;
     private ARPParser arp;
     private UDPParser udp;
+    private ICMPParser icmp;
     private Options optionsSingleNoArg;
     private Options optionsDoubleArg;
     private BufferedReader readStream;
@@ -64,6 +65,7 @@ public class OptionHandler{
         tcp = new TCPParser();
         arp = new ARPParser();
         udp = new UDPParser();
+        icmp = new ICMPParser();
         optionsSingleNoArg = new Options();
         optionsDoubleArg = new Options();
         
@@ -405,7 +407,7 @@ public class OptionHandler{
                     arp = new ARPParser();
                     
                     
-                    if(packet.length > 14)
+                    if(packet.length > 41)
                         eth.parsePacket(packet);
                     
                     if(eth.getTypeString().equals("0806"))
@@ -447,7 +449,7 @@ public class OptionHandler{
                     byte []  packet = getPacket();
                     //ip.parsePacket(packet);
                     //ip.printAll();
-                    if(packet.length > 14)
+                    if(packet.length > 33)
                         eth.parsePacket(packet);
                     
                     if(eth.getTypeString().equals("0800"))
@@ -487,7 +489,47 @@ public class OptionHandler{
                 boolean continueLoopIcmp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterIcmp = 1;
                 
-                // System.out.println("parsing for icmp");
+                while(continueLoopIcmp)
+                {
+                    eth = new EthernetParser();
+                    ip = new IPPacketParser();
+                    icmp = new ICMPParser();
+                    
+                    byte [] packet = getPacket();
+                    
+                    if(packet.length > 41)
+                        eth.parsePacket(packet);
+                    
+                    if(eth.getTypeString().equals("0800"))
+                    {
+                        ip.parsePacket(packet);
+                        
+                        if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
+                        {
+                            if(Integer.parseInt(ip.getProtocolString()) == 1)
+                            {
+                                icmp.parsePacket(packet);
+                                if(headerOnly)
+                                {
+                                    icmp.printHeaderOnly();
+                                } else {
+                                    icmp.printAll();
+                                }
+                                
+                                if(counterIcmp == packetsToCapture)
+                                {
+                                    continueLoopIcmp = false;
+                                }
+                            }
+                        }
+                    }
+            
+                    if(doneReading)
+                    {
+                        continueLoopIcmp = false;
+                    }
+                
+                }
             break;
             case "tcp":
                 boolean continueLoopTcp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
@@ -502,8 +544,8 @@ public class OptionHandler{
                 
                     byte [] packet = getPacket();
           
-                    // check that that the packet received has more than ethernet
-                    if(packet.length > 14)
+                    // check that that the packet received has more than Ethernet
+                    if(packet.length > 53)
                         eth.parsePacket(packet);
         
                     // check that the packet is an IPv4 valued packet
@@ -557,7 +599,7 @@ public class OptionHandler{
                 
                     byte [] packet = getPacket();
           
-                    if(packet.length > 14)
+                    if(packet.length > 41)
                         eth.parsePacket(packet);
         
                     if(eth.getTypeString().equals("0800"))
