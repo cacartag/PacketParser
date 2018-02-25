@@ -92,7 +92,7 @@ public class UDPParser
         
         try
         {
-            String payloadString = new String(payload,"US-ASCII");           
+            String payloadString = new String(payload,"UTF-8");           
             System.out.println(payloadString);
         } catch(Exception e)
         {

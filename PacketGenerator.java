@@ -48,11 +48,14 @@ public class PacketGenerator{
                 
                 FileInputStream read = new FileInputStream(fileName);
                 readStream = new BufferedReader(new InputStreamReader(read, "UTF-8"));
-                
-                byte [] packet = getPacket();         
+                   
 
-                if (!driver.sendPacket(packet)) System.out.println("Error sending packet!");
-                else System.out.println("packet sent");
+                while(!doneReading)
+                {
+                    byte [] packet = getPacket();      
+                    if (!driver.sendPacket(packet)) System.out.println("Error sending packet!");
+                    else System.out.println("packet sent");
+                }
                 
             } catch (Exception e)
             {
@@ -92,7 +95,6 @@ public class PacketGenerator{
                     endOfFile = true;
                     break;
                 }
-                // System.out.println(Arrays.toString(byteString));
 
                 Byte [] byteTemp = new Byte[byteString.length];
                 

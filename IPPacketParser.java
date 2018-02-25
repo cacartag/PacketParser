@@ -88,17 +88,17 @@ public class IPPacketParser{
         dscpECNByte = (int)(packet[15] & 0xFF);
         
         totalLength = (int)(packet[16] & 0xFF);
-        totalLength = totalLength * 256;
+        totalLength = totalLength << 8;
         totalLength = totalLength + (int)(packet[17] & 0xFF);
 
         id = (int)(packet[18] & 0xFF);
-        id = id * 256;
+        id = id << 8;
         id = id + (int)(packet[19] & 0xFF);
         
         flag = (int)(packet[20]);
         
         fragmentOffset = (int)(packet[20] & 0x1F);
-        fragmentOffset = fragmentOffset * 256;
+        fragmentOffset = fragmentOffset << 8;
         fragmentOffset = fragmentOffset + (int)(packet[21] & 0xFF);
         
         ttl = (int)(packet[22] & 0xFF);
@@ -106,7 +106,7 @@ public class IPPacketParser{
         protocol = (int)(packet[23] & 0xFF);
         
         headerChecksum = (int)(packet[24] & 0xFF);
-        headerChecksum = headerChecksum * 256;
+        headerChecksum = headerChecksum << 8;
         headerChecksum = headerChecksum + (int)(packet[25] & 0xFF);
         
         sourceAddress[0] = (int)(packet[26] & 0xFF);
@@ -235,7 +235,8 @@ public class IPPacketParser{
 	  return (short) ~sum ;
 	} 
 
-    private long integralFromBytes(byte[] buffer, int offset, int length) {
+    private long integralFromBytes(byte[] buffer, int offset, int length) 
+    {
 
 		long answer = 0;
 

@@ -24,6 +24,7 @@ public class ICMPParser
     
     public String getCheckSumString() { return checkSumString; }
     
+    public byte[] getRestOfHeader() { return restOfHeader; }
     public String getRestOfHeaderString() { return restOfHeaderString; }
     
     public String getPayloadString() throws Exception
@@ -96,6 +97,8 @@ public class ICMPParser
         {
             System.out.println("Could not convert payload to string");
         }
+        
+        System.out.println("\n\n\n");
     }
 
     public void printHeaderOnly()
@@ -105,5 +108,7 @@ public class ICMPParser
         System.out.println("Code: " + codeString);
         System.out.println("Checksum: " + checkSumString);
         System.out.println("Rest of Header: " + restOfHeaderString);
+        
+        System.out.println("\n\n\n");
     }
 }

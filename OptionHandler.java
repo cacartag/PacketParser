@@ -415,12 +415,7 @@ public class OptionHandler{
                         eth.printHeaderOnly();
                         arp.parsePacket(packet);
                         
-                        if(headerOnly)
-                        {
-                            arp.printHeaderOnly();
-                        } else {
-                            arp.printAll();
-                        }
+                        arp.printAll();
                         
                         if(counterArp == packetsToCapture)
                         {
@@ -551,7 +546,6 @@ public class OptionHandler{
                     // check that the packet is an IPv4 valued packet
                     if(eth.getTypeString().equals("0800"))
                     {
-                        //eth.printHeaderOnly();
                         ip.parsePacket(packet);
                         
                         // check that the address passes the ip address filter
