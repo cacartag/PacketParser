@@ -83,7 +83,7 @@ public class ICMPParser
     
     public void printAll()
     {
-        System.out.println("ICP Header:");
+        System.out.println("ICMP Header:");
         System.out.println("Type: " + typeString);
         System.out.println("Code: " + codeString);
         System.out.println("Checksum: " + checkSumString);
@@ -103,7 +103,7 @@ public class ICMPParser
 
     public void printHeaderOnly()
     {
-        System.out.println("ICP Header:");
+        System.out.println("ICMP Header:");
         System.out.println("Type: " + typeString);
         System.out.println("Code: " + codeString);
         System.out.println("Checksum: " + checkSumString);

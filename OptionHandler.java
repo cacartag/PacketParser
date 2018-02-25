@@ -551,7 +551,7 @@ public class OptionHandler{
                         // check that the address passes the ip address filter
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
-                            ip.printHeaderOnly();
+
                             // check that the protocol is TCP
                             if(Integer.parseInt(ip.getProtocolString()) == 6)
                             {
@@ -605,7 +605,6 @@ public class OptionHandler{
                         // check that the address passes the ip address filter
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
-                            ip.printHeaderOnly();
                             if(Integer.parseInt(ip.getProtocolString()) == 17)
                             {
                                 // printed byte representation of udp packet, for dns parsing later
