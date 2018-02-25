@@ -50,14 +50,6 @@ public class OptionHandler{
 
     OptionHandler()
     {
-        //try{
-        //    String absolutePath = System.getProperty("user.dir");
-        //    System.load(absolutePath+"/libsimplepacketdriver.so");
-        //}catch (Exception e)
-        //{
-        //    
-        //}
-
         driver = new SimplePacketDriver();
         adapters = driver.getAdapterNames();
         eth = new EthernetParser();
@@ -87,6 +79,7 @@ public class OptionHandler{
         destinationPortSet = false;
     }
     
+    // parse and sets up what options will be accepted
     public int parseOptions(String [] args) throws Exception
     {   
         // options for single or no argument
@@ -208,8 +201,7 @@ public class OptionHandler{
             String [] arguments = getArgument(cmd,"sord",2);
             sourceAddress = arguments[0];
             destinationAddress = arguments[1];
-            
-            //System.out.println("sord has been chosen source: " + sourceAddress + "\ndestination: " + destinationAddress);
+
         }
         
         if(cmd.hasOption("sandd"))
@@ -218,8 +210,7 @@ public class OptionHandler{
             String [] arguments = getArgument(cmd,"sandd",2);
             sourceAddress = arguments[0];
             destinationAddress = arguments[1];
-            
-            //System.out.println("sand has been chose source: " + sourceAddress + " \ndestination: " + destinationAddress);
+
         }
         
         if(cmd.hasOption("sport"))
@@ -328,6 +319,7 @@ public class OptionHandler{
         }
     }
     
+    // runs the users options 
     public void runOptions() throws Exception
     {
         // checking where to get input from
@@ -442,8 +434,7 @@ public class OptionHandler{
                     ip = new IPPacketParser();
                     
                     byte []  packet = getPacket();
-                    //ip.parsePacket(packet);
-                    //ip.printAll();
+
                     if(packet.length > 33)
                         eth.parsePacket(packet);
                     
@@ -451,7 +442,7 @@ public class OptionHandler{
                     {
                         ip.parsePacket(packet);
                         
-                        // check that the address passes the ip address filter
+                        // check that the address passes the ip address filter, if not set it will always return true
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
                             if(headerOnly)
@@ -478,9 +469,6 @@ public class OptionHandler{
                 }
             break;
             case "icmp":
-                // print payload
-                // if function for done reading
-                // if function to print payload or only header
                 boolean continueLoopIcmp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterIcmp = 1;
                 
@@ -495,12 +483,16 @@ public class OptionHandler{
                     if(packet.length > 41)
                         eth.parsePacket(packet);
                     
+                    // check that the type is ip
                     if(eth.getTypeString().equals("0800"))
                     {
                         ip.parsePacket(packet);
                         
+                        // check that the address passes the ip address filter, if not set it will always return true
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
+                            
+                            // check that the protocol is icmp
                             if(Integer.parseInt(ip.getProtocolString()) == 1)
                             {
                                 icmp.parsePacket(packet);
@@ -548,7 +540,7 @@ public class OptionHandler{
                     {
                         ip.parsePacket(packet);
                         
-                        // check that the address passes the ip address filter
+                        // check that the address passes the ip address filter, if not set it will always return true
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
 
@@ -556,19 +548,25 @@ public class OptionHandler{
                             if(Integer.parseInt(ip.getProtocolString()) == 6)
                             {
                                 tcp.parsePacket(packet);
-                                if(headerOnly)
-                                {
-                                    tcp.printHeaderOnly();
-                                } else {
-                                    tcp.printAll();
-                                }
                                 
-                                if(counterTcp == packetsToCapture)
+                                // check that the port is in range it set, if not set it will always return true
+                                if(checkPortRange(Integer.parseInt(tcp.getSourcePortString()), Integer.parseInt(tcp.getDestinationPortString())))
                                 {
-                                    continueLoopTcp = false;
-                                }
-                                
-                                counterTcp = counterTcp + 1;
+                                    if(headerOnly)
+                                    {
+                                        tcp.printHeaderOnly();
+                                    } else {
+                                        tcp.printAll();
+                                    }
+
+                                    if(counterTcp == packetsToCapture)
+                                    {
+                                        continueLoopTcp = false;
+                                    }
+                                    
+                                    counterTcp = counterTcp + 1;                                    
+                                        
+                                    }
                             }
                         }
                     }
@@ -598,11 +596,10 @@ public class OptionHandler{
         
                     if(eth.getTypeString().equals("0800"))
                     {
-                        //eth.printHeaderOnly();
                         ip.parsePacket(packet);
 
                         
-                        // check that the address passes the ip address filter
+                        // check that the address passes the ip address filter, if not set it will always return true
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
                             if(Integer.parseInt(ip.getProtocolString()) == 17)
@@ -619,21 +616,24 @@ public class OptionHandler{
                                 // System.out.println(new String(hexChars));                                
                                 
                                 udp.parsePacket(packet);
-                                if(headerOnly)
+                                
+                                // check that the port is in range it set, if not set it will always return true
+                                if(checkPortRange(Integer.parseInt(udp.getSourcePortString()), Integer.parseInt(udp.getDestinationPortString())))
                                 {
-                                    udp.printHeaderOnly();
-                                } else {
-                                    udp.printAll();
+                                    if(headerOnly)
+                                    {
+                                        udp.printHeaderOnly();
+                                    } else {
+                                        udp.printAll();
+                                    }
+                                    
+                                    if(counterUdp == packetsToCapture)
+                                    {
+                                        continueLoopUdp = false;
+                                    }
+                                    
+                                    counterUdp = counterUdp + 1;                                     
                                 }
-                                
-
-                                
-                                if(counterUdp == packetsToCapture)
-                                {
-                                    continueLoopUdp = false;
-                                }
-                                
-                                counterUdp = counterUdp + 1;
                             }
                         }
                     }
@@ -647,6 +647,7 @@ public class OptionHandler{
         }        
     }
     
+    // get packet from either a file or the chosen network interface card
     public byte[] getPacket() throws Exception
     {
         byte [] packet; // temporary initialization
@@ -678,7 +679,6 @@ public class OptionHandler{
                         endOfFile = true;
                         break;
                     }
-                    // System.out.println(Arrays.toString(byteString));
 
                     Byte [] byteTemp = new Byte[byteString.length];
                     
@@ -720,6 +720,7 @@ public class OptionHandler{
         return packet;
     }
     
+    // check it the ip address is in the filter, if address filtering not set then it will always return true
     public boolean checkIPAddressFilter(String currentSrc, String currentDst)
     {
         boolean passFilter = true;
@@ -754,9 +755,26 @@ public class OptionHandler{
         return passFilter;
     }    
     
-    public boolean checkPortRange()
+    // checks if the port is in range, if port filtering not set then it will always return true
+    public boolean checkPortRange(int currentSrc, int currentDst)
     {
         boolean passFilter = true;
+        
+        if(sourcePortSet)
+        {
+            if(!((currentSrc < sourcePortRange[1]) && (currentSrc > sourcePortRange[0])))
+            {
+                passFilter = false;
+            }
+        }
+        
+        if(destinationPortSet)
+        {
+            if(!((currentDst < destinationPortRange[1]) && (currentDst > sourcePortRange[0])))
+            {
+                passFilter = false;
+            }
+        }
         
         return passFilter;
     }
