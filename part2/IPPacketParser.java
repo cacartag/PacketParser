@@ -40,6 +40,12 @@ public class IPPacketParser{
     private int [] destinationAddress;
     private String destinationAddressString;
     
+    private byte [] headerBytes;
+    
+    private long calculatedChecksum;
+    
+    private byte [] packetIP;
+    
     private byte [] payload;
     
     public String getVersionString() { return versionString; }
@@ -109,6 +115,8 @@ public class IPPacketParser{
         headerChecksum = headerChecksum << 8;
         headerChecksum = headerChecksum + (int)(packet[25] & 0xFF);
         
+        
+        
         sourceAddress[0] = (int)(packet[26] & 0xFF);
         sourceAddress[1] = (int)(packet[27] & 0xFF);
         sourceAddress[2] = (int)(packet[28] & 0xFF);
@@ -118,6 +126,12 @@ public class IPPacketParser{
         destinationAddress[1] = (int)(packet[31] & 0xFF);
         destinationAddress[2] = (int)(packet[32] & 0xFF);
         destinationAddress[3] = (int)(packet[33] & 0xFF);
+        
+        packetIP = packet;
+        packetIP[24] = 0x00;
+        packetIP[25] = 0x00;
+        
+        calculatedChecksum = calculateCheckSum();
         
         payload = Arrays.copyOfRange(packet, 34, packet.length - 1);
         
@@ -199,56 +213,30 @@ public class IPPacketParser{
         
         payload = new byte[10];
     }
-    
-	/**
-	 Standard internet checksum algorithm shared by IP, ICMP, UDP and TCP.
-	*/
 
-	public short checksum( byte[] message , int length , int offset ) {
-     
-	  // Sum consecutive 16-bit words.
-
-	  int sum = 0 ;
-
-	  while( offset < length - 1 ){
-
-		sum += (int) integralFromBytes( message , offset , 2 );
-
-		offset += 2 ;
-	  } 
-    
-	  if( offset == length - 1 ){
-
-		sum += ( message[offset] >= 0 ? message[offset] : message[offset] ^ 0xffffff00 ) << 8 ;
-	  }
-
-	  // Add upper 16 bits to lower 16 bits.
-
-	  sum = ( sum >>> 16 ) + ( sum & 0xffff );
-
-	  // Add carry
-
-	  sum += sum >>> 16 ;
-
-	  // Ones complement and truncate.
-
-	  return (short) ~sum ;
-	} 
-
-    private long integralFromBytes(byte[] buffer, int offset, int length) 
+    private long calculateCheckSum()
     {
+        int checkSum = 0;
+        for(int x = 0; x < 20; x+=2)
+        {
+            int inter = (int)(((packetIP[14 + x] & 0xff) << 8) | (packetIP[14 + (x + 1)] & 0xff));
 
-		long answer = 0;
+            checkSum += inter;
+        }
+        
+        byte [] result = new byte[5];
+        
+        result[0] = ((byte)(checkSum >> 16 & 0x0F));
+        result[1] = ((byte)(checkSum >> 12 & 0x0F));
+        result[2] = ((byte)(checkSum >> 8 & 0x0F));
+        result[3] = ((byte)(checkSum >> 4 & 0x0F));
+        result[4] = ((byte)(checkSum & 0x0F));
+        
+        int done = (result[1] << 12) | (result[2] << 8) | (result[3] << 4) | (result[4]);
+        done= done + (int)(result[0] & 0xFF);
 
-		while (--length >= 0) {
-			answer = answer << 8;
-			answer |= buffer[offset] >= 0 ? buffer[offset]
-					: 0xffffff00 ^ buffer[offset];
-			++offset;
-		}
-
-		return answer;
-	}
+        return ~done
+    }
     
     public void clear()
     {
@@ -292,6 +280,7 @@ public class IPPacketParser{
         System.out.println("Header Checksum: " + headerChecksumString);
         System.out.println("Source IP Address: " + sourceAddressString);
         System.out.println("Destination IP Address: " + destinationAddressString);
+        System.out.println("Caculated checSum is: " + calculatedChecksum);
         
         try
         {
@@ -321,6 +310,8 @@ public class IPPacketParser{
         System.out.println("Header Checksum: " + headerChecksumString);
         System.out.println("Source IP Address: " + sourceAddressString);
         System.out.println("Destination IP Address: " + destinationAddressString);
+        System.out.println("Calculated Checksum: " + calculatedChecksum);
+        
         System.out.println("\n\n\n");
     }
 }
