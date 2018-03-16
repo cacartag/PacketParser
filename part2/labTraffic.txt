@@ -1,0 +1,5428 @@
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 63
+Identification: 13256
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33664
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860657
+Acknowledgement Number: 3896578493
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49640
+Checksum: 16745
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 7395
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 39548
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578493
+Acknowledgement Number: 2388860680
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 17520
+Checksum: 37977
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 46
+Identification: 13257
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33680
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860680
+Acknowledgement Number: 3896578493
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49640
+Checksum: 61364
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 407
+Identification: 21579
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 24997
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578493
+Acknowledgement Number: 2388860686
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 17520
+Checksum: 23026
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 26885
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 20058
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578860
+Acknowledgement Number: 2388860686
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 17520
+Checksum: 37603
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 13258
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33685
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860686
+Acknowledgement Number: 3896578860
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49273
+Checksum: 5851
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 13259
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33684
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860686
+Acknowledgement Number: 3896578861
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49273
+Checksum: 5850
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 13260
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33683
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860686
+Acknowledgement Number: 3896578861
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 49273
+Checksum: 5849
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 31976
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 14967
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578861
+Acknowledgement Number: 2388860687
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 17520
+Checksum: 37602
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 60
+Identification: 60873
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51513
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926015
+Acknowledgement Number: 0
+Offset: 10
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 0 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 5840
+Checksum: 55526
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 64
+Identification: 38686
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9201
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181814
+Acknowledgement Number: 3108926016
+Offset: 11
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 49232
+Checksum: 8629
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60874
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51520
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926016
+Acknowledgement Number: 2424181815
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 3073
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 67
+Identification: 38687
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9197
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181815
+Acknowledgement Number: 3108926016
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 1826
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60875
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51519
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926016
+Acknowledgement Number: 2424181830
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 3044
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 67
+Identification: 60876
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51503
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926016
+Acknowledgement Number: 2424181830
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 46224
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 38688
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9211
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181830
+Acknowledgement Number: 3108926031
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 25171
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 70
+Identification: 38689
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9192
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181830
+Acknowledgement Number: 3108926031
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 316
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 69
+Identification: 60877
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51500
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926031
+Acknowledgement Number: 2424181848
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 9192
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 38690
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9209
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181848
+Acknowledgement Number: 3108926048
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 25136
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 73
+Identification: 38691
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9187
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181848
+Acknowledgement Number: 3108926048
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 45239
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60878
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51516
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926048
+Acknowledgement Number: 2424181869
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2967
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 61
+Identification: 38692
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9198
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181869
+Acknowledgement Number: 3108926048
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 25604
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60879
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51515
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926048
+Acknowledgement Number: 2424181878
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2954
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 61
+Identification: 60880
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51505
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926048
+Acknowledgement Number: 2424181878
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2939
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 55
+Identification: 38693
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9203
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181878
+Acknowledgement Number: 3108926057
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 24822
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60881
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51513
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926057
+Acknowledgement Number: 2424181881
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2938
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 59
+Identification: 38694
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9198
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181881
+Acknowledgement Number: 3108926057
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 65481
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60882
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51512
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926057
+Acknowledgement Number: 2424181888
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2909
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 60
+Identification: 60883
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51503
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926057
+Acknowledgement Number: 2424181888
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 36573
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 61
+Identification: 38695
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9195
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181888
+Acknowledgement Number: 3108926065
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 56068
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60884
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51510
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926065
+Acknowledgement Number: 2424181897
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2740
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 62
+Identification: 38696
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9193
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181897
+Acknowledgement Number: 3108926065
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 31063
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60885
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51509
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926065
+Acknowledgement Number: 2424181907
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2728
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 65
+Identification: 60886
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51495
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926065
+Acknowledgement Number: 2424181907
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 52222
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 54
+Identification: 38697
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9200
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181907
+Acknowledgement Number: 3108926078
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 21310
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60887
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51507
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926078
+Acknowledgement Number: 2424181909
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2513
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 106
+Identification: 38698
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9147
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181909
+Acknowledgement Number: 3108926078
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 5199
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60888
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51506
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926078
+Acknowledgement Number: 2424181963
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2435
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 54
+Identification: 38699
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9198
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181963
+Acknowledgement Number: 3108926078
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 15308
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60889
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51505
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926078
+Acknowledgement Number: 2424181965
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2409
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 60
+Identification: 60890
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51496
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926078
+Acknowledgement Number: 2424181965
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 38897
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 61
+Identification: 38700
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9190
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181965
+Acknowledgement Number: 3108926086
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 58391
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60891
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51503
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424181974
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2238
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 98
+Identification: 38701
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9152
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181974
+Acknowledgement Number: 3108926086
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 48276
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60892
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51502
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424182020
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2180
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 98
+Identification: 38702
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9151
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424182020
+Acknowledgement Number: 3108926086
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 58767
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60893
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51501
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424182066
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2134
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 54
+Identification: 38703
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9194
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424182066
+Acknowledgement Number: 3108926086
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 15019
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60894
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51500
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424182068
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2132
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60895
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51499
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424182068
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 5840
+Checksum: 2036
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 38704
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9195
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424182068
+Acknowledgement Number: 3108926087
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 24084
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 38705
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9194
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424182068
+Acknowledgement Number: 3108926087
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 49232
+Checksum: 24081
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 0
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 46875
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926087
+Acknowledgement Number: 2424182069
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 1936
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 68
+Identification: 57244
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 17
+Header Checksum: 55147
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.14.
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 120
+Identification: 59847
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 17
+Header Checksum: 52492
+Source IP Address: 192.168.1.14.
+Destination IP Address: 192.168.1.66.
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 77
+Identification: 16466
+Flags: 2
+Fragment Offset: 0
+TTL: 255
+Protocol: 17
+Header Checksum: 47032
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.46.
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 93
+Identification: 61363
+Flags: 0
+Fragment Offset: 0
+TTL: 128
+Protocol: 17
+Header Checksum: 51015
+Source IP Address: 192.168.1.46.
+Destination IP Address: 192.168.1.22.
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 60
+Identification: 15072
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31779
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153373
+Acknowledgement Number: 0
+Offset: 10
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 0 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 5840
+Checksum: 14899
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 60
+Identification: 0
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 46851
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341146
+Acknowledgement Number: 708153374
+Offset: 10
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 5792
+Checksum: 19146
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 15073
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31786
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153374
+Acknowledgement Number: 4221341147
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 31071
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 213
+Identification: 10928
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35770
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341147
+Acknowledgement Number: 708153374
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 34473
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 15074
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31785
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153374
+Acknowledgement Number: 4221341308
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 30890
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 62
+Identification: 15075
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31758
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153374
+Acknowledgement Number: 4221341308
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 25152
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 10929
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35930
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341308
+Acknowledgement Number: 708153384
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 30894
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 90
+Identification: 10930
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35891
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341308
+Acknowledgement Number: 708153384
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 4965
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 66
+Identification: 15076
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31753
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153384
+Acknowledgement Number: 4221341346
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 38645
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 86
+Identification: 10931
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35894
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341346
+Acknowledgement Number: 708153398
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 12523
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 71
+Identification: 15077
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31747
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153398
+Acknowledgement Number: 4221341380
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 32242
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 85
+Identification: 10932
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35894
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341380
+Acknowledgement Number: 708153417
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 5009
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 60
+Identification: 15078
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31757
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153417
+Acknowledgement Number: 4221341413
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 42385
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 82
+Identification: 10933
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35896
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341413
+Acknowledgement Number: 708153425
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 61713
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 77
+Identification: 15079
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31739
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153425
+Acknowledgement Number: 4221341443
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 61632
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 103
+Identification: 10934
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35874
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341443
+Acknowledgement Number: 708153450
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 52248
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 74
+Identification: 15080
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31741
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153450
+Acknowledgement Number: 4221341494
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 55288
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 2
+IP ECN: 0
+IP packet length: 60
+Identification: 16690
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 30153
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 20
+Port destination: 4940
+Sequence Number: 4221101710
+Acknowledgement Number: 0
+Offset: 10
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 0 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 5840
+Checksum: 20884
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 60
+Identification: 0
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 46851
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4940
+Port destination: 20
+Sequence Number: 709020035
+Acknowledgement Number: 4221101711
+Offset: 10
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 5792
+Checksum: 47105
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 2
+IP ECN: 0
+IP packet length: 52
+Identification: 16691
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 30160
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 20
+Port destination: 4940
+Sequence Number: 4221101711
+Acknowledgement Number: 709020036
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 59030
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 74
+Identification: 10935
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35902
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341494
+Acknowledgement Number: 708153472
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 25825
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 2
+IP ECN: 0
+IP packet length: 637
+Identification: 25291
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 20975
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4940
+Port destination: 20
+Sequence Number: 709020036
+Acknowledgement Number: 4221101711
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 62815
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 2
+IP ECN: 0
+IP packet length: 52
+Identification: 25292
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 21559
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4940
+Port destination: 20
+Sequence Number: 709020621
+Acknowledgement Number: 4221101711
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 5792
+Checksum: 58491
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 2
+IP ECN: 0
+IP packet length: 52
+Identification: 16692
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 30159
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 20
+Port destination: 4940
+Sequence Number: 4221101711
+Acknowledgement Number: 709020621
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 6435
+Checksum: 57848
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 74
+Identification: 10936
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35901
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341516
+Acknowledgement Number: 708153472
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 33197
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 2
+IP ECN: 0
+IP packet length: 52
+Identification: 16693
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 30158
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 20
+Port destination: 4940
+Sequence Number: 4221101711
+Acknowledgement Number: 709020622
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 6435
+Checksum: 57846
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 2
+IP ECN: 0
+IP packet length: 52
+Identification: 25293
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 21558
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4940
+Port destination: 20
+Sequence Number: 709020622
+Acknowledgement Number: 4221101712
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 58488
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 58
+Identification: 15081
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31756
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153472
+Acknowledgement Number: 4221341538
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 53006
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 66
+Identification: 10937
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35908
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341538
+Acknowledgement Number: 708153478
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 34826
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 15082
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31761
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153478
+Acknowledgement Number: 4221341552
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 5840
+Checksum: 30392
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 10938
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 35921
+Source IP Address: 192.168.1.42.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4938
+Sequence Number: 4221341552
+Acknowledgement Number: 708153479
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 5792
+Checksum: 30438
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 15083
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 31760
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.42.
+TCP Header:
+Port source: 4938
+Port destination: 21
+Sequence Number: 708153479
+Acknowledgement Number: 4221341553
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 30390
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 60
+Identification: 0
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 46827
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227480
+Acknowledgement Number: 701566256
+Offset: 10
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 5792
+Checksum: 9005
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 60
+Identification: 43007
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3820
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566255
+Acknowledgement Number: 0
+Offset: 10
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 0 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 5840
+Checksum: 48540
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 43008
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3827
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566256
+Acknowledgement Number: 2706227481
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 20930
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 148
+Identification: 52712
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 59546
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227481
+Acknowledgement Number: 701566256
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 25676
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 43009
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3810
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566256
+Acknowledgement Number: 2706227577
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 20794
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 62
+Identification: 43010
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3799
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566256
+Acknowledgement Number: 2706227577
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 15072
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 52713
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 59641
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227577
+Acknowledgement Number: 701566266
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 20831
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 77
+Identification: 52714
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 59615
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227577
+Acknowledgement Number: 701566266
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 33072
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 66
+Identification: 43011
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3794
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566266
+Acknowledgement Number: 2706227602
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 28628
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 88
+Identification: 52715
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 59603
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227602
+Acknowledgement Number: 701566280
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 3163
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 71
+Identification: 43012
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3788
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566280
+Acknowledgement Number: 2706227638
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 22257
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 74
+Identification: 52716
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 59616
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227638
+Acknowledgement Number: 701566299
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 41896
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 58
+Identification: 43013
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3800
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566299
+Acknowledgement Number: 2706227660
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 40178
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 71
+Identification: 52717
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 59618
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227660
+Acknowledgement Number: 701566305
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 59766
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 58
+Identification: 43014
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3799
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566305
+Acknowledgement Number: 2706227679
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 43229
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 66
+Identification: 52718
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 59622
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227679
+Acknowledgement Number: 701566311
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5792
+Checksum: 25051
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 43015
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3804
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566311
+Acknowledgement Number: 2706227693
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 5840
+Checksum: 20617
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 52719
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 59635
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.62.
+TCP Header:
+Port source: 21
+Port destination: 4936
+Sequence Number: 2706227693
+Acknowledgement Number: 701566312
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 5792
+Checksum: 20664
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 43016
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 3803
+Source IP Address: 192.168.1.62.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 4936
+Port destination: 21
+Sequence Number: 701566312
+Acknowledgement Number: 2706227694
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 20616
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 48
+Identification: 13254
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33681
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860656
+Acknowledgement Number: 0
+Offset: 7
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 0 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 49640
+Checksum: 58434
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 48
+Identification: 16823
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 30112
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578492
+Acknowledgement Number: 2388860657
+Offset: 7
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 16384
+Checksum: 27676
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 13255
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33688
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860657
+Acknowledgement Number: 3896578493
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49640
+Checksum: 5880
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 63
+Identification: 13256
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33664
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860657
+Acknowledgement Number: 3896578493
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49640
+Checksum: 16745
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 7395
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 39548
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578493
+Acknowledgement Number: 2388860680
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 17520
+Checksum: 37977
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 46
+Identification: 13257
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33680
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860680
+Acknowledgement Number: 3896578493
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49640
+Checksum: 61364
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 407
+Identification: 21579
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 24997
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578493
+Acknowledgement Number: 2388860686
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 17520
+Checksum: 23026
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 26885
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 20058
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578860
+Acknowledgement Number: 2388860686
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 17520
+Checksum: 37603
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 13258
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33685
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860686
+Acknowledgement Number: 3896578860
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49273
+Checksum: 5851
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 13259
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33684
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860686
+Acknowledgement Number: 3896578861
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49273
+Checksum: 5850
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 13260
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 33683
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.10.
+TCP Header:
+Port source: 43999
+Port destination: 80
+Sequence Number: 2388860686
+Acknowledgement Number: 3896578861
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 49273
+Checksum: 5849
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 40
+Identification: 31976
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 14967
+Source IP Address: 192.168.1.10.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 80
+Port destination: 43999
+Sequence Number: 3896578861
+Acknowledgement Number: 2388860687
+Offset: 5
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 17520
+Checksum: 37602
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 60
+Identification: 60873
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51513
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926015
+Acknowledgement Number: 0
+Offset: 10
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 0 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 5840
+Checksum: 55526
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 64
+Identification: 38686
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9201
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181814
+Acknowledgement Number: 3108926016
+Offset: 11
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 1 
+F: 0 
+
+Window: 49232
+Checksum: 8629
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60874
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51520
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926016
+Acknowledgement Number: 2424181815
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 3073
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 67
+Identification: 38687
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9197
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181815
+Acknowledgement Number: 3108926016
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 1826
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60875
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51519
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926016
+Acknowledgement Number: 2424181830
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 3044
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 67
+Identification: 60876
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51503
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926016
+Acknowledgement Number: 2424181830
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 46224
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 38688
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9211
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181830
+Acknowledgement Number: 3108926031
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 25171
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 70
+Identification: 38689
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9192
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181830
+Acknowledgement Number: 3108926031
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 316
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 69
+Identification: 60877
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51500
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926031
+Acknowledgement Number: 2424181848
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 9192
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 38690
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9209
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181848
+Acknowledgement Number: 3108926048
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 25136
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 73
+Identification: 38691
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9187
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181848
+Acknowledgement Number: 3108926048
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 45239
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60878
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51516
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926048
+Acknowledgement Number: 2424181869
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2967
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 61
+Identification: 38692
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9198
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181869
+Acknowledgement Number: 3108926048
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 25604
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60879
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51515
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926048
+Acknowledgement Number: 2424181878
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2954
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 61
+Identification: 60880
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51505
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926048
+Acknowledgement Number: 2424181878
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2939
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 55
+Identification: 38693
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9203
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181878
+Acknowledgement Number: 3108926057
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 24822
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60881
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51513
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926057
+Acknowledgement Number: 2424181881
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2938
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 59
+Identification: 38694
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9198
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181881
+Acknowledgement Number: 3108926057
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 65481
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60882
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51512
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926057
+Acknowledgement Number: 2424181888
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2909
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 60
+Identification: 60883
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51503
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926057
+Acknowledgement Number: 2424181888
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 36573
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 61
+Identification: 38695
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9195
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181888
+Acknowledgement Number: 3108926065
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 56068
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60884
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51510
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926065
+Acknowledgement Number: 2424181897
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2740
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 62
+Identification: 38696
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9193
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181897
+Acknowledgement Number: 3108926065
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 31063
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60885
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51509
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926065
+Acknowledgement Number: 2424181907
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2728
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 65
+Identification: 60886
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51495
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926065
+Acknowledgement Number: 2424181907
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 52222
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 54
+Identification: 38697
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9200
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181907
+Acknowledgement Number: 3108926078
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 21310
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60887
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51507
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926078
+Acknowledgement Number: 2424181909
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2513
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 106
+Identification: 38698
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9147
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181909
+Acknowledgement Number: 3108926078
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 5199
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60888
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51506
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926078
+Acknowledgement Number: 2424181963
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2435
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 54
+Identification: 38699
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9198
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181963
+Acknowledgement Number: 3108926078
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 15308
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60889
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51505
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926078
+Acknowledgement Number: 2424181965
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2409
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 60
+Identification: 60890
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51496
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926078
+Acknowledgement Number: 2424181965
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 38897
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 61
+Identification: 38700
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9190
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181965
+Acknowledgement Number: 3108926086
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 58391
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60891
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51503
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424181974
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2238
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 98
+Identification: 38701
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9152
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424181974
+Acknowledgement Number: 3108926086
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 48276
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60892
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51502
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424182020
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2180
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 98
+Identification: 38702
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9151
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424182020
+Acknowledgement Number: 3108926086
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 58767
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60893
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51501
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424182066
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2134
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 54
+Identification: 38703
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9194
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424182066
+Acknowledgement Number: 3108926086
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 1 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 15019
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60894
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51500
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424182068
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 5840
+Checksum: 2132
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 4
+IP ECN: 0
+IP packet length: 52
+Identification: 60895
+Flags: 2
+Fragment Offset: 0
+TTL: 64
+Protocol: 6
+Header Checksum: 51499
+Source IP Address: 192.168.1.66.
+Destination IP Address: 192.168.1.22.
+TCP Header:
+Port source: 56788
+Port destination: 23
+Sequence Number: 3108926086
+Acknowledgement Number: 2424182068
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 1 
+
+Window: 5840
+Checksum: 2036
+Urgent Pointer: 0
+IP Header:
+IP version: 4
+IP length: 5
+IP DSCP: 0
+IP ECN: 0
+IP packet length: 52
+Identification: 38704
+Flags: 2
+Fragment Offset: 0
+TTL: 60
+Protocol: 6
+Header Checksum: 9195
+Source IP Address: 192.168.1.22.
+Destination IP Address: 192.168.1.66.
+TCP Header:
+Port source: 23
+Port destination: 56788
+Sequence Number: 2424182068
+Acknowledgement Number: 3108926087
+Offset: 8
+Reserved: 0
+TCP Flags: 
+C: 0 
+E: 0 
+U: 0 
+A: 1 
+P: 0 
+R: 0 
+S: 0 
+F: 0 
+
+Window: 49232
+Checksum: 24084
+Urgent Pointer: 0
