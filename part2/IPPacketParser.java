@@ -20,6 +20,7 @@ public class IPPacketParser{
     private String idString;
     
     private int flag;
+    private byte [] flags;
     private String flagString;
     
     private int fragmentOffset;
@@ -42,7 +43,7 @@ public class IPPacketParser{
     
     private byte [] headerBytes;
     
-    private long calculatedChecksum;
+    private int calculatedChecksum;
     
     private byte [] packetIP;
     
@@ -147,7 +148,10 @@ public class IPPacketParser{
 
         idString = Integer.toString(id);
         
-        flagString = Integer.toString((flag >> 5) & 7);
+        flagString = Integer.toString((flag >> 5) & 0xFF);
+        flags[2] = (byte)((flag >> 5) & 0x01);
+        flags[1] = (byte)((flag >> 6) & 0x01);
+        flags[0] = (byte)((flag >> 7) & 0x01);
         
         fragmentOffsetString = Integer.toString(fragmentOffset);
         
@@ -211,10 +215,12 @@ public class IPPacketParser{
         destinationAddress = new int[] {0,0,0,0};
         destinationAddressString = "";
         
+        flags = new byte[3];
+        
         payload = new byte[10];
     }
 
-    private long calculateCheckSum()
+    private int calculateCheckSum()
     {
         int checkSum = 0;
         for(int x = 0; x < 20; x+=2)
@@ -235,7 +241,7 @@ public class IPPacketParser{
         int done = (result[1] << 12) | (result[2] << 8) | (result[3] << 4) | (result[4]);
         done= done + (int)(result[0] & 0xFF);
 
-        return ~done
+        return ((~done) & 0x0000FFFF);
     }
     
     public void clear()
@@ -273,7 +279,11 @@ public class IPPacketParser{
         System.out.println("IP ECN: " + ecnString);
         System.out.println("IP packet length: "+ lengthString);
         System.out.println("Identification: " + idString);
-        System.out.println("Flags: " + flagString);
+        //System.out.println("Flags: " + flagString);
+        System.out.println("Reserved Flag is: " + (int)(flags[0]));
+        System.out.println("Don't Fragment flag is: " + (int)(flags[1]));
+        System.out.println("More Fragments flag is: " + (int)(flags[2]));
+  
         System.out.println("Fragment Offset: " + fragmentOffsetString);
         System.out.println("TTL: " + ttlString);
         System.out.println("Protocol: " + protocolString);
