@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.io.InputStreamReader;
 import javax.xml.bind.DatatypeConverter;
+import java.lang.Thread;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 // To compile in Windows: 	javac -cp ".;commons-cli-1.4.jar" -d . OptionHandler.java
 // To run in Windows: 		java -cp ".;commons-cli-1.4.jar" OptionHandler
@@ -426,6 +428,8 @@ public class OptionHandler{
             case "ip":
                 boolean continueLoopIp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterIp = 1;
+                Vector<String> fragmentIDs = new Vector<String>();
+                ConcurrentLinkedQueue<String[]> packetQueue = new ConcurrentLinkedQueue<String[]>();
                 
                 while(continueLoopIp)
                 {
@@ -445,6 +449,24 @@ public class OptionHandler{
                         // check that the address passes the ip address filter, if not set it will always return true
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
+                            if(ip.getIfFragment() == true)
+                            {
+                                if(!fragmentIDs.contains(ip.getIdentification()))
+                                {
+                                    System.out.println("The packet ID is: " + ip.getIdentification());
+                                    
+                                    IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification());
+                                    ipf.start();
+                                    String[] toThread = {ip.getIdentification(), ip.getIdentification() + "first"}; 
+                                    packetQueue.add(toThread);
+                                    fragmentIDs.addElement(ip.getIdentification());
+                                }else{
+                                    System.out.println("Already contains this ID");
+                                    String[] toThread = {ip.getIdentification(), ip.getIdentification() + " " + ip.getFragmentOffsetString()}; 
+                                    packetQueue.add(toThread);
+                                }
+                            }
+                            
                             if(headerOnly)
                             {
                                 ip.printHeaderOnly();

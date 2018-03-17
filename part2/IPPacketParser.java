@@ -26,6 +26,8 @@ public class IPPacketParser{
     private int fragmentOffset;
     private String fragmentOffsetString;
     
+    private boolean isFragment;
+    
     private int ttl;
     private String ttlString;
     
@@ -74,6 +76,8 @@ public class IPPacketParser{
     public String getSourceAddressString() { return sourceAddressString; }
     
     public String getDestinationAddressString() { return destinationAddressString; }
+    
+    public boolean getIfFragment() { return isFragment; }
     
     public String getPayloadString() throws Exception
     { 
@@ -152,6 +156,14 @@ public class IPPacketParser{
         flags[2] = (byte)((flag >> 5) & 0x01);
         flags[1] = (byte)((flag >> 6) & 0x01);
         flags[0] = (byte)((flag >> 7) & 0x01);
+        
+        if(((int)(flags[2]) == 1) || ((int)fragmentOffset > 0))
+        {
+            isFragment = true;
+        } else {
+            isFragment = false;
+        }
+        
         
         fragmentOffsetString = Integer.toString(fragmentOffset);
         
@@ -313,7 +325,10 @@ public class IPPacketParser{
         System.out.println("IP ECN: " + ecnString);
         System.out.println("IP packet length: "+ lengthString);
         System.out.println("Identification: " + idString);
-        System.out.println("Flags: " + flagString);
+        //System.out.println("Flags: " + flagString);
+        System.out.println("Reserved Flag is: " + (int)(flags[0]));
+        System.out.println("Don't Fragment flag is: " + (int)(flags[1]));
+        System.out.println("More Fragments flag is: " + (int)(flags[2]));
         System.out.println("Fragment Offset: " + fragmentOffsetString);
         System.out.println("TTL: " + ttlString);
         System.out.println("Protocol: " + protocolString);
