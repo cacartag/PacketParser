@@ -13,8 +13,10 @@ import java.io.InputStreamReader;
 import javax.xml.bind.DatatypeConverter;
 import java.lang.Thread;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.Map;
+import java.util.HashMap;
 
-// To compile in Windows: 	javac -cp ".;commons-cli-1.4.jar" -d . OptionHandler.java
+// To compile in Windows: 	java -cp ".;commons-cli-1.4.jar;commons-lang3-3.7.jar" Main
 // To run in Windows: 		java -cp ".;commons-cli-1.4.jar" OptionHandler
 // To compile in Linux:		javac -cp ".:commons-cli-1.4.jar" -d . OptionHandler.java
 // note I had to move libsimplepacketdriver_x64.so to /usr/lib/x86_64-Linux-GNU
@@ -429,7 +431,7 @@ public class OptionHandler{
                 boolean continueLoopIp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterIp = 1;
                 Vector<String> fragmentIDs = new Vector<String>();
-                ConcurrentLinkedQueue<String[]> packetQueue = new ConcurrentLinkedQueue<String[]>();
+                ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue = new ConcurrentLinkedQueue<Map<String,IPPacketParser>>();
                 
                 while(continueLoopIp)
                 {
@@ -451,35 +453,42 @@ public class OptionHandler{
                         {
                             if(ip.getIfFragment() == true)
                             {
+                                System.out.println("Detected Fragment");
                                 if(!fragmentIDs.contains(ip.getIdentification()))
                                 {
-                                    System.out.println("The packet ID is: " + ip.getIdentification());
+                                    //System.out.println("The packet ID is: " + ip.getIdentification());
                                     
                                     IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification());
                                     ipf.start();
-                                    String[] toThread = {ip.getIdentification(), ip.getIdentification() + "first"}; 
+                                    Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
+                                    toThread.put(ip.getIdentification(),ip);
                                     packetQueue.add(toThread);
                                     fragmentIDs.addElement(ip.getIdentification());
                                 }else{
-                                    System.out.println("Already contains this ID");
-                                    String[] toThread = {ip.getIdentification(), ip.getIdentification() + " " + ip.getFragmentOffsetString()}; 
+                                    //System.out.println("Already contains this ID");
+                                    Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
+                                    toThread.put(ip.getIdentification(),ip);
                                     packetQueue.add(toThread);
                                 }
-                            }
-                            
-                            if(headerOnly)
-                            {
-                                ip.printHeaderOnly();
                             } else {
-                                ip.printAll();
+                            
+                                if(headerOnly)
+                                {
+                                    ip.printHeaderOnly();
+                                } else {
+                                    ip.printAll();
+                                }
+                                
                             }
                             
-                            if(counterIp == packetsToCapture)
+                            if(counterIp >= packetsToCapture)
                             {
                                 continueLoopIp = false;
                             }
                             
-                            counterIp = counterIp + 1;                        
+                            counterIp = counterIp + 1;    
+
+
                         }
                     }
                     

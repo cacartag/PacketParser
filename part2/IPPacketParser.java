@@ -65,6 +65,8 @@ public class IPPacketParser{
      
     public String getFlagString() { return flagString; }
     
+    public byte[] getFlags() { return flags; }
+    
     public String getFragmentOffsetString() { return fragmentOffsetString; }
     
     public String getTTLString() { return ttlString; }
@@ -78,6 +80,8 @@ public class IPPacketParser{
     public String getDestinationAddressString() { return destinationAddressString; }
     
     public boolean getIfFragment() { return isFragment; }
+    
+    public byte[] getPacket() { return packetIP; }
     
     public String getPayloadString() throws Exception
     { 
