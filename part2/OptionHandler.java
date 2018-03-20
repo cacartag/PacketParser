@@ -443,7 +443,6 @@ public class OptionHandler{
 
                     if(packet.length > 33)
                         eth.parsePacket(packet);
-                    
                     if(eth.getTypeString().equals("0800"))
                     {
                         ip.parsePacket(packet);
@@ -481,7 +480,7 @@ public class OptionHandler{
                                 
                             }
                             
-                            if(counterIp >= packetsToCapture)
+                            if(counterIp == packetsToCapture)
                             {
                                 continueLoopIp = false;
                             }
