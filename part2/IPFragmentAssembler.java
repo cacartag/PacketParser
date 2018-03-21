@@ -18,6 +18,8 @@ public class IPFragmentAssembler extends Thread {
     IPPacketParser firstIP;
     boolean last;
     IPPacketParser lastIP;
+    boolean reassemblySuccess;
+    boolean timeout;
         
     IPFragmentAssembler(ConcurrentLinkedQueue<Map<String,IPPacketParser>> p,String ID)
     {
@@ -27,11 +29,13 @@ public class IPFragmentAssembler extends Thread {
         fragments = new TreeMap<Integer,IPPacketParser>();
         first = false;
         last = false;
+        reassemblySuccess = false;
+        timeout = false;
     }
         
     public void run()
     {
-        while(true)
+        while(!reassemblySuccess)
         {
             Map<String,IPPacketParser> s = packetQueue.peek();
             if (s != null)
@@ -102,24 +106,49 @@ public class IPFragmentAssembler extends Thread {
                             if(fragments.firstEntry() != null)
                             {
                                 TreeMap<Integer, IPPacketParser> ifragments = new TreeMap<Integer, IPPacketParser>();
-                                Byte [] totalPayload = new Byte[10];
+                                Byte [] totalPayload;
                                 
                                 for (Map.Entry<Integer, IPPacketParser> entry : fragments.entrySet())
                                 {
                                     ifragments.put(entry.getKey(),entry.getValue());
                                 }
                                 
-                                //HashMap<boolean, byte[]> done = packetReassembly(firstIP, ifragments, totalPayload);
-                                if(packetReassembly(firstIP, ifragments, totalPayload))
+                                CompleteFragment reassembly = new CompleteFragment();
+                
+                                // initialize total payload with first packets payload
+                                byte[] firstFragmentRaw = firstIP.getPacket();
+                                int firstFragmentLength = Integer.parseInt(firstIP.getLengthString()) - 20;
+
+                                byte[] firstPacketPayload = Arrays.copyOfRange(firstFragmentRaw, 34, 34 + firstFragmentLength);
+                                
+                                totalPayload = convertbyteToByte(firstPacketPayload);
+                                
+
+                                
+                                if((reassembly = packetReassembly(firstIP, ifragments, totalPayload)).getSuccess())
                                 {
                                     System.out.println("Reassembly is successful");
-                                    String payloadString = new String();
-                                    for(Byte cur : totalPayload)
-                                    {
-                                        payloadString += String.format("%02X ",cur);
-                                    }
                                     
-                                    System.out.println(payloadString);
+                                    // Concatenate packet payload with header
+                                    
+                                    byte[] header = Arrays.copyOfRange(firstFragmentRaw, 0, 34);
+                                    byte[] payload = convertByteTobyte(reassembly.getReassembledFragment());
+                                    
+                                    payload = (byte[])ArrayUtils.addAll(header, payload);
+                                    
+                                    IPPacketParser ipNew = new IPPacketParser();
+                                    ipNew.parsePacket(payload);
+                                    
+                                    ipNew.printAll();
+                                    //String payloadString = new String();
+                                    //for(Byte cur : reassembly.getReassembledFragment())
+                                    //{
+                                    //    payloadString += String.format("%02X ",cur);
+                                    //}
+                                    //
+                                    //System.out.println(payloadString);
+                                    reassemblySuccess = true;
+                                    
                                 }
                             }
                         }
@@ -129,9 +158,9 @@ public class IPFragmentAssembler extends Thread {
         }
     }
     
-    public boolean packetReassembly(IPPacketParser current,TreeMap<Integer,IPPacketParser> ifragments,Byte[] totalPayload)
+    public CompleteFragment packetReassembly(IPPacketParser current,TreeMap<Integer,IPPacketParser> ifragments, Byte[] totalPayload)
     {
-        boolean completed = false;
+        CompleteFragment completed = new CompleteFragment();
         
         if(ifragments.firstEntry() != null)
         {
@@ -148,24 +177,22 @@ public class IPFragmentAssembler extends Thread {
                 // Get Raw packets and calculate starting and end points
                 IPPacketParser nextFragment = ifragments.remove(ifragments.firstKey());
                 byte[] nextFragmentRaw = nextFragment.getPacket();
-                byte[] currentFragmentRaw = current.getPacket();
                 int nextFragmentLength = Integer.parseInt(nextFragment.getLengthString()) - 20;
-                int previousLength = Integer.parseInt(current.getLengthString()) - 20;
                 
                 // Retrieve payload of packets
                 byte[] nextPacketPayload = Arrays.copyOfRange(nextFragmentRaw, 34, 34 + nextFragmentLength);
-                byte[] currentPacketPayload = Arrays.copyOfRange(currentFragmentRaw, 34, 34 + previousLength);
-                
-                totalPayload = (Byte[])ArrayUtils.addAll(totalPayload, convertbyteToByte(currentPacketPayload));
+
                 totalPayload = (Byte[])ArrayUtils.addAll(totalPayload, convertbyteToByte(nextPacketPayload));
                 
-                if(packetReassembly(nextFragment,ifragments,totalPayload))
+                // check recursively until last fragment to see if there is success
+                if((completed = packetReassembly(nextFragment,ifragments,totalPayload)).getSuccess())
                 {
-                    return true;
+                    completed.setSuccess(true);
+                    return completed;
                 } else {
-                    return false;
+                    completed.setSuccess(false);
+                    return completed;
                 }
-                // System.out.println(payloadString);
                 
             } else if (nextStart < previousEnd)
             {
@@ -193,19 +220,21 @@ public class IPFragmentAssembler extends Thread {
             
             totalPayload = (Byte[])ArrayUtils.addAll(totalPayload, convertbyteToByte(nextPacketPayload));
             
-            String payloadString = new String();
-            for(Byte cur : totalPayload)
-            {
-                payloadString += String.format("%02X ",cur);
-            }
-            
-            System.out.println(payloadString);
-            
-            completed = true;
+            completed.setReassembledFragment(totalPayload);
+            //System.out.println("finished in last");
+            //String payloadString = new String();
+            //for(Byte cur : totalPayload)
+            //{
+            //    payloadString += String.format("%02X ",cur);
+            //}
+            //
+            //System.out.println(payloadString);
+            completed.setSuccess(true);
         }else if (lastStart < previousEnd)
         {
             System.out.println("overlap detected");
-            completed = true;
+            completed.setReassembledFragment(totalPayload);
+            completed.setSuccess(true);
         }
         
         return completed;
@@ -215,7 +244,7 @@ public class IPFragmentAssembler extends Thread {
     {
         Byte[] converted = new Byte[toConvert.length];
         
-        int i=0;    
+        int i=0;
         // Associating Byte array values with bytes. (byte[] to Byte[])
         for(byte b: toConvert)
         {
@@ -225,6 +254,41 @@ public class IPFragmentAssembler extends Thread {
         
         return converted;
     }
+    
+    public byte[] convertByteTobyte(Byte[] toConvert)
+    {
+        byte[] converted = new byte[toConvert.length];
+        
+        int j=0;
+        // Unboxing byte values. (Byte[] to byte[])
+        for(Byte b: toConvert)
+        {
+            converted[j] = b.byteValue();
+            j++;
+        }
+        
+        return converted;
+    }
+}
+
+class CompleteFragment{
+
+    Byte[] reassembledFragments;
+    boolean success; 
+    
+    CompleteFragment()
+    {
+        success = false;
+        reassembledFragments = new Byte[10];
+    }
+
+    public void setReassembledFragment(Byte[] set){ reassembledFragments = set; }
+    
+    public Byte[] getReassembledFragment(){ return reassembledFragments; }
+    
+    public void setSuccess(boolean set) { success = set; }
+    
+    public boolean getSuccess() { return success; }
 }
 
 
