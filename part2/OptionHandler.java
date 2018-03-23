@@ -355,6 +355,16 @@ public class OptionHandler{
             }
         }
 
+        // new variables created for ip fragment reassembly
+        AtomicInteger mainDone = new AtomicInteger(0);
+        Vector<String> fragmentIDs = new Vector<String>();
+        ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue = new ConcurrentLinkedQueue<Map<String,IPPacketParser>>();
+        ConcurrentLinkedQueue<FragmentModel> reassembledPacketQueue = new ConcurrentLinkedQueue<FragmentModel>();
+        Vector<IPFragmentAssembler> threadVector = new Vector<IPFragmentAssembler>();
+        FragmentAdministrator adminThread = new FragmentAdministrator(reassembledPacketQueue,mainDone);
+        Object threads[];
+        boolean threadsStillAlive = true;
+        
         switch (typeToParse) {
             case "eth":
             
@@ -433,13 +443,13 @@ public class OptionHandler{
                 int counterIp = 1;
                 
                 // new variables created for ip fragment reassembly
-                AtomicInteger mainDone = new AtomicInteger(0);
-                Vector<String> fragmentIDs = new Vector<String>();
-                ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue = new ConcurrentLinkedQueue<Map<String,IPPacketParser>>();
-                ConcurrentLinkedQueue<FragmentModel> reassembledPacketQueue = new ConcurrentLinkedQueue<FragmentModel>();
-                Vector<IPFragmentAssembler> threadVector = new Vector<IPFragmentAssembler>();
+                //AtomicInteger mainDone = new AtomicInteger(0);
+                //Vector<String> fragmentIDs = new Vector<String>();
+                //ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue = new ConcurrentLinkedQueue<Map<String,IPPacketParser>>();
+                //ConcurrentLinkedQueue<FragmentModel> reassembledPacketQueue = new ConcurrentLinkedQueue<FragmentModel>();
+                //Vector<IPFragmentAssembler> threadVector = new Vector<IPFragmentAssembler>();
+                //FragmentAdministrator adminThread = new FragmentAdministrator(reassembledPacketQueue,mainDone);
                 
-                FragmentAdministrator adminThread = new FragmentAdministrator(reassembledPacketQueue,mainDone);
                 adminThread.start();
                 
                 while(continueLoopIp)
@@ -514,19 +524,22 @@ public class OptionHandler{
 
                 }
                 
-                Object threads[] = threadVector.toArray();
-                
-                boolean threadsStillAlive = true;
+                threads = threadVector.toArray();
+                //
+                //boolean threadsStillAlive = true;
                 
                 while(threadsStillAlive)
                 {
+                    System.out.println("Checking for Thread alive");
                     threadsStillAlive = false;
                     if(threads != null)
                     {
                         for(int x = 0; x < threads.length; x++)
                         {
+                            System.out.println("Packet: "+((IPFragmentAssembler)threads[x]).myPacketID);
                             if(((IPFragmentAssembler)threads[x]).isAlive())
                             {
+                                
                                 threadsStillAlive = true;
                             }
                         }
@@ -538,6 +551,8 @@ public class OptionHandler{
             case "icmp":
                 boolean continueLoopIcmp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterIcmp = 1;
+                
+                adminThread.start();
                 
                 while(continueLoopIcmp)
                 {
@@ -555,27 +570,52 @@ public class OptionHandler{
                     {
                         ip.parsePacket(packet);
                         
-                        // check that the address passes the ip address filter, if not set it will always return true
-                        if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
-                        {
-                            
-                            // check that the protocol is icmp
-                            if(Integer.parseInt(ip.getProtocolString()) == 1)
+                        
+                            if(ip.getIfFragment() == true)
                             {
-                                icmp.parsePacket(packet);
-                                if(headerOnly)
+                                //System.out.println("Detected Fragment");
+                                if(!fragmentIDs.contains(ip.getIdentification()))
                                 {
-                                    icmp.printHeaderOnly();
-                                } else {
-                                    icmp.printAll();
+                                    
+                                    // new id received
+                                    
+                                    IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification(),reassembledPacketQueue);
+                                    ipf.start();
+                                    Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
+                                    toThread.put(ip.getIdentification(),ip);
+                                    packetQueue.add(toThread);
+                                    threadVector.addElement(ipf);
+                                    fragmentIDs.addElement(ip.getIdentification());
+                                    
+                                    System.out.println("thread with ID: "+ ip.getIdentification());
+                                }else{
+                                    
+                                    // already received this packets ID
+                                    
+                                    Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
+                                    toThread.put(ip.getIdentification(),ip);
+                                    packetQueue.add(toThread);
                                 }
-                                
-                                if(counterIcmp == packetsToCapture)
+                            } else if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString())) // check that the address passes the ip address filter, if not set it will always return true
+                            {       
+                            
+                                // check that the protocol is icmp
+                                if(Integer.parseInt(ip.getProtocolString()) == 1)
                                 {
-                                    continueLoopIcmp = false;
+                                    icmp.parsePacket(packet);
+                                    if(headerOnly)
+                                    {
+                                        icmp.printHeaderOnly();
+                                    } else {
+                                        icmp.printAll();
+                                    }
+                                    
+                                    if(counterIcmp == packetsToCapture)
+                                    {
+                                        continueLoopIcmp = false;
+                                    }
                                 }
                             }
-                        }
                     }
             
                     if(doneReading)
@@ -584,11 +624,36 @@ public class OptionHandler{
                     }
                 
                 }
+                
+                threads = threadVector.toArray();
+                //
+                //boolean threadsStillAlive = true;
+                
+                while(threadsStillAlive)
+                {
+                    System.out.println("Checking for Thread alive");
+                    threadsStillAlive = false;
+                    if(threads != null)
+                    {
+                        for(int x = 0; x < threads.length; x++)
+                        {
+                            System.out.println("Packet: "+((IPFragmentAssembler)threads[x]).myPacketID);
+                            if(((IPFragmentAssembler)threads[x]).isAlive())
+                            {
+                                
+                                threadsStillAlive = true;
+                            }
+                        }
+                    }
+                }
+                mainDone.set(1);     
+                
             break;
             case "tcp":
                 boolean continueLoopTcp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterTcp = 1;
 
+                adminThread.start();
             
                 while(continueLoopTcp)
                 {
@@ -607,18 +672,45 @@ public class OptionHandler{
                     {
                         ip.parsePacket(packet);
                         
+                        
+                        
                         // check that the address passes the ip address filter, if not set it will always return true
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
 
-                            // check that the protocol is TCP
-                            if(Integer.parseInt(ip.getProtocolString()) == 6)
+                            if(ip.getIfFragment() == true)
+                            {
+                                //System.out.println("Detected Fragment");
+                                if(!fragmentIDs.contains(ip.getIdentification()))
+                                {
+                                    
+                                    // new id received
+                                    
+                                    IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification(),reassembledPacketQueue);
+                                    ipf.start();
+                                    Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
+                                    toThread.put(ip.getIdentification(),ip);
+                                    packetQueue.add(toThread);
+                                    threadVector.addElement(ipf);
+                                    fragmentIDs.addElement(ip.getIdentification());
+                                    
+                                    System.out.println("thread with ID: "+ ip.getIdentification());
+                                }else{
+                                    
+                                    // already received this packets ID
+                                    
+                                    Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
+                                    toThread.put(ip.getIdentification(),ip);
+                                    packetQueue.add(toThread);
+                                }
+                            }else if(Integer.parseInt(ip.getProtocolString()) == 6)// check that the protocol is TCP
                             {
                                 tcp.parsePacket(packet);
                                 
                                 // check that the port is in range it set, if not set it will always return true
                                 if(checkPortRange(Integer.parseInt(tcp.getSourcePortString()), Integer.parseInt(tcp.getDestinationPortString())))
                                 {
+                                   
                                     if(headerOnly)
                                     {
                                         tcp.printHeaderOnly();
@@ -644,10 +736,34 @@ public class OptionHandler{
                     }
 
                 }
+
+                
+                threads = threadVector.toArray();
+                //
+                //boolean threadsStillAlive = true;
+                
+                while(threadsStillAlive)
+                {
+                    threadsStillAlive = false;
+                    if(threads != null)
+                    {
+                        for(int x = 0; x < threads.length; x++)
+                        {
+                            if(((IPFragmentAssembler)threads[x]).isAlive())
+                            {
+                                threadsStillAlive = true;
+                            }
+                        }
+                    }
+                }
+                mainDone.set(1);   
+                
             break;
             case "udp":
                 boolean continueLoopUdp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterUdp = 1;
+                
+                adminThread.start();                
                 
                 while(continueLoopUdp)
                 {
@@ -665,11 +781,37 @@ public class OptionHandler{
                     {
                         ip.parsePacket(packet);
 
+
                         
                         // check that the address passes the ip address filter, if not set it will always return true
                         if(checkIPAddressFilter(ip.getSourceAddressString(),ip.getDestinationAddressString()))
                         {
-                            if(Integer.parseInt(ip.getProtocolString()) == 17)
+                            if(ip.getIfFragment() == true)
+                            {
+                                //System.out.println("Detected Fragment");
+                                if(!fragmentIDs.contains(ip.getIdentification()))
+                                {
+                                    
+                                    // new id received
+                                    
+                                    IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification(),reassembledPacketQueue);
+                                    ipf.start();
+                                    Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
+                                    toThread.put(ip.getIdentification(),ip);
+                                    packetQueue.add(toThread);
+                                    threadVector.addElement(ipf);
+                                    fragmentIDs.addElement(ip.getIdentification());
+                                    
+                                    System.out.println("thread with ID: "+ ip.getIdentification());
+                                }else{
+                                    
+                                    // already received this packets ID
+                                    
+                                    Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
+                                    toThread.put(ip.getIdentification(),ip);
+                                    packetQueue.add(toThread);
+                                }
+                            }else if(Integer.parseInt(ip.getProtocolString()) == 17)
                             {
                                 // printed byte representation of udp packet, for dns parsing later
                                 // char[] hexArray = "0123456789ABCDEF".toCharArray();
@@ -710,6 +852,28 @@ public class OptionHandler{
                         continueLoopUdp = false;
                     }
                 }
+                
+                
+                threads = threadVector.toArray();
+                //
+                //boolean threadsStillAlive = true;
+                
+                while(threadsStillAlive)
+                {
+                    threadsStillAlive = false;
+                    if(threads != null)
+                    {
+                        for(int x = 0; x < threads.length; x++)
+                        {
+                            if(((IPFragmentAssembler)threads[x]).isAlive())
+                            {
+                                threadsStillAlive = true;
+                            }
+                        }
+                    }
+                }
+                mainDone.set(1);   
+                
             break;
         }
     }
