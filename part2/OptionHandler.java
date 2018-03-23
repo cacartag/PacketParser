@@ -15,6 +15,7 @@ import java.lang.Thread;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.concurrent.Semaphore;
 
 // To compile in Windows: 	java -cp ".;commons-cli-1.4.jar;commons-lang3-3.7.jar" Main
 // To run in Windows: 		java -cp ".;commons-cli-1.4.jar" OptionHandler
@@ -430,6 +431,9 @@ public class OptionHandler{
             case "ip":
                 boolean continueLoopIp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterIp = 1;
+                
+                // new variables created for ip fragment reassembly
+                Semaphore mutexLock = new Semaphore(1);
                 Vector<String> fragmentIDs = new Vector<String>();
                 ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue = new ConcurrentLinkedQueue<Map<String,IPPacketParser>>();
                 
@@ -452,19 +456,22 @@ public class OptionHandler{
                         {
                             if(ip.getIfFragment() == true)
                             {
-                                System.out.println("Detected Fragment");
+                                //System.out.println("Detected Fragment");
                                 if(!fragmentIDs.contains(ip.getIdentification()))
                                 {
-                                    //System.out.println("The packet ID is: " + ip.getIdentification());
                                     
-                                    IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification());
+                                    // new id received
+                                    
+                                    IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification(),mutexLock);
                                     ipf.start();
                                     Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
                                     toThread.put(ip.getIdentification(),ip);
                                     packetQueue.add(toThread);
                                     fragmentIDs.addElement(ip.getIdentification());
                                 }else{
-                                    //System.out.println("Already contains this ID");
+                                    
+                                    // already received this packets ID
+                                    
                                     Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
                                     toThread.put(ip.getIdentification(),ip);
                                     packetQueue.add(toThread);
@@ -674,7 +681,7 @@ public class OptionHandler{
                     }
                 }
             break;
-        }        
+        }
     }
     
     // get packet from either a file or the chosen network interface card

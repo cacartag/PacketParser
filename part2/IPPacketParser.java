@@ -343,4 +343,40 @@ public class IPPacketParser{
         
         System.out.println("\n\n\n");
     }
+    
+    public String printAllReturn()
+    {
+        String ip = new String();
+        
+        ip += "IP Header:\n";
+        ip += "IP version: " + versionString + "\n";
+        ip += "IP length: " + ihlString + "\n";
+        ip += "IP DSCP: " + dscpString + "\n";
+        ip += "IP ECN: " + ecnString + "\n";
+        ip += "IP packet length: "+ lengthString + "\n";
+        ip += "Identification: " + idString + "\n";
+        ip += "Reserved Flag is: " + (int)(flags[0]) + "\n";
+        ip += "Don't Fragment flag is: " + (int)(flags[1]) + "\n";
+        ip += "More Fragments flag is: " + (int)(flags[2]) + "\n";
+        ip += "Fragment Offset: " + fragmentOffsetString + "\n";
+        ip += "TTL: " + ttlString + "\n";
+        ip += "Protocol: " + protocolString + "\n";
+        ip += "Header Checksum: " + headerChecksumString + "\n";
+        ip += "Source IP Address: " + sourceAddressString + "\n";
+        ip += "Destination IP Address: " + destinationAddressString + "\n";
+        ip += "Calculated check Sum is: " + calculatedChecksum + "\n";
+        
+        try
+        {
+            String payloadString = new String(payload, "UTF-8");           
+            ip += payloadString + "\n";
+        } catch(Exception e)
+        {
+            ip += "Could not convert payload to string \n";
+        }
+
+        ip += "\n\n\n";
+        
+        return ip;
+    }
 }
