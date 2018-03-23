@@ -29,63 +29,53 @@ public class FragmentAdministrator extends Thread
     public void run()
     {
         boolean lastIteration = true;
+        BufferedWriter out = null;       
+        FileWriter fstream;
         
-        while((mainDone.get() == 0))
-        {
-            FragmentModel s = reassembledPacketQueue.peek();
-            
-            while(s != null)
+        try{
+            fstream = new FileWriter("Fragment.txt", true); //true tells to append data.
+            out = new BufferedWriter(fstream);        
+            while((mainDone.get() == 0))
             {
-                s = reassembledPacketQueue.poll();
-                BufferedWriter out = null;
-                try  
-                {
-                    FileWriter fstream = new FileWriter("Fragment.txt", true); //true tells to append data.
-                    out = new BufferedWriter(fstream);
-                    out.write("Reassembled Packet is\n");
-                    
-                    String parsedPacket = (s.getReassembledPacket()).printAllReturn();
-                    out.write(parsedPacket);
-                    
-                    out.close();
-                }
-                catch (Exception e)
-                {
-                    System.err.println("Error: " + e);
-                }
+                FragmentModel s = reassembledPacketQueue.peek();
                 
-                s = reassembledPacketQueue.peek();
-                
+                while(s != null)
+                {
+                    s = reassembledPacketQueue.poll();
+    
+                    try  
+                    {
+
+                        out.write("Reassembled Packet is\n");
+                        if(s.getSid() == 2)
+                        {
+                            out.write("Overlap Detected\n");
+                        }
+                        
+                        if(s.getSid() == 4)
+                        {
+                            out.write("Timeout Detected\n");
+                        }
+                        
+                        String parsedPacket = (s.getReassembledPacket()).printAllReturn();
+                        out.write(parsedPacket);
+                    }
+                    catch (Exception e)
+                    {
+                        System.err.println("Error out: " + e);
+                    }
+                    
+                    s = reassembledPacketQueue.peek();
+                }
             }
             
-            //Object threads[] = threadQueue.toArray();
-            //
-            //if(threads != null)
-            //{
-            //    threadsStillAlive = false;
-            //    for(int x = 0; x < threads.length; x++)
-            //    {
-            //        if(((IPFragmentAssembler)threads[x]).isAlive())
-            //        {
-            //            threadsStillAlive = true;
-            //        }else{
-            //            //threadQueue.remove(threads[x]);
-            //        }
-            //    }
-            //}
-            
-            //if(!threadsStillAlive && (mainDone.get() == 1) && lastIteration)
-            //{
-            //    lastIteration = false;
-            //    try{
-            //        Thread.sleep(5000);
-            //        threadsStillAlive = true;
-            //    } catch(Exception e)
-            //    {
-            //        e.printStackTrace();
-            //    }
-            //}
+            out.close();
+        } catch (Exception exce)
+        {
+            System.err.println("Error: " + exce);
         }
+        
+        
         
         System.out.println("main Done, and no more threads");
     }

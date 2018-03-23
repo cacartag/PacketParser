@@ -295,7 +295,6 @@ public class IPPacketParser{
         System.out.println("IP ECN: " + ecnString);
         System.out.println("IP packet length: "+ lengthString);
         System.out.println("Identification: " + idString);
-        //System.out.println("Flags: " + flagString);
         System.out.println("Reserved Flag is: " + (int)(flags[0]));
         System.out.println("Don't Fragment flag is: " + (int)(flags[1]));
         System.out.println("More Fragments flag is: " + (int)(flags[2]));
@@ -329,7 +328,6 @@ public class IPPacketParser{
         System.out.println("IP ECN: " + ecnString);
         System.out.println("IP packet length: "+ lengthString);
         System.out.println("Identification: " + idString);
-        //System.out.println("Flags: " + flagString);
         System.out.println("Reserved Flag is: " + (int)(flags[0]));
         System.out.println("Don't Fragment flag is: " + (int)(flags[1]));
         System.out.println("More Fragments flag is: " + (int)(flags[2]));
