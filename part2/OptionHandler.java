@@ -15,7 +15,7 @@ import java.lang.Thread;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 // To compile in Windows: 	java -cp ".;commons-cli-1.4.jar;commons-lang3-3.7.jar" Main
 // To run in Windows: 		java -cp ".;commons-cli-1.4.jar" OptionHandler
@@ -433,9 +433,14 @@ public class OptionHandler{
                 int counterIp = 1;
                 
                 // new variables created for ip fragment reassembly
-                Semaphore mutexLock = new Semaphore(1);
+                AtomicInteger mainDone = new AtomicInteger(0);
                 Vector<String> fragmentIDs = new Vector<String>();
                 ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue = new ConcurrentLinkedQueue<Map<String,IPPacketParser>>();
+                ConcurrentLinkedQueue<FragmentModel> reassembledPacketQueue = new ConcurrentLinkedQueue<FragmentModel>();
+                Vector<IPFragmentAssembler> threadVector = new Vector<IPFragmentAssembler>();
+                
+                FragmentAdministrator adminThread = new FragmentAdministrator(reassembledPacketQueue,mainDone);
+                adminThread.start();
                 
                 while(continueLoopIp)
                 {
@@ -462,12 +467,15 @@ public class OptionHandler{
                                     
                                     // new id received
                                     
-                                    IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification(),mutexLock);
+                                    IPFragmentAssembler ipf = new IPFragmentAssembler(packetQueue,ip.getIdentification(),reassembledPacketQueue);
                                     ipf.start();
                                     Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
                                     toThread.put(ip.getIdentification(),ip);
                                     packetQueue.add(toThread);
+                                    threadVector.addElement(ipf);
                                     fragmentIDs.addElement(ip.getIdentification());
+                                    
+                                    System.out.println("thread with ID: "+ ip.getIdentification());
                                 }else{
                                     
                                     // already received this packets ID
@@ -503,7 +511,29 @@ public class OptionHandler{
                         continueLoopIp = false;
                     }
 
+
                 }
+                
+                Object threads[] = threadVector.toArray();
+                
+                boolean threadsStillAlive = true;
+                
+                while(threadsStillAlive)
+                {
+                    threadsStillAlive = false;
+                    if(threads != null)
+                    {
+                        for(int x = 0; x < threads.length; x++)
+                        {
+                            if(((IPFragmentAssembler)threads[x]).isAlive())
+                            {
+                                threadsStillAlive = true;
+                            }
+                        }
+                    }
+                }
+                mainDone.set(1);                
+                
             break;
             case "icmp":
                 boolean continueLoopIcmp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));

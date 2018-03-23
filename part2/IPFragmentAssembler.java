@@ -15,6 +15,7 @@ import java.io.FileWriter;
 public class IPFragmentAssembler extends Thread {
         
     ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue;
+    ConcurrentLinkedQueue<FragmentModel> reassembledPacketQueue;
     FragmentModel reassembledPacket;
     String myPacketID;
     Timestamp arrival;
@@ -25,15 +26,14 @@ public class IPFragmentAssembler extends Thread {
     IPPacketParser lastIP;
     boolean reassemblySuccess;
     boolean timeout;
-    Semaphore lockForWriting;
     boolean overlapDetected; 
         
     // initiated with id of packet to reassemble
-    IPFragmentAssembler(ConcurrentLinkedQueue<Map<String,IPPacketParser>> p,String ID, Semaphore s)
+    IPFragmentAssembler(ConcurrentLinkedQueue<Map<String,IPPacketParser>> p,String ID, ConcurrentLinkedQueue<FragmentModel> r)
     {
         packetQueue = p;
+        reassembledPacketQueue = r;
         myPacketID = ID;
-        lockForWriting = s;
         arrival = new Timestamp(System.currentTimeMillis());
         fragments = new TreeMap<Integer,IPPacketParser>();
         reassembledPacket = new FragmentModel();
@@ -56,9 +56,8 @@ public class IPFragmentAssembler extends Thread {
                 Timestamp tempCurrent = new Timestamp(System.currentTimeMillis());
                 long currentInMilliseconds = tempCurrent.getTime();
                 
-                if((currentInMilliseconds - startInMilliseconds) > 3000)
+                if((currentInMilliseconds - startInMilliseconds) > 10000)
                 {
-                    System.out.println("Timeout of reassembler");
                     timeout = true;
                 }
             }
@@ -135,9 +134,12 @@ public class IPFragmentAssembler extends Thread {
                             else
                                 reassembledPacket.setSid(1);
                                     
+                            fragments.put(Integer.parseInt(firstIP.getFragmentOffsetString()),firstIP);
+                            fragments.put(Integer.parseInt(lastIP.getFragmentOffsetString()),lastIP);
                             reassembledPacket.setFragments(fragments);
                             reassembledPacket.setReassembledPacket(ipNew);
                             reassembledPacket.setReceiveFirstPacketTime(arrival);
+                            reassembledPacketQueue.add(reassembledPacket);
                         }else
                         {
                              
@@ -186,9 +188,12 @@ public class IPFragmentAssembler extends Thread {
                                     else
                                         reassembledPacket.setSid(1);
                                     
+                                    fragments.put(Integer.parseInt(firstIP.getFragmentOffsetString()),firstIP);
+                                    fragments.put(Integer.parseInt(lastIP.getFragmentOffsetString()),lastIP);
                                     reassembledPacket.setFragments(fragments);
                                     reassembledPacket.setReassembledPacket(ipNew);
                                     reassembledPacket.setReceiveFirstPacketTime(arrival);
+                                    reassembledPacketQueue.add(reassembledPacket);
                                 }
                             }
                         }
@@ -198,37 +203,54 @@ public class IPFragmentAssembler extends Thread {
         }
         
         // acquire lock for writing and write reassembled packet to file
-        try{
-            lockForWriting.acquire();
-        
-            BufferedWriter out = null;
-            try  
-            {
-                FileWriter fstream = new FileWriter("Fragment.txt", true); //true tells to append data.
-                out = new BufferedWriter(fstream);
-                out.write("Reassembled Packet is\n");
-                
-                String parsedPacket = (reassembledPacket.getReassembledPacket()).printAllReturn();
-                out.write(parsedPacket);
-                
-                out.close();
-            }
-            catch (Exception e)
-            {
-                System.err.println("Error: " + e.getMessage());
-                lockForWriting.release();
-            }
-            finally
-            {
-                lockForWriting.release();
-            }
-        }
-        catch(Exception exc)
-        {
-            System.out.println("Error in acquiring lock");
-        }
-        
-        
+        //try{
+        //    lockForWriting.acquire();
+        //
+        //    BufferedWriter out = null;
+        //    try  
+        //    {
+        //        FileWriter fstream = new FileWriter("Fragment.txt", true); //true tells to append data.
+        //        
+        //        if(timeout)
+        //        {
+        //            out = new BufferedWriter(fstream);
+        //            
+        //            reassembledPacket.setSid(4);        
+        //            fragments.put(Integer.parseInt(firstIP.getFragmentOffsetString()),firstIP);
+        //            fragments.put(Integer.parseInt(lastIP.getFragmentOffsetString()),lastIP);
+        //            reassembledPacket.setFragments(fragments);
+        //            reassembledPacket.setReceiveFirstPacketTime(arrival);
+        //                    
+        //            out.write("Packet Timed out\nID: " + myPacketID + "\n\n");
+        //        }
+        //        else{
+        //            out = new BufferedWriter(fstream);
+        //            out.write("Reassembled Packet is\n");
+        //            
+        //            String parsedPacket = (reassembledPacket.getReassembledPacket()).printAllReturn();
+        //            out.write(parsedPacket);
+        //        }
+        //        
+        //        out.close();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        System.err.println("Error: " + e);
+        //        out.close();
+        //        lockForWriting.release();
+        //    }
+        //    finally
+        //    {
+        //        out.close();
+        //        lockForWriting.release();
+        //    }
+        //}
+        //catch(Exception exc)
+        //{
+        //    System.out.println("Error in acquiring lock");
+        //}
+        //
+        //
     }
     
     public CompleteFragment packetReassembly(IPPacketParser current,TreeMap<Integer,IPPacketParser> ifragments, Byte[] totalPayload)
