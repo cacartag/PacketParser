@@ -46,9 +46,23 @@ public class IPFragmentAssembler extends Thread {
         
     public void run()
     {
-        // keep iterating until all packets have been received and disassembly has been attempted even if overlapping
-        while(!reassemblySuccess)
+        // keep iterating until all packets have been received and disassembly has been attempted even if overlapping or timeout has occurred
+        while(!reassemblySuccess && !timeout)
         {
+            
+            {
+                // see if more than 3 seconds have been spent waiting for packet
+                long startInMilliseconds = arrival.getTime();
+                Timestamp tempCurrent = new Timestamp(System.currentTimeMillis());
+                long currentInMilliseconds = tempCurrent.getTime();
+                
+                if((currentInMilliseconds - startInMilliseconds) > 3000)
+                {
+                    System.out.println("Timeout of reassembler");
+                    timeout = true;
+                }
+            }
+            
             Map<String,IPPacketParser> s = packetQueue.peek();
             
             // check if any fragmented packet have been received in queue
