@@ -14,16 +14,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class FragmentAdministrator extends Thread
 {
     ConcurrentLinkedQueue<FragmentModel> reassembledPacketQueue;
-    ConcurrentLinkedQueue<IPFragmentAssembler> threadQueue;   
+    ConcurrentLinkedQueue<IPFragmentAssembler> threadQueue; 
+    ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue;
     boolean threadsStillAlive;
     AtomicInteger mainDone; 
     IPFragmentAssembler threadsArray[];
+    Vector<String> doneID;
   
-    FragmentAdministrator(ConcurrentLinkedQueue<FragmentModel> r, AtomicInteger m)
+    FragmentAdministrator(ConcurrentLinkedQueue<FragmentModel> r, AtomicInteger m,ConcurrentLinkedQueue<Map<String,IPPacketParser>> p)
     {
         reassembledPacketQueue = r;
+        packetQueue = p;
         threadsStillAlive = true;
         mainDone = m;
+        doneID = new Vector<String>();
     }
 
     public void run()
@@ -46,7 +50,7 @@ public class FragmentAdministrator extends Thread
                     try  
                     {
 
-                        out.write("Reassembled Packet is\n");
+                        out.write("Reassembled Packet ID"+(s.getReassembledPacket()).getIdentification()+"\n");
                         if(s.getSid() == 2)
                         {
                             out.write("Overlap Detected\n");
@@ -59,6 +63,9 @@ public class FragmentAdministrator extends Thread
                         
                         String parsedPacket = (s.getReassembledPacket()).printAllReturn();
                         out.write(parsedPacket);
+                        
+                        doneID.addElement((s.getReassembledPacket()).getIdentification());
+                        
                     }
                     catch (Exception e)
                     {
@@ -67,6 +74,29 @@ public class FragmentAdministrator extends Thread
                     
                     s = reassembledPacketQueue.peek();
                 }
+                
+                // see if any of the finished id packets are holding up queue
+                boolean needToFlush = true;
+                Map<String,IPPacketParser> queueFlush = packetQueue.peek();
+                Object doneArray[] = doneID.toArray();                 
+                
+                while(needToFlush && (queueFlush != null))
+                {
+                    needToFlush = false;
+                    //check if the packets id matches finished packet
+                
+                    for(int x = 0; x < doneArray.length; x++)
+                    {
+                        if(queueFlush.containsKey((String)doneArray[x]))
+                        {
+                            packetQueue.poll();
+                            queueFlush = packetQueue.peek();
+                            needToFlush = true;
+                        }
+                    }
+                }
+                
+                
             }
             
             out.close();

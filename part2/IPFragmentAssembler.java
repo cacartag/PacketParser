@@ -7,7 +7,6 @@ import java.util.TreeMap;
 import java.util.Vector;
 import java.util.Arrays;
 import org.apache.commons.lang3.ArrayUtils;
-import java.util.concurrent.Semaphore;
 import java.lang.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -72,12 +71,16 @@ public class IPFragmentAssembler extends Thread {
             if (s != null)
             {
                 //check if the packets id matches mine
+                IPPacketParser temp = s.get(myPacketID);
+               
                 if(s.containsKey(myPacketID))
                 {
                     s = packetQueue.poll();
                     IPPacketParser ip = s.get(myPacketID);
                     
                     byte[] flags = ip.getFlags();
+                    
+                    //System.out.println("Received and am starting my packet: ");
                     
                     if(Integer.parseInt(ip.getFragmentOffsetString()) == 0)
                     {
@@ -103,6 +106,8 @@ public class IPFragmentAssembler extends Thread {
                         int lastFragmentStart = Integer.parseInt(lastIP.getFragmentOffsetString()) * 8;
                         int lastFragmentEnd = Integer.parseInt(lastIP.getLengthString()) - 20;
                         
+                        //if(myPacketID.equals("2191"))
+                        //    System.out.println("lastFragment: "+ lastFragmentStart + "\nFirstFragment: "+firstFragmentEnd);
                         if((firstFragmentEnd == lastFragmentStart) || (lastFragmentStart < firstFragmentEnd))
                         {
                             byte[] totalPayload;
@@ -139,6 +144,8 @@ public class IPFragmentAssembler extends Thread {
                             if(lastFragmentStart < firstFragmentEnd)
                                 overlapDetected = true;
                             
+                            
+                            
                             if(overlapDetected)
                                 reassembledPacket.setSid(2);
                             else if(over64K)
@@ -154,6 +161,7 @@ public class IPFragmentAssembler extends Thread {
                             reassembledPacketQueue.add(reassembledPacket);
                         }else
                         {
+                            
                             // more than two fragments
                             if(fragments.firstEntry() != null)
                             {
@@ -231,6 +239,7 @@ public class IPFragmentAssembler extends Thread {
             if(lastIP != null)
                 fragments.put(Integer.parseInt(lastIP.getFragmentOffsetString()),lastIP);
             
+            //System.out.println("Timed out: " + firstIP.getIdentification());
             reassembledPacket.setSid(4);
             reassembledPacket.setFragments(fragments);
             reassembledPacket.setReceiveFirstPacketTime(arrival);
@@ -241,16 +250,26 @@ public class IPFragmentAssembler extends Thread {
     public CompleteFragment packetReassembly(IPPacketParser current,TreeMap<Integer,IPPacketParser> ifragments, Byte[] totalPayload,int numberOfBytes)
     {
         CompleteFragment completed = new CompleteFragment();
+
+        //if(myPacketID.equals("2191"))
+        //    System.out.println("current is: " + current.getFragmentOffsetString());
         
         if(ifragments.firstEntry() != null)
         {
-            Integer nextStart = ifragments.firstKey() * 8;
-            Integer previousEnd = (Integer.parseInt(current.getLengthString()) - 20) + (Integer.parseInt(current.getFragmentOffsetString()) * 8);
-            System.out.println("distinct Reach\nnextStart:"+nextStart+"\npreviousEnd:"+previousEnd);            
+            int nextStart = ifragments.firstKey() * 8;
+            int previousEnd = (Integer.parseInt(current.getLengthString()) - 20) + (Integer.parseInt(current.getFragmentOffsetString()) * 8);
+         
+
+            //System.out.println("Packet ID: "+myPacketID); 
+            //if(myPacketID.equals("2191"))
+            //System.out.println("nextStart: "+ nextStart + "\npreviousEnd: "+previousEnd);
+            
             if((nextStart == previousEnd) || (nextStart < previousEnd))
             {
                 
-
+                //if(myPacketID.equals("2191"))
+                //    System.out.println("Hit this");
+                
                 // Get Raw packets and calculate starting and end points
                 IPPacketParser nextFragment = ifragments.remove(ifragments.firstKey());
                 byte[] nextFragmentRaw = nextFragment.getPacket();
@@ -279,7 +298,6 @@ public class IPFragmentAssembler extends Thread {
                     completed.setSuccess(true);
                     return completed;
                 } else {
-                    System.out.println("false by: " + myPacketID+"\noffset by: " + current.getFragmentOffsetString());
                     completed.setSuccess(false);
                     return completed;
                 }
@@ -297,8 +315,8 @@ public class IPFragmentAssembler extends Thread {
         
         // When this part is reached it's usually due to the last packet being ready to be assembled
         // if not all intermediate packets have been received then this will never be reached
-        Integer previousEnd = (Integer.parseInt(current.getLengthString()) - 20) + (Integer.parseInt(current.getFragmentOffsetString()) * 8);
-        Integer lastStart = Integer.parseInt(lastIP.getFragmentOffsetString()) * 8;
+        int previousEnd = (Integer.parseInt(current.getLengthString()) - 20) + (Integer.parseInt(current.getFragmentOffsetString()) * 8);
+        int lastStart = Integer.parseInt(lastIP.getFragmentOffsetString()) * 8;
         
         if((previousEnd == lastStart) || (lastStart < previousEnd))
         {

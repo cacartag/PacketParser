@@ -361,7 +361,7 @@ public class OptionHandler{
         ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue = new ConcurrentLinkedQueue<Map<String,IPPacketParser>>();
         ConcurrentLinkedQueue<FragmentModel> reassembledPacketQueue = new ConcurrentLinkedQueue<FragmentModel>();
         Vector<IPFragmentAssembler> threadVector = new Vector<IPFragmentAssembler>();
-        FragmentAdministrator adminThread = new FragmentAdministrator(reassembledPacketQueue,mainDone);
+        FragmentAdministrator adminThread = new FragmentAdministrator(reassembledPacketQueue,mainDone,packetQueue);
         Object threads[];
         boolean threadsStillAlive = true;
         
@@ -442,14 +442,6 @@ public class OptionHandler{
                 boolean continueLoopIp = ((packetsToCapture == -1) ? true: ((packetsToCapture != 0) ? true: false));
                 int counterIp = 1;
                 
-                // new variables created for ip fragment reassembly
-                //AtomicInteger mainDone = new AtomicInteger(0);
-                //Vector<String> fragmentIDs = new Vector<String>();
-                //ConcurrentLinkedQueue<Map<String,IPPacketParser>> packetQueue = new ConcurrentLinkedQueue<Map<String,IPPacketParser>>();
-                //ConcurrentLinkedQueue<FragmentModel> reassembledPacketQueue = new ConcurrentLinkedQueue<FragmentModel>();
-                //Vector<IPFragmentAssembler> threadVector = new Vector<IPFragmentAssembler>();
-                //FragmentAdministrator adminThread = new FragmentAdministrator(reassembledPacketQueue,mainDone);
-                
                 adminThread.start();
                 
                 while(continueLoopIp)
@@ -485,11 +477,11 @@ public class OptionHandler{
                                     threadVector.addElement(ipf);
                                     fragmentIDs.addElement(ip.getIdentification());
                                     
-                                    System.out.println("thread with ID: "+ ip.getIdentification());
+
+                                    System.out.println("Create Thread: "+ ip.getIdentification());
                                 }else{
                                     
                                     // already received this packets ID
-                                    
                                     Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
                                     toThread.put(ip.getIdentification(),ip);
                                     packetQueue.add(toThread);
@@ -530,16 +522,13 @@ public class OptionHandler{
                 
                 while(threadsStillAlive)
                 {
-                    System.out.println("Checking for Thread alive");
                     threadsStillAlive = false;
                     if(threads != null)
                     {
                         for(int x = 0; x < threads.length; x++)
                         {
-                            System.out.println("Packet: "+((IPFragmentAssembler)threads[x]).myPacketID);
                             if(((IPFragmentAssembler)threads[x]).isAlive())
                             {
-                                
                                 threadsStillAlive = true;
                             }
                         }
@@ -562,7 +551,7 @@ public class OptionHandler{
                     
                     byte [] packet = getPacket();
                     
-                    if(packet.length > 41)
+                    if(packet.length > 33)
                         eth.parsePacket(packet);
                     
                     // check that the type is ip
@@ -591,7 +580,7 @@ public class OptionHandler{
                                 }else{
                                     
                                     // already received this packets ID
-                                    
+                                    System.out.println("Received new fragment: " + ip.getIdentification());
                                     Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
                                     toThread.put(ip.getIdentification(),ip);
                                     packetQueue.add(toThread);
@@ -631,13 +620,11 @@ public class OptionHandler{
                 
                 while(threadsStillAlive)
                 {
-                    System.out.println("Checking for Thread alive");
                     threadsStillAlive = false;
                     if(threads != null)
                     {
                         for(int x = 0; x < threads.length; x++)
                         {
-                            System.out.println("Packet: "+((IPFragmentAssembler)threads[x]).myPacketID);
                             if(((IPFragmentAssembler)threads[x]).isAlive())
                             {
                                 
@@ -664,7 +651,7 @@ public class OptionHandler{
                     byte [] packet = getPacket();
           
                     // check that that the packet received has more than Ethernet
-                    if(packet.length > 53)
+                    if(packet.length > 33)
                         eth.parsePacket(packet);
         
                     // check that the packet is an IPv4 valued packet
@@ -693,12 +680,15 @@ public class OptionHandler{
                                     packetQueue.add(toThread);
                                     threadVector.addElement(ipf);
                                     fragmentIDs.addElement(ip.getIdentification());
+                                    if((ip.getIdentification()).equals("465"))
+										System.out.println("465: received packet");
                                     
                                     System.out.println("thread with ID: "+ ip.getIdentification());
                                 }else{
                                     
                                     // already received this packets ID
-                                    
+                                    if((ip.getIdentification()).equals("465"))
+										System.out.println("465: received packet");
                                     Map<String,IPPacketParser> toThread = new HashMap<String,IPPacketParser>();
                                     toThread.put(ip.getIdentification(),ip);
                                     packetQueue.add(toThread);
@@ -774,7 +764,7 @@ public class OptionHandler{
                 
                     byte [] packet = getPacket();
           
-                    if(packet.length > 41)
+                    if(packet.length > 33)
                         eth.parsePacket(packet);
         
                     if(eth.getTypeString().equals("0800"))
